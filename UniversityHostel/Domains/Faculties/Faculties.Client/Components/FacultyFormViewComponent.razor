@@ -1,0 +1,14 @@
+﻿@page "/faculties/{SystemFeatureTypeParameter}"
+@page "/faculties/{SystemFeatureTypeParameter}/{FacultyId:guid}"
+
+@attribute [Authorize]
+
+<PageTitle>@systemFeatureType.ToString() Faculty</PageTitle>
+
+@if (systemFeatureType.Equals(SystemFeatureType.Delete))
+{
+    <div class="alert alert-danger">
+        <p>Does you want  delete "@facultyViewModel?.Name"</p>
+    </div>
+}
+<BaseFacultyComponent FacultyViewModel="facultyViewModel" SystemFeatureType="systemFeatureType" />

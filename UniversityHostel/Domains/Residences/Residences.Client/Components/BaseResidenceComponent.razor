@@ -1,0 +1,23 @@
+<FormBaseComponent TViewModel="ResidenceViewModel" ViewModel="ResidenceViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} Residence")"
+                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/residences"))">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="name">
+                Name
+                <span class="text-danger">*</span>
+            </label>
+            <InputText class="form-control" @bind-Value="ResidenceViewModel.Name"
+                       disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+            <ValidationMessage For="@(() => ResidenceViewModel.Name)" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="name">
+                NameSecondLanguage
+                <span class="text-danger">*</span>
+            </label>
+            <InputText class="form-control" @bind-Value="ResidenceViewModel.NameSecondLanguage"
+                       disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+            <ValidationMessage For="@(() => ResidenceViewModel.NameSecondLanguage)" />
+        </div>
+    </div>
+</FormBaseComponent>

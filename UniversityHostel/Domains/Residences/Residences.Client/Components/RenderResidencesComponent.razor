@@ -1,0 +1,52 @@
+@page "/residences"
+
+@attribute [Authorize]
+<PageTitle>All Residences</PageTitle>
+
+<a href="/residences/add" class="btn btn-primary">
+    Add
+    <span class="oi oi-plus"></span>
+</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Name Second Language</th>
+            <th scope="col">Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(dataLoaded)
+        {
+            @if (residences is not null && residences.Any())
+            {
+                foreach (var residence in residences)
+                {
+                    <tr>
+                        <td>@residence.DisplayOrder</td>
+                        <td>@residence.Name</td>
+                        <td>@residence.NameSecondLanguage</td>
+                        <td class="d-flex justify-content-around">
+                            <a href="/residences/edit/@residence.Id" title="Edit"><span class="oi oi-pencil"></span></a>
+                            <a href="/residences/details/@residence.Id" title="Details"><span class="oi oi-info" aria-hidden="true"></span></a>
+                            <a href="/residences/delete/@residence.Id" title="Delete"><span class="oi oi-trash" aria-hidden="true"></span></a>
+                        </td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="4"><h4>No Data Founded</h4></td></tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="4"><h4>Loading..</h4></td></tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+}

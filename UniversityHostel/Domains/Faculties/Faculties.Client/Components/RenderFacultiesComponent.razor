@@ -1,0 +1,52 @@
+﻿@page "/faculties"
+
+@attribute [Authorize]
+<PageTitle>All Faculties</PageTitle>
+
+<a href="/faculties/add" class="btn btn-primary">
+    Add
+    <span class="oi oi-plus"></span>
+</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Name Second Language</th>
+            <th scope="col">Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(dataLoaded)
+        {
+            @if (faculties is not null && faculties.Any())
+            {
+                foreach (var faculty in faculties)
+                {
+                    <tr>
+                        <td>@faculty.DisplayOrder</td>
+                        <td>@faculty.Name</td>
+                        <td>@faculty.NameSecondLanguage</td>
+                        <td class="d-flex justify-content-around">
+                            <a href="/faculties/edit/@faculty.Id" title="Edit"><span class="oi oi-pencil"></span></a>
+                            <a href="/faculties/details/@faculty.Id" title="Details"><span class="oi oi-info" aria-hidden="true"></span></a>
+                            <a href="/faculties/delete/@faculty.Id" title="Delete"><span class="oi oi-trash" aria-hidden="true"></span></a>
+                        </td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="4"><h4>No Data Founded</h4></td></tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="4"><h4>Loading..</h4></td></tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+}

@@ -1,0 +1,14 @@
+@page "/residences/{SystemFeatureTypeParameter}"
+@page "/residences/{SystemFeatureTypeParameter}/{ResidenceId:guid}"
+
+@attribute [Authorize]
+
+<PageTitle>@systemFeatureType.ToString() Residence</PageTitle>
+
+@if (systemFeatureType.Equals(SystemFeatureType.Delete))
+{
+    <div class="alert alert-danger">
+        <p>Does you want  delete "@residenceViewModel?.Name"</p>
+    </div>
+}
+<BaseResidenceComponent ResidenceViewModel="residenceViewModel" SystemFeatureType="systemFeatureType" />
