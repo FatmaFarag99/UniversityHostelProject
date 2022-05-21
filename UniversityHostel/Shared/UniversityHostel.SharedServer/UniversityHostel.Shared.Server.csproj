@@ -11,10 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
     <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="StateLog.AspNetCore" Version="1.0.7" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\StateLog.AspNetCore\StateLog.AspNetCore.csproj" />
     <ProjectReference Include="..\UniversityHostel.Shared\UniversityHostel.Shared.csproj" />
   </ItemGroup>
 
