@@ -22,11 +22,11 @@
             if (_userLogger is null)
                 throw new ArgumentNullException("_userLogger", $"No service found for type {nameof(IUserLogger)}");
 
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity();
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, "123"));
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, "MohammadFayed"));
+            //ClaimsIdentity claimsIdentity = new ClaimsIdentity();
+            //claimsIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, "123"));
+            //claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, "MohammadFayed"));
 
-            context.HttpContext.User.AddIdentity(claimsIdentity);
+            //context.HttpContext.User.AddIdentity(claimsIdentity);
 
             var routeData = new Dictionary<string, object>();
             foreach (var key in context.RouteData.Values?.Keys)
