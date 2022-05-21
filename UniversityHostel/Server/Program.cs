@@ -34,7 +34,10 @@ if(builder.Configuration.GetValue<bool>("AppSettings:Migrate"))
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "University Hostel V1");
+    });
 }
 else
 {
