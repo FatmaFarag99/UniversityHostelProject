@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--<Nullable>enable</Nullable>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Shared\UniversityHostel.SharedServer\UniversityHostel.Shared.Server.csproj" />
+    <ProjectReference Include="..\..\BasicInformations\BasicInformations.Server\BasicInformation.Server\BasicInformation.Server.csproj" />
+    <ProjectReference Include="..\..\Documents\Documents.Server\Documents.Server.csproj" />
+    <ProjectReference Include="..\..\Payments\Payments.Server\Payments.Server.csproj" />
+    <ProjectReference Include="..\Applications.Shared\Applications.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

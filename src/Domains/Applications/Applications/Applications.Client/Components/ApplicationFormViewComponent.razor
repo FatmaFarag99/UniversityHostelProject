@@ -1,0 +1,14 @@
+﻿@page "/applications/{SystemFeatureTypeParameter}"
+@page "/applications/{SystemFeatureTypeParameter}/{ApplicationId:guid}"
+
+@attribute [Authorize]
+
+<PageTitle>@systemFeatureType.ToString() Application</PageTitle>
+
+@if (systemFeatureType.Equals(SystemFeatureType.Delete))
+{
+    <div class="alert alert-danger">
+        <p>Do you want delete "@applicationViewModel?.Id"</p>
+    </div>
+}
+<BaseApplicationComponent ApplicationViewModel="applicationViewModel" SystemFeatureType="systemFeatureType" />
