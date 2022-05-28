@@ -7,11 +7,14 @@ public class TokenService : ITokenService
 
     public async Task<string> CreateToken(AppUser user, IEnumerable<string> roles)
     {
-        var signingCredential = GetSigningCredentials();
-        var claims = await GetClaims(user, roles);
-        var tokenOptions = GenerateTokenOptions(signingCredential, claims);
+        return await Task.Run<string>(() => {
 
-        return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            var signingCredential = GetSigningCredentials();
+            var claims = GetClaims(user, roles);
+            var tokenOptions = GenerateTokenOptions(signingCredential, claims);
+
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        });
     }
 
     public SigningCredentials GetSigningCredentials()
@@ -21,7 +24,7 @@ public class TokenService : ITokenService
         return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
     }
 
-    public async Task<IEnumerable<Claim>> GetClaims(AppUser user, IEnumerable<string> roles)
+    public IEnumerable<Claim> GetClaims(AppUser user, IEnumerable<string> roles)
     {
         var claims = new List<Claim>
         {

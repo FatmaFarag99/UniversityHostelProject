@@ -6,7 +6,7 @@ public class UserForRegisterValidator : AbstractValidator<UserForRegisterViewMod
     {
         RuleFor(e => e.FirstName).NotEmpty();
         RuleFor(e => e.LastName).NotEmpty();
-        RuleFor(e => e.UserName).NotEmpty().MinimumLength(14).MinimumLength(14);
+        RuleFor(e => e.UserName).NotEmpty();
         RuleFor(e => e.Email).NotEmpty().EmailAddress();
         RuleFor(e => e.Password).NotEmpty().MinimumLength(8);
     }
