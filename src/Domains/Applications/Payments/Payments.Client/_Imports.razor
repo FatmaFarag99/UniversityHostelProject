@@ -1,0 +1,14 @@
+﻿@using UniversityHostel.SharedClient.HttpServices
+@using Blazored.Toast.Services
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Forms
+@using UniversityHostel.SharedClient.Components
+@using Payments.Shared.ViewModels
+@using UniversityHostel.SharedClient;
+@using Microsoft.AspNetCore.Authorization
+
+@inject IToastService _toastService
+@inject IHttpService<PaymentViewModel> _creditCardHttpService
+@inject NavigationManager _navigationManager
+
+@namespace Payments.Client

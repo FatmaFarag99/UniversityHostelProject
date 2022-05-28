@@ -1,0 +1,145 @@
+﻿@using System.Text.RegularExpressions
+@*<h3>CreditCardComponent</h3>*@
+
+<div class="row">
+    <div class="form-group col-md-12">
+        <label>
+            Number
+            <span class="text-danger">*</span>
+        </label>
+        <InputText class="form-control" @bind-Value="CreditCardViewModel.Number"
+                   disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+        <ValidationMessage For="@(() => CreditCardViewModel.Number)" />
+    </div>
+    <div class="form-group col-md-6">
+        <label>
+            Expiry Date
+            <span class="text-danger">*</span>
+        </label>
+        @*<i class="fa fa-calendar"></i>*@
+        @*@onkeyup="((args) => OnExpirationDateKeyUp(args))"*@
+        @*@onkeypress:preventDefault*@
+        @*@onkeypress="((args) => OnExpirationDateKeyPress(args))"*@
+        @*<InputText id="exp" class="form-control" Value=@expirationDate ValueExpression="() => expirationDate"
+            ValueChanged="@(v => { expirationDate = v; Console.WriteLine(v); CreditCardViewModel.ExpirationDate = DateTime.TryParseExact(v, "MM/yy", null, System.Globalization.DateTimeStyles.None, out DateTime expiryDate) ? expiryDate : CreditCardViewModel.ExpirationDate; })"
+            pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})"
+            @onkeypress="((args) => OnExpirationDateKeyPress(args))"
+            disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))"
+            placeholder="MM/YY" minlength="5" maxlength="5" />*@
+        <InputText class="form-control" Value=@expirationDate ValueExpression="() => expirationDate"
+                   ValueChanged="@(v => { expirationDate = v; Console.WriteLine(v); CreditCardViewModel.ExpirationDate = DateTime.TryParseExact(v, "MM/yy", null, System.Globalization.DateTimeStyles.None, out DateTime expiryDate) ? expiryDate : CreditCardViewModel.ExpirationDate; })"
+                   pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})"
+                   disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))"
+                   placeholder="MM/YY" minlength="5" maxlength="5" />
+        <ValidationMessage For="@(() => CreditCardViewModel.ExpirationDate)" />
+    </div>
+    <div class="form-group col-md-6">
+        <label>
+            CVC
+            <span class="text-danger">*</span>
+        </label>
+        <InputNumber class="form-control" @bind-Value="CreditCardViewModel.CVC"
+                     disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+        <ValidationMessage For="@(() => CreditCardViewModel.CVC)" />
+    </div>
+
+    @*<input type="button" value="test" @onclick="() => Console.WriteLine(CreditCardViewModel.ExpirationDate)" />*@
+</div>
+
+
+@*<div class="container d-flex justify-content-center mt-2 mb-2">
+
+    <div class="row g-3">
+
+    <div class="col-md-6">
+
+    <div class="card">
+
+    <div class="accordion">
+
+    <div class="card">
+    <div aria-labelledby="headingOne">
+    <div class="card-body payment-card-body">
+
+    <span class="font-weight-normal card-text">Card Number</span>
+    <div class="input">
+    <i class="fa fa-credit-card"></i>
+    <input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+    </div>
+
+    <div class="row mt-3 mb-3">
+
+    <div class="col-md-6">
+    <span class="font-weight-normal card-text">Expiry Date</span>
+    <div class="input">
+    <i class="fa fa-calendar"></i>
+    <input type="text" class="form-control" placeholder="MM/YY">
+    </div>
+    </div>
+
+
+    <div class="col-md-6">
+    <span class="font-weight-normal card-text">CVC/CVV</span>
+    <div class="input">
+    <i class="fa fa-lock"></i>
+    <input type="text" class="form-control" placeholder="000">
+    </div>
+    </div>
+    </div>
+
+    <span class="text-muted certificate-text"><i class="fa fa-lock"></i> Your transaction is secured with ssl certificate</span>
+    </div>
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+    </div>
+    </div>*@
+
+@code {
+    private string expirationDate = "";
+
+    Regex numberRegex = new Regex("[0-9]");
+
+    private void OnExpirationDateKeyPress(KeyboardEventArgs args)
+    {
+        Console.WriteLine(expirationDate);
+
+        Console.WriteLine("key: " + args.Key);
+
+        Console.WriteLine(numberRegex.IsMatch(args.Key));
+
+        expirationDate = expirationDate.Remove(expirationDate.Length - 1);
+
+        //if (expirationDate.Length == 1)
+        //{
+
+        //}
+
+        //if (expirationDate.Length == 2)
+
+        //if (this.value == this.lastValue) return;
+        //var caretPosition = this.selectionStart;
+        //    var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+        //    var parts = [];
+
+        //    for (var i = 0, len = sanitizedValue.length; i < len; i += 2) {
+        //        parts.push(sanitizedValue.substring(i, i + 2));
+        //    }
+
+        //    for (var i = caretPosition - 1; i >= 0; i--) {
+        //        var c = this.value[i];
+        //        if (c < '0' || c > '9') {
+        //            caretPosition--;
+        //        }
+        //    }
+        //    caretPosition += Math.floor(caretPosition / 2);
+
+        //    this.value = this.lastValue = parts.join('/');
+        //    this.selectionStart = this.selectionEnd = caretPosition;
+    }
+    }
