@@ -1,0 +1,14 @@
+@page "/cities/{SystemFeatureTypeParameter}"
+@page "/cities/{SystemFeatureTypeParameter}/{CityId:guid}"
+
+@attribute [Authorize]
+
+<PageTitle>@systemFeatureType.ToString() City</PageTitle>
+
+@if (systemFeatureType.Equals(SystemFeatureType.Delete))
+{
+    <div class="alert alert-danger">
+        <p>Does you want  delete "@cityViewModel?.Name"</p>
+    </div>
+}
+<BaseCityComponent CityViewModel="cityViewModel" SystemFeatureType="systemFeatureType" />

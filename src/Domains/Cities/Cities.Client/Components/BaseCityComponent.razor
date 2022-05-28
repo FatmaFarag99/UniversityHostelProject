@@ -1,0 +1,23 @@
+<FormBaseComponent TViewModel="CityViewModel" ViewModel="CityViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} City")"
+                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/cities"))">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="name">
+                Name
+                <span class="text-danger">*</span>
+            </label>
+            <InputText class="form-control" @bind-Value="CityViewModel.Name"
+                       disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+            <ValidationMessage For="@(() => CityViewModel.Name)" />
+        </div>
+        <div class="form-group col-md-6">
+            <label for="name">
+                NameSecondLanguage
+                <span class="text-danger">*</span>
+            </label>
+            <InputText class="form-control" @bind-Value="CityViewModel.NameSecondLanguage"
+                       disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+            <ValidationMessage For="@(() => CityViewModel.NameSecondLanguage)" />
+        </div>
+    </div>
+</FormBaseComponent>
