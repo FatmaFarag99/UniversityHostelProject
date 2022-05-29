@@ -2,7 +2,7 @@
 {
     public enum HousingType
     {
-        Special = 0,
-        Normal=1,
+        Normal = 0,
+        Special = 1,
     }
 }

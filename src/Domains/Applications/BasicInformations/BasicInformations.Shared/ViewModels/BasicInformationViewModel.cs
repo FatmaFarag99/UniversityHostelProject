@@ -3,6 +3,7 @@
    
     public class BasicInformationViewModel : BaseSettingViewModel
     {
+        public Guid ApplicationId { get; set; }
         public string? IdNumber { get; set; }
         public string? StudentCode { get; set; }
         public DateTime BirthDate { get; set; }

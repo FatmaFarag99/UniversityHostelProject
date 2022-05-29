@@ -1,6 +1,0 @@
-﻿<FormBaseComponent TViewModel="ApplicationViewModel" ViewModel="ApplicationViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} Application")"
-                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/applications"))">
-
-    <CreditCardComponent CreditCardViewModel=@ApplicationViewModel.CreditCard SystemFeatureType=@SystemFeatureType />
-
-</FormBaseComponent>

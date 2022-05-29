@@ -1,7 +1,6 @@
 ﻿namespace Applications.Server.Entities.Configurations;
 
 using Microsoft.EntityFrameworkCore;
-using Payments.Server.Entities;
 
 public class ApplicationConfiguration : BaseConfiguration<Application>
 {
@@ -11,10 +10,7 @@ public class ApplicationConfiguration : BaseConfiguration<Application>
 
         builder.ToTable("Applications");
 
-        builder.HasOne(a => a.Payment).WithOne().HasForeignKey<Payment>(p => p.ApplicationId);
-
-        builder.Ignore(a => a.IsComplete);
-
-        builder.HasMany(a => a.Documents).WithOne().HasForeignKey(d => d.ApplicationId);
+        builder.Ignore(e => e.IsComplate);
+        builder.HasOne(e => e.User).WithMany().HasForeignKey(e => e.UserId).OnDelete(DeleteBehavior.Cascade);
     }
 }

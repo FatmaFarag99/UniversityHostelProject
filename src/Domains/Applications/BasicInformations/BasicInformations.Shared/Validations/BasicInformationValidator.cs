@@ -5,6 +5,7 @@
     {
         public BasicInformationValidator() : base()
         {
+            RuleFor(e => e.ApplicationId).NotEmpty();
             RuleFor(e => e.IdNumber).NotEmpty().MaximumLength(14).MinimumLength(14);
             RuleFor(e => e.GuardianId).NotEmpty();
             RuleFor(e => e.GuardianName).NotEmpty();

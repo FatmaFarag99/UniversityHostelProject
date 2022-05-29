@@ -1,7 +1,13 @@
 ﻿namespace BasicInformations.Server;
 
+using Applications.Server.Entities;
+using Faculties.Server.Entities;
+using Residences.Server.Entities;
+
 public class BasicInformation : BaseSettingEntity
 {
+    public Guid ApplicationId { get; set; }
+    public Application Application { get; set; }
     public string IdNumber { get; set; }
     public string StudentCode { get; set; }
     public DateTime BirthDate { get; set; }

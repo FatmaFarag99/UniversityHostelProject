@@ -1,11 +1,10 @@
 namespace Documents.Server.Entities;
 
+using Applications.Server.Entities;
+
 public class Document : BaseEntity
 {
     public Guid ApplicationId { get; set; }
-    public string Name { get; set; }
-    public string Extension { get; set; }
-    public double Size { get; set; }
-    public string Path { get; set; }
-    //public byte[] Content { get; set; }
+    public Application Application { get; set; }
+    public List<DocumentAttachment> Attachments { get; set; }
 }

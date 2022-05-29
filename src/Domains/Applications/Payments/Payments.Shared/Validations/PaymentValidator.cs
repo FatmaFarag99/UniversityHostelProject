@@ -4,6 +4,6 @@ public class PaymentValidator : BaseValidator<PaymentViewModel>
 {
     public PaymentValidator() : base()
     {
-        RuleFor(x => x.TransactionId).NotEmpty();
+        //RuleFor(x => x.TransactionId).NotEmpty();
     }
 }

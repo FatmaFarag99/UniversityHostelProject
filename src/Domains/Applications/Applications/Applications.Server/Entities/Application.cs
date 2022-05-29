@@ -1,23 +1,13 @@
 ﻿namespace Applications.Server.Entities;
 
+using Account.Server.Entities;
 using Applications.Shared.Enums;
-using BasicInformations.Server;
-using Documents.Server.Entities;
-using Payments.Server.Entities;
 
 public class Application : BaseEntity
 {
-    public Guid PaymentId { get; set; }
-    public Payment Payment { get; set; }
-
-    public Guid? BasicInformationId { get; set; }
-    public BasicInformation BasicInformation { get; set; }
-
-    //TODO: Documents
-    public List<Document> Documents { get; set; }
-
-
+    public string UserId { get; set; }
+    public AppUser User { get; set; }
     public ApplicationStatus Status { get; set; }
-
-    public bool IsComplete => BasicInformationId != null;
+    public bool IsComplate => Step.Equals(ApplicationStep.Documents);
+    public ApplicationStep Step { get; set; }
 }
