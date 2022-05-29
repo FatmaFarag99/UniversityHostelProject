@@ -14,6 +14,7 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             NormalizedUserName = "Admin".ToUpper(),
             Email = "Admin@hostel.com",
             EmailConfirmed = true,
+            FullName = "Adminstrator"
         };
         superAdmin.PasswordHash = new PasswordHasher<AppUser>().HashPassword(superAdmin, "123456");
         builder.HasData(superAdmin);
@@ -26,6 +27,7 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             NormalizedUserName = "user".ToUpper(),
             Email = "user@hostel.com",
             EmailConfirmed = true,
+            FullName = "Default User"
         };
 
         defaultUser.PasswordHash = new PasswordHasher<AppUser>().HashPassword(defaultUser, "Hostel@123");
