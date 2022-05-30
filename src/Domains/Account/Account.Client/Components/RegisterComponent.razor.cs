@@ -1,6 +1,6 @@
 ﻿namespace Account.Client.Components;
 
-public partial class CreateUserComponent
+public partial class RegisterComponent
 {
     private UserForRegisterViewModel userForRegister = new UserForRegisterViewModel();
     private bool showErrors;
@@ -34,7 +34,7 @@ public partial class CreateUserComponent
                 _navigationManager.NavigateTo("/");
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             _toastService.ShowError(ex.Message);
         }

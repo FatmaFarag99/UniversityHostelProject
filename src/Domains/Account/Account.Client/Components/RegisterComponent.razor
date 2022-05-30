@@ -1,0 +1,74 @@
+﻿@page "/Register"
+
+<div class="card o-hidden border-0 w-75 mx-auto shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                    </div>
+                    @if (showErrors)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @foreach (var error in errors)
+                            {
+                                <p>@error</p>
+                            }
+                        </div>
+                    }
+                    @if (showSuccess)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <p>User Added Successfully</p>
+                        </div>
+                    }
+                    <EditForm Model="userForRegister" OnValidSubmit="RegisterUser" class="user">
+                        <FluentValidator />
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <InputText id="firstname" class="form-control form-control-user" @bind-Value="userForRegister.FirstName" placeholder="First Name" />
+                                <ValidationMessage For="@(() => userForRegister.FirstName)" />
+                            </div>
+                            <div class="col-sm-6">
+                                <InputText id="firstname" class="form-control form-control-user" @bind-Value="userForRegister.LastName" placeholder="Last Name" />
+                                <ValidationMessage For="@(() => userForRegister.LastName)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <InputText id="username" class="form-control form-control-user" @bind-Value="userForRegister.UserName" placeholder="ID Number" />
+                            <ValidationMessage For="@(() => userForRegister.UserName)" />
+                        </div>
+                        <div class="form-group">
+                            <InputText id="email" class="form-control form-control-user" @bind-Value="userForRegister.Email" placeholder="Email Address" />
+                            <ValidationMessage For="@(() => userForRegister.Email)" />
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <InputText type="password" class="form-control form-control-user" id="password" @bind-Value="userForRegister.Password" placeholder="Password" />
+                                <ValidationMessage For="@(() => userForRegister.Password)" />
+                            </div>
+                            <div class="col-sm-6">
+                                <InputText type="password" class="form-control form-control-user" id="confirm-password" @bind-Value="userForRegister.ConfirmPassword" placeholder="Repeat Password" />
+                                <ValidationMessage For="@(() => userForRegister.ConfirmPassword)" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
+                    </EditForm>
+                    <hr>
+                    <div class="text-center">
+                        <a class="small" href="#">Forgot Password?</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="Login">Already have an account? Login!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

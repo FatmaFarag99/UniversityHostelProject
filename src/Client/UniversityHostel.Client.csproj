@@ -27,4 +27,11 @@
     <ProjectReference Include="..\Shared\UniversityHostel.SharedClient\UniversityHostel.SharedClient.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\vendor\fontawesome-free\sprites\" />
+    <Folder Include="wwwroot\vendor\fontawesome-free\svgs\brands\" />
+    <Folder Include="wwwroot\vendor\fontawesome-free\svgs\regular\" />
+    <Folder Include="wwwroot\vendor\fontawesome-free\svgs\solid\" />
+  </ItemGroup>
+
 </Project>
