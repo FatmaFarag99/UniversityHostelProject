@@ -16,11 +16,11 @@ public class JwtInstaller : IInstaller
         JwtConfiguration jwtConfiguration = new JwtConfiguration();
         configuration.GetSection("JwtConfiguration").Bind(jwtConfiguration);
 
-        string? secretKey = Environment.GetEnvironmentVariable("SECRET");
-        if (string.IsNullOrEmpty(secretKey))
+        //string? secretKey = Environment.GetEnvironmentVariable("SECRET");
+        if (string.IsNullOrEmpty(jwtConfiguration.Key))
             throw new Exception("SecretKey Doesn't Exist In Environment Variables");
 
-        jwtConfiguration.Key = secretKey;
+        //jwtConfiguration.Key = secretKey;
         services.AddSingleton<JwtConfiguration>(jwtConfiguration);
 
         services.AddAuthentication(options =>
