@@ -1,6 +1,8 @@
 ﻿namespace UniversityHostel.Client;
 
 using Account.Shared.Validations;
+using Applications.Shared.Validations;
+using Applications.Shared.ViewModels;
 using Blazored.LocalStorage;
 using CommonLibrary.ViewModels;
 using Faculties.Shared.Validations;
@@ -23,6 +25,7 @@ public static class ServiceExtention
         services.AddScoped<IValidator<UserForRegisterViewModel>, UserForRegisterValidator>();
         services.AddScoped<IValidator<FacultyViewModel>, FacultyValidator>();
         services.AddScoped<IValidator<ResidenceViewModel>, ResidenceValidator>();
+        services.AddScoped<IValidator<ApplicationViewModel>, ApplicationValidator>();
     }
     public static void ConfigureAuthentication(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment)
     {

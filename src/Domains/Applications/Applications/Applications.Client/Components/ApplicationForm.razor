@@ -1,4 +1,8 @@
-﻿<body class="bg-gradient-primary">
+﻿@page "/applications/Add"
+
+@attribute [Authorize]
+
+<body class="bg-gradient-primary">
 
     <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
         <li class="nav-item">
@@ -17,13 +21,8 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="Payment" role="tabpanel" aria-labelledby="Payment-tap">
-            <br>
-            <br>
-            <br>
-            <br>
 
             <div class="container bg-light">
-
 
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
@@ -88,10 +87,6 @@
 
 
         <div class="tab-pane fade" id="Basic_information" role="tabpanel" aria-labelledby="Basic_information-tap">
-            <br>
-            <br>
-
-
 
             <div class="container bg-light">
 
@@ -225,10 +220,6 @@
 
     <!-- Start Document Tap -->
     <div class="tab-pane fade" id="Documents" role="tabpanel" aria-labelledby="Documents-tab">
-        <br>
-        <br>
-        <br>
-        <br>
         <div class="container bg-light">
 
             <div class="card-body p-0">
