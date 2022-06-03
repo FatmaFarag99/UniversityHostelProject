@@ -1,279 +1,46 @@
-﻿@page "/applications/Add"
+﻿@page "/Applications/Add"
 
 @attribute [Authorize]
 
-<body class="bg-gradient-primary">
+<ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#Payment" role="tab" aria-controls="home"
+           aria-selected="true">Payment</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Basic_information" role="tab" aria-controls="profile"
+           aria-selected="false">Basic_information</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Documents" role="tab" aria-controls="contact"
+           aria-selected="false">Documents</a>
+    </li>
+</ul>
 
-    <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#Payment" role="tab" aria-controls="home"
-               aria-selected="true">Payment</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Basic_information" role="tab" aria-controls="profile"
-               aria-selected="false">Basic_information</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Documents" role="tab" aria-controls="contact"
-               aria-selected="false">Documents</a>
-        </li>
-    </ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="Payment" role="tabpanel" aria-labelledby="Payment-tap">
 
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="Payment" role="tabpanel" aria-labelledby="Payment-tap">
-
-            <div class="container bg-light">
-
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Pay Now</h1>
-                                </div>
-
-                                <form class="pay">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12 mb-2 ">
-                                            <label>Card Number</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="id" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter the 16-digit card number on the card">
-                                        </div>
-                                    </div>
-                                    <br> <br>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12 mb-2 ">
-                                            <label>CVV Number</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="id" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter the 3 or 4 digit on the card">
-                                        </div>
-                                    </div>
-
-                                    <br> <br>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12 mb-2 ">
-                                            <label>Expiry Date</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="id" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter the expiration date of the card">
-                                        </div>
-                                    </div>
-
-
-                                    <br> <br>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12 mb-2 ">
-                                            <label>Password</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="id" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter your Dynamic password">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12 mb-2 ">
-                                            <button type="button" class="btn btn-primary">Pay Now</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="container bg-light">
+            <div class="card-body p-0">
+                <PaymentComponent />
             </div>
         </div>
+    </div>
 
+    <div class="tab-pane fade" id="Basic_information" role="tabpanel" aria-labelledby="Basic_information-tap">
 
-
-        <div class="tab-pane fade" id="Basic_information" role="tabpanel" aria-labelledby="Basic_information-tap">
-
-            <div class="container bg-light">
-
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Basic Information</h1>
-                                </div>
-                                <form class="basic information">
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>ID Number</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Student Code</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Full Name</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Birth Date</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Place Of Birth</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Gender</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Religion</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Residence</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Full address</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Email</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Phone number</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Father's Name</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Father's ID</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Father's Job</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Father's Phone Number</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-6 mb-2 ">
-                                            <label>Guardian's Name</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12 mb-2 ">
-                                            <button type="button" class="btn btn-primary">Next</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="container bg-light">
+            <div class="card-body p-0">
+                <BasicInformationComponent />
             </div>
         </div>
+    </div>
 
-    <!-- Start Document Tap -->
     <div class="tab-pane fade" id="Documents" role="tabpanel" aria-labelledby="Documents-tab">
         <div class="container bg-light">
-
             <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Enter Your Documents</h1>
-                            </div>
-
-                            <form class="pay">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12 mb-2 ">
-                                        <label>Document1</label>
-                                        <span class="text-danger">*</span>
-                                        <input type="file" class="form-control" id="customFile" />
-                                    </div>
-                                </div>
-                                <br> <br>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12 mb-2 ">
-                                        <label>Document2</label>
-                                        <span class="text-danger">*</span>
-                                        <input type="file" class="form-control" id="customFile" />
-                                    </div>
-                                </div>
-
-                                <br> <br>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12 mb-2 ">
-                                        <label>Document3</label>
-                                        <span class="text-danger">*</span>
-                                        <input type="file" class="form-control" id="customFile" />
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12 mb-2 ">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
+                <DocumentsComponent />
             </div>
-
-
         </div>
     </div>
-    </div>
-    <!-- End Document Tap -->
-
-
-</body>
+</div>
