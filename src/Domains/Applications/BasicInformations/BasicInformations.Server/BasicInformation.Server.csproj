@@ -11,7 +11,6 @@
     <ProjectReference Include="..\..\..\Faculties\Faculties.Server\Faculties.Server.csproj" />
     <ProjectReference Include="..\..\..\Residences\Residences.Server\Residences.Server.csproj" />
     <ProjectReference Include="..\..\Applications\Applications.Server\Applications.Server.csproj" />
-    <ProjectReference Include="..\BasicInformations.Shared\BasicInformations.Shared.csproj" />
   </ItemGroup>
 
 </Project>
