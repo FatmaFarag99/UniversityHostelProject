@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Shared\UniversityHostel.SharedServer\UniversityHostel.Shared.Server.csproj" />
-    <ProjectReference Include="..\..\Applications\Applications.Server\Applications.Server.csproj" />
+    <ProjectReference Include="..\..\..\Shared\UniversityHostel.SharedServer\UniversityHostel.Shared.Server.csproj" />
+    <ProjectReference Include="..\..\Account\Account.Server\Account.Server.csproj" />
     <ProjectReference Include="..\Payments.Shared\Payments.Shared.csproj" />
   </ItemGroup>
 

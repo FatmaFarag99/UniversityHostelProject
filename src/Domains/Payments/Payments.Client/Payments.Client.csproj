@@ -23,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\Shared\UniversityHostel.SharedClient\UniversityHostel.SharedClient.csproj" />
+		<ProjectReference Include="..\..\..\Shared\UniversityHostel.SharedClient\UniversityHostel.SharedClient.csproj" />
 		<ProjectReference Include="..\Payments.Shared\Payments.Shared.csproj" />
 	</ItemGroup>
 

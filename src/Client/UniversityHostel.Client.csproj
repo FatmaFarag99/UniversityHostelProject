@@ -21,9 +21,9 @@
     <ProjectReference Include="..\Domains\Account\Account.Client\Account.Client.csproj" />
     <ProjectReference Include="..\Domains\Applications\Applications\Applications.Client\Applications.Client.csproj" />
     <ProjectReference Include="..\Domains\Applications\BasicInformations\BasicInformation.Client\BasicInformation.Client.csproj" />
-    <ProjectReference Include="..\Domains\Applications\Payments\Payments.Client\Payments.Client.csproj" />
     <ProjectReference Include="..\Domains\Cities\Cities.Client\Cities.Client.csproj" />
     <ProjectReference Include="..\Domains\Faculties\Faculties.Client\Faculties.Client.csproj" />
+    <ProjectReference Include="..\Domains\Payments\Payments.Client\Payments.Client.csproj" />
     <ProjectReference Include="..\Domains\Residences\Residences.Client\Residences.Client.csproj" />
     <ProjectReference Include="..\Shared\UniversityHostel.SharedClient\UniversityHostel.SharedClient.csproj" />
   </ItemGroup>

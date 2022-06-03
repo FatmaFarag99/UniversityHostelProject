@@ -7,5 +7,6 @@ public class PaymentInstaller : IInstaller
         services.AddScoped<IValidator<PaymentViewModel>, PaymentValidator>();
         services.AddScoped<IPaymentRepository, PaymentRepository>();
         services.AddScoped<IPaymentUnitOfWork, PaymentUnitOfWork>();
+        services.AddScoped<IThirdPartyPaymentService, FakeThirdPartyPaymentService>();
     }
 }

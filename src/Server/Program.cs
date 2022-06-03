@@ -10,7 +10,6 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInstallerFromReferancedAssemblies(builder.Configuration, typeof(Program).Assembly, "*.Server.dll");
 
 WebApplication app = builder.Build();
-
 using (var scope = app.Services.CreateScope())
 {
     ApplicationContext context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
