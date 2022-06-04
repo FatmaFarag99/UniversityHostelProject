@@ -1,4 +1,4 @@
-namespace Documents.Shared.Validations;
+namespace Applications.Shared.Validations;
 
 public class DocumentValidator : BaseValidator<DocumentViewModel>
 {

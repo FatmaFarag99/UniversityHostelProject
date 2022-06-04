@@ -1,4 +1,4 @@
-namespace Documents.Shared.ViewModels;
+namespace Applications.Shared.ViewModels;
 
 public class DocumentAttachmentViewModel : BaseViewModel
 {

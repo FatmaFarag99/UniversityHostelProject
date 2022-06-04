@@ -9,6 +9,6 @@ global using AutoMapper;
 global using Documents.Server.Entities;
 global using Documents.Server.Repositories;
 global using Documents.Server.UnitOfWorks;
-global using Documents.Shared.ViewModels;
+global using Applications.Shared.ViewModels;
 global using FluentValidation;
-global using Documents.Shared.Validations;
+global using Applications.Shared.Validations;

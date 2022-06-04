@@ -1,4 +1,4 @@
-﻿global using BasicInformations.Shared;
+﻿global using Applications.Shared;
 global using CommonLibrary.Server;
 global using Faculties.Server.Entities;
 global using Residences.Server.Entities;
@@ -10,4 +10,5 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using AutoMapper;
 global using BasicInformations.Server;
-
+global using Applications.Shared.ViewModels;
+global using Applications.Shared.Validations;

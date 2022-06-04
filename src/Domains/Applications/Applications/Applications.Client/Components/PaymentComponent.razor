@@ -1,54 +1,60 @@
 ﻿<div class="row">
     <div class="col-12">
         <div class="p-5">
-            @*<div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Pay Now</h1>
-                </div>*@
 
             <form class="pay">
                 <div class="form-row">
                     <div class="form-group col-md-12 mb-2 ">
                         <label>Card Number</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control form-control-user" placeholder="Enter the 16-digit card number on the card">
+                        <InputText class="form-control form-control-user" @bind-Value="PaymentViewModel.CardNumber" placeholder="Enter the 16-digit card number on the card" />
                     </div>
                 </div>
+
                 <br>
+
                 <div class="form-row">
                     <div class="form-group col-md-12 mb-2 ">
                         <label>CVV Number</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control form-control-user" placeholder="Enter the 3 or 4 digit on the card">
+                        <InputText class="form-control form-control-user" @bind-Value="PaymentViewModel.CVV" placeholder="Enter the 3 or 4 digit on the card" />
                     </div>
                 </div>
 
                 <br>
+
                 <div class="form-row">
                     <div class="form-group col-md-12 mb-2 ">
                         <label>Expiry Date</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control form-control-user" placeholder="Enter the expiration date of the card">
+                        <InputText class="form-control form-control-user" pattern="(?:0[1-9]|1[0-2])/[0-9]{2}" @bind-Value="PaymentViewModel.ExpiryDate" placeholder="Enter the expiration date of the card" />
                     </div>
                 </div>
-
-
+@*
                 <br>
+
                 <div class="form-row">
                     <div class="form-group col-md-12 mb-2 ">
                         <label>Password</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control form-control-user" placeholder="Enter your Dynamic password">
+                        <InputText class="form-control form-control-user" placeholder="Enter your Dynamic password" />
                     </div>
                 </div>
+*@
                 <br>
+
                 <div class="form-row">
                     <div class="form-group col-md-12 mb-2 ">
                         <button type="button" class="btn btn-primary">Pay Now</button>
                     </div>
                 </div>
-
             </form>
 
         </div>
     </div>
 </div>
+
+@code {
+    [Parameter]
+    public PaymentViewModel PaymentViewModel { get; set; }
+}

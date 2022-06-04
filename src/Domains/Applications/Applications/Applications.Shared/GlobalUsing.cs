@@ -4,4 +4,3 @@ global using Faculties.Shared.ViewModels;
 global using Residences.Shared.ViewModels;
 global using System;
 global using FluentValidation;
-global using Documents.Shared.ViewModels;

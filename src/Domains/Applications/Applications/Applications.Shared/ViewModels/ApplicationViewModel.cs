@@ -1,8 +1,8 @@
 ﻿namespace Applications.Shared.ViewModels;
 
+using Applications.Shared;
 using Applications.Shared.Enums;
-using BasicInformations.Shared;
-using Documents.Shared.ViewModels;
+using Payments.Shared.ViewModels;
 
 public class ApplicationViewModel : BaseViewModel
 {
@@ -11,7 +11,8 @@ public class ApplicationViewModel : BaseViewModel
     public bool IsComplete { get; set; }
 
     public Guid PaymentId { get; set; }
-    
+    public PaymentViewModel Payment { get; set; }
+
     public Guid BasicInformationId { get; set; }
     public BasicInformationViewModel BasicInformation { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace BasicInformations.Shared
+﻿namespace Applications.Shared.Validations
 {
 
     public class BasicInformationValidator : BaseSettingValidator<BasicInformationViewModel>

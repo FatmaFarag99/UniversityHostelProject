@@ -2,6 +2,9 @@
 
 @attribute [Authorize]
 
+<FormBaseComponent TViewModel="ApplicationViewModel" ViewModel="ApplicationViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} Application")"
+                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/faculties"))">
+
 <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment"
@@ -22,7 +25,7 @@
 
         <div class="container bg-light">
             <div class="card-body p-0">
-                <PaymentComponent />
+                <PaymentComponent PaymentViewModel=@ApplicationViewModel.Payment />
             </div>
         </div>
     </div>
@@ -31,7 +34,7 @@
 
         <div class="container bg-light">
             <div class="card-body p-0">
-                <BasicInformationComponent />
+                <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
             </div>
         </div>
     </div>
@@ -44,3 +47,5 @@
         </div>
     </div>
 </div>
+
+</FormBaseComponent>

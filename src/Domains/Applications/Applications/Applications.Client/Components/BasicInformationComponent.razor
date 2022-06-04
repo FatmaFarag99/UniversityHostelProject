@@ -10,12 +10,12 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>ID Number</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.IdNumber" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Student Code</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.StudentCode" />
                     </div>
                 </div>
 
@@ -23,12 +23,12 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Full Name</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.Name" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Birth Date</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputDate class="form-control" @bind-Value="BasicInformationViewModel.BirthDate" />
                     </div>
                 </div>
 
@@ -36,12 +36,12 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Place Of Birth</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.PlaceOfBirth" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Gender</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Gender" />
                     </div>
                 </div>
 
@@ -49,12 +49,12 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Religion</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Religion" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Residence</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.ResidenceId" />
                     </div>
                 </div>
 
@@ -62,12 +62,12 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Full address</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.FullAddress" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Email</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.Email" />
                     </div>
                 </div>
 
@@ -75,25 +75,24 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Phone number</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.PhoneNumber" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Father's Name</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherName" />
                     </div>
                 </div>
                 <div class="form-row">
-
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Father's ID</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherId" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Father's Job</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherJob" />
                     </div>
                 </div>
 
@@ -101,12 +100,12 @@
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Father's Phone Number</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherPhone" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Guardian's Name</label>
                         <span class="text-danger">*</span>
-                        <input type="text" class="form-control">
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.GuardianName" />
                     </div>
                 </div>
 
@@ -119,3 +118,9 @@
         </div>
     </div>
 </div>
+
+
+@code {
+    [Parameter]
+    public BasicInformationViewModel BasicInformationViewModel { get; set; }
+}

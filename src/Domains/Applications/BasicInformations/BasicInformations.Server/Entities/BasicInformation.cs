@@ -29,9 +29,8 @@ public class BasicInformation : BaseSettingEntity
     public Level Level { get; set; }
     public Gender Gender { get; set; }
     public HousingType HousingType { get; set; }
-   public Residence Residence { get; set; }
     public Guid ResidenceId { get; set; }
-    public Faculty Faculty { get; set; }
+    public Residence Residence { get; set; }
     public Guid FacultyId { get; set; }
-
+    public Faculty Faculty { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace BasicInformations.Shared
+﻿namespace Applications.Shared.ViewModels
 {
     using Faculties.Shared.ViewModels;
     using Residences.Shared.ViewModels;
@@ -12,6 +12,7 @@
         public string PlaceOfBirth { get; set; }
         public string FullAddress { get; set; }
         public string Email { get; set; }
+        public string PhoneNumber { get; set; }
         public string FatherName { get; set; }
         public string FatherJob { get; set; }
         public string FatherId { get; set; }
