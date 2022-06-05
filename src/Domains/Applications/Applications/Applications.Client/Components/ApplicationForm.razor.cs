@@ -12,7 +12,8 @@
         public ApplicationViewModel ApplicationViewModel { get; set; } = new ApplicationViewModel
         {
             Payment = new PaymentViewModel(),
-            BasicInformation = new BasicInformationViewModel()
+            BasicInformation = new BasicInformationViewModel(),
+            Documents = new ApplicationDocumentsViewModel()
         };
         [Parameter]
         public SystemFeatureType SystemFeatureType { get; set; } = SystemFeatureType.Add;
