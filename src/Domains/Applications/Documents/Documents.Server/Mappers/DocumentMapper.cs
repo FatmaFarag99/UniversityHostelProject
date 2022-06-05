@@ -5,6 +5,6 @@ public class DocumentMapper : Profile
     public DocumentMapper()
     {
         CreateMap<Document, DocumentViewModel>().ReverseMap();
-        CreateMap<ApplicationDocu, DocumentAttachmentViewModel>().ReverseMap();
+      //  CreateMap<ApplicationDocument, DocumentAttachmentViewModel>().ReverseMap();
     }
 }

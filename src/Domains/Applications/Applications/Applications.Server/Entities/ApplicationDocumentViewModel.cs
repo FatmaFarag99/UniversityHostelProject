@@ -1,5 +1,7 @@
 ﻿namespace Applications.Shared.ViewModels;
 
+using System.Reflection.Metadata;
+
 public class ApplicationDocument
 {
     public Guid ApplicationId { get; set; }
