@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\UniversityHostel.SharedServer\UniversityHostel.Shared.Server.csproj" />
-    <ProjectReference Include="..\..\Applications\Applications\Applications.Shared\Applications.Shared.csproj" />
   </ItemGroup>
 
 </Project>
