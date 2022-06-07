@@ -2,13 +2,26 @@
     <div class="col-12">
         <div class="p-5">
             @*<div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Basic Information</h1>
-                </div>*@
+            <h1 class="h4 text-gray-900 mb-4">Basic Information</h1>
+            </div>*@
             <form class="basic information">
 
                 <div class="form-row">
                     <div class="form-group col-md-6 mb-2 ">
-                        <label>ID Number</label>
+                        <label>Full Name</label>
+                        <span class="text-danger">*</span>
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.Name" />
+                    </div>
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Full Name in SecondLanguage</label>
+                        <span class="text-danger">*</span>
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.NameSecondLanguage" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Id Number</label>
                         <span class="text-danger">*</span>
                         <InputText class="form-control" @bind-Value="BasicInformationViewModel.IdNumber" />
                     </div>
@@ -21,9 +34,9 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6 mb-2 ">
-                        <label>Full Name</label>
+                        <label>Place Of Birth</label>
                         <span class="text-danger">*</span>
-                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.Name" />
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.PlaceOfBirth" />
                     </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Birth Date</label>
@@ -31,17 +44,16 @@
                         <InputDate class="form-control" @bind-Value="BasicInformationViewModel.BirthDate" />
                     </div>
                 </div>
-
                 <div class="form-row">
-                    <div class="form-group col-md-6 mb-2 ">
-                        <label>Place Of Birth</label>
-                        <span class="text-danger">*</span>
-                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.PlaceOfBirth" />
-                    </div>
                     <div class="form-group col-md-6 mb-2 ">
                         <label>Gender</label>
                         <span class="text-danger">*</span>
                         <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Gender" />
+                    </div>
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Faculty</label>
+                        <span class="text-danger">*</span>
+                        <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.FacultyId" />
                     </div>
                 </div>
 
@@ -106,6 +118,52 @@
                         <label>Guardian's Name</label>
                         <span class="text-danger">*</span>
                         <InputText class="form-control" @bind-Value="BasicInformationViewModel.GuardianName" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Guardian Relationship</label>
+                        <span class="text-danger">*</span>
+                        <InputText class="form-control" @bind-Value="BasicInformationViewModel.GuardianRelationship" />
+                    </div>
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Level</label>
+                        <span class="text-danger">*</span>
+                        <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Level" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Previous GPA</label>
+                        <span class="text-danger">*</span>
+                        <InputNumber class="form-control" @bind-Value="BasicInformationViewModel.PreviousGPA" />
+                    </div>
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Degree</label>
+                        <span class="text-danger">*</span>
+                        <InputNumber class="form-control" @bind-Value="BasicInformationViewModel.Degree" />
+                    </div>
+                </div>
+                <div class="form-row">
+                      <div class="form-group col-md-6 mb-2 ">
+                        <label>Housing Type</label>
+                        <span class="text-danger">*</span>
+                        <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.HousingType" />
+                    </div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group col-md-6 mb-2 ">
+                        <label>Is Family Outside</label>
+                        <span class="text-danger">*</span>
+                        <InputCheckbox class="form-control" @bind-Value="BasicInformationViewModel.IsFamilyOutside" />
+                    </div>
+                      <div class="form-group col-md-6 mb-2 ">
+                        <label>Is Special Needs</label>
+                        <span class="text-danger">*</span>
+                        <input type="checkbox" class="form-control" @bind="BasicInformationViewModel.IsSpecialNeeds" >
+                        
                     </div>
                 </div>
 
