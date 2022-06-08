@@ -2,12 +2,19 @@
 {
     using Applications.Shared.ViewModels;
     using Microsoft.AspNetCore.Components;
+    using Microsoft.AspNetCore.Components.Authorization;
+    using Newtonsoft.Json;
     using Payments.Shared.ViewModels;
+    using System.Net.Http.Json;
+    using System.Security.Claims;
     using System.Threading.Tasks;
     using UniversityHostel.SharedClient;
 
     public partial class ApplicationForm
     {
+        [CascadingParameter]
+        public Task<AuthenticationState> AuthenticationState { get; set; }
+
         [Parameter]
         public ApplicationViewModel ApplicationViewModel { get; set; } = new ApplicationViewModel
         {
@@ -38,6 +45,40 @@
             }
             _toastService.ShowSuccess(successMessage);
             _navigationManager.NavigateTo("/applications");
+        }
+
+        private async Task HandlePayment(PaymentViewModel payment)
+        {
+            await Pay(payment);
+
+            await CreateApplication();
+        }
+
+        private async Task Pay(PaymentViewModel payment)
+        {
+            payment.TransactionId = Guid.NewGuid().ToString();
+            payment = await _paymentHttpService.PostAsync("/api/payments", payment);
+            ApplicationViewModel.PaymentId = payment.Id;
+            ApplicationViewModel.Payment = null;
+        }
+
+        private async Task CreateApplication()
+        {
+            ApplicationViewModel.UserId = await GetUserId();
+            ApplicationViewModel = await _applicationHttpService.PostAsync("/api/applications", ApplicationViewModel);
+        }
+
+        private async Task<string> GetUserId()
+        {
+            var authState = await AuthenticationState;
+            var user = authState.User;
+
+            if (user.Identity.IsAuthenticated)
+            {
+                return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            }
+
+            return null;
         }
     }
 }

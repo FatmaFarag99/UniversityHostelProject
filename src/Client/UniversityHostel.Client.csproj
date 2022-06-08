@@ -1,39 +1,38 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseBlazorWebAssembly>true</UseBlazorWebAssembly>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="Shared\MainLayout.razor" />
-    <None Include="Shared\NavMenu.razor" />
-    <None Include="Shared\SurveyPrompt.razor" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="Shared\MainLayout.razor" />
+		<None Include="Shared\NavMenu.razor" />
+		<None Include="Shared\SurveyPrompt.razor" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.3" PrivateAssets="all" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.3" PrivateAssets="all" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Domains\Account\Account.Client\Account.Client.csproj" />
-    <ProjectReference Include="..\Domains\ApplicationResults\ApplicationResults.Client\ApplicationResults.Client.csproj" />
-    <ProjectReference Include="..\Domains\Applications\Applications\Applications.Client\Applications.Client.csproj" />
-    <ProjectReference Include="..\Domains\Cities\Cities.Client\Cities.Client.csproj" />
-    <ProjectReference Include="..\Domains\Faculties\Faculties.Client\Faculties.Client.csproj" />
-    <ProjectReference Include="..\Domains\Payments\Payments.Client\Payments.Client.csproj" />
-    <ProjectReference Include="..\Domains\Residences\Residences.Client\Residences.Client.csproj" />
-    <ProjectReference Include="..\Domains\StudentInstructions\StudentInstructions.Client\StudentInstructions.Client.csproj" />
-    <ProjectReference Include="..\Shared\UniversityHostel.SharedClient\UniversityHostel.SharedClient.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Domains\Account\Account.Client\Account.Client.csproj" />
+		<ProjectReference Include="..\Domains\Applications\Applications\Applications.Client\Applications.Client.csproj" />
+		<ProjectReference Include="..\Domains\Cities\Cities.Client\Cities.Client.csproj" />
+		<ProjectReference Include="..\Domains\Faculties\Faculties.Client\Faculties.Client.csproj" />
+		<ProjectReference Include="..\Domains\Payments\Payments.Client\Payments.Client.csproj" />
+		<ProjectReference Include="..\Domains\Residences\Residences.Client\Residences.Client.csproj" />
+		<ProjectReference Include="..\Shared\UniversityHostel.SharedClient\UniversityHostel.SharedClient.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\vendor\fontawesome-free\sprites\" />
-    <Folder Include="wwwroot\vendor\fontawesome-free\svgs\brands\" />
-    <Folder Include="wwwroot\vendor\fontawesome-free\svgs\regular\" />
-    <Folder Include="wwwroot\vendor\fontawesome-free\svgs\solid\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="wwwroot\vendor\fontawesome-free\sprites\" />
+		<Folder Include="wwwroot\vendor\fontawesome-free\svgs\brands\" />
+		<Folder Include="wwwroot\vendor\fontawesome-free\svgs\regular\" />
+		<Folder Include="wwwroot\vendor\fontawesome-free\svgs\solid\" />
+	</ItemGroup>
 
 </Project>
