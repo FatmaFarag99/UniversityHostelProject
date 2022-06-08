@@ -4,6 +4,7 @@ using CommonLibrary.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UniversityHostel.Server.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220608042248_UpdateApplication")]
+    partial class UpdateApplication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace UniversityHostel.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BasicInformationId")
+                    b.Property<Guid>("BasicInformationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("ConcurrencyStamp")
@@ -44,7 +46,7 @@ namespace UniversityHostel.Server.Migrations
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("DocumentsId")
+                    b.Property<Guid>("DocumentsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PaymentId")
@@ -401,14 +403,14 @@ namespace UniversityHostel.Server.Migrations
                         new
                         {
                             Id = "da80425e-f97f-469b-98ef-bd481b034777",
-                            ConcurrencyStamp = "181e3869-fef5-46dc-912f-bfe87b77c0db",
+                            ConcurrencyStamp = "1b876fb8-46c5-473d-a4e7-0a1c9e31107a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "e9bb6388-d68d-4346-9981-3a0e8150498f",
-                            ConcurrencyStamp = "0cac89df-f445-418d-8561-192bd3f32e11",
+                            ConcurrencyStamp = "a5f44834-6d09-4913-9e80-333123b501cf",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -695,14 +697,14 @@ namespace UniversityHostel.Server.Migrations
                         {
                             Id = "5bf8f6b4-3e44-43f8-bf14-b5b1298f0bd7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b403ffb3-3288-470d-b5a9-556962501a77",
+                            ConcurrencyStamp = "213070e5-a799-4726-96da-f1d170bdff91",
                             Email = "Admin@hostel.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELj/wVilW5Cehs6tHJ5qwFOG+y274xhKJEXYv2rUHnRFNBHxpVHSRNkaTPM9RWdROg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH3Qhny0yU6CbcGi5OHgo1ssGfDLh1czdmxAd4/4TgnXhnlcASd/WUYkXJ2HQUAioA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ad4dd1c9-1b28-4ba3-98d6-1c1759c26576",
+                            SecurityStamp = "58240daa-f5d9-4e92-84bd-3356a414bc46",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FullName = "Adminstrator",
@@ -712,14 +714,14 @@ namespace UniversityHostel.Server.Migrations
                         {
                             Id = "cca1c549-094b-4c45-a9c1-9960068e7f51",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ff3a2114-02fd-46af-9fc1-ff23c1ad3a83",
+                            ConcurrencyStamp = "22f19c33-38e5-447f-875b-579254a54572",
                             Email = "user@hostel.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEO+pL2KfcsnwwlGBErjdCHN75GNVEHtPc6z71TdrHR+vYFDtiHYvX/0CAQDrPkJLRQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBfgYz2nzM4EHmjMmVXaNOSkgd+1yf2KR3UeC4Uk57v9jZn+1wcQrqDI6cRzndH9uw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c64055a7-2893-48c1-b46e-5d7f8d6a2e26",
+                            SecurityStamp = "dfa41537-b4fb-472f-b650-d3f73e750db0",
                             TwoFactorEnabled = false,
                             UserName = "user",
                             FullName = "Default User",

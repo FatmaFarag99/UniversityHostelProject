@@ -49,7 +49,7 @@
             routeData.Add("Method", context.HttpContext.Request.Method);
 
             string message = $"The Action {context.ActionDescriptor.DisplayName} Executed successfully";
-            _userLogger.LogWebUsage(_product, _layer, message, context.HttpContext, routeData);
+            //_userLogger.LogWebUsage(_product, _layer, message, context.HttpContext, routeData);
 
             return base.OnResultExecutionAsync(context, next);
         }

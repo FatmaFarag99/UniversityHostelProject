@@ -1,6 +1,6 @@
 ﻿namespace Applications.Shared.ViewModels;
 
-public class ApplicationDocumentViewModel
+public class ApplicationDocumentViewModel : BaseViewModel
 {
     public Guid ApplicationId { get; set; }
 

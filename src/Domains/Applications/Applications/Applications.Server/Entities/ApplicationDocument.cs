@@ -1,8 +1,6 @@
-﻿namespace Applications.Shared.ViewModels;
+﻿namespace Applications.Server.Entities;
 
-using System.Reflection.Metadata;
-
-public class ApplicationDocument
+public class ApplicationDocument : BaseEntity
 {
     public Guid ApplicationId { get; set; }
 

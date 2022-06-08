@@ -1,4 +1,4 @@
-﻿namespace BasicInformations.Server;
+﻿namespace Applications.Server;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +10,6 @@ public class BasicInformationConfiguration : BaseSettingConfiguration<BasicInfor
 
         builder.ToTable("BasicInformations");
 
-        builder.HasOne(e => e.Application).WithOne().HasForeignKey<BasicInformation>(e => e.ApplicationId).OnDelete(DeleteBehavior.Cascade);
         builder.HasOne(x => x.Residence).WithMany().HasForeignKey(x => x.ResidenceId);
         builder.HasOne(x => x.Faculty).WithMany().HasForeignKey(x => x.FacultyId);
 

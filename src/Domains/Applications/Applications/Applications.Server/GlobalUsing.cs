@@ -12,3 +12,4 @@ global using Applications.Server.UnitOfWorks;
 global using Applications.Shared.ViewModels;
 global using FluentValidation;
 global using Applications.Shared.Validations;
+global using Documents.Server.Entities;
