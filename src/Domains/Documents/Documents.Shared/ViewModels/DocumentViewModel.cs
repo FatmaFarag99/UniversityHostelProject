@@ -1,4 +1,4 @@
-namespace Applications.Shared.ViewModels;
+namespace Documents.Shared.ViewModels;
 
 public class DocumentViewModel : BaseViewModel
 {
@@ -6,6 +6,6 @@ public class DocumentViewModel : BaseViewModel
     public string Extension { get; set; }
     public double Size { get; set; }
     public string Type { get; set; }
-    public string Path { get; set; }
-    //public byte[] Content { get; set; }
+    //public string Path { get; set; }
+    public byte[] Content { get; set; }
 }
