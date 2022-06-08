@@ -7,4 +7,8 @@ public class PaymentViewModel : BaseViewModel
     public string ExpiryDate { get; set; }
     public int ExpiryMonth { get; set; }
     public string ExpiryYear { get; set; }
+
+    public string TransactionId { get; set; }
+    public double PaidAmount { get; set; }
+    public string UserId { get; set; }
 }

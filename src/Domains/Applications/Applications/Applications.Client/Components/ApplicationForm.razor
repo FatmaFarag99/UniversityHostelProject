@@ -11,11 +11,11 @@
            aria-selected="true">Payment</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="basic-info-tab" data-toggle="tab" href="#basic-information" role="tab" aria-controls="basic-info"
+        <a class="nav-link disabled" id="basic-info-tab" data-toggle="tab" href="#basic-information" role="tab" aria-controls="basic-info"
            aria-selected="false">Basic Information</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
+        <a class="nav-link disabled" id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
            aria-selected="false">Documents</a>
     </li>
 </ul>
@@ -25,7 +25,7 @@
 
         <div class="container bg-light">
             <div class="card-body p-0">
-                <PaymentComponent PaymentViewModel=@ApplicationViewModel.Payment />
+                <PaymentComponent PaymentViewModel=@ApplicationViewModel.Payment OnPay="HandlePayment" />
             </div>
         </div>
     </div>
