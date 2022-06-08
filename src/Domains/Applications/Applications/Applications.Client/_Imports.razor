@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Components.Forms
 @using UniversityHostel.SharedClient.Components
 @using Applications.Shared.ViewModels
+@using Applications.Shared.Enums
 @using UniversityHostel.SharedClient;
 @using Microsoft.AspNetCore.Authorization
 
@@ -12,6 +13,7 @@
 
 @inject IToastService _toastService
 @inject IHttpService<ApplicationViewModel> _applicationHttpService
+@inject IHttpService<PaymentViewModel> _paymentHttpService
 @inject NavigationManager _navigationManager
 
 @namespace Applications.Client

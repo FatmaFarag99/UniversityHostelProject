@@ -45,7 +45,7 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-12 mb-2 ">
-                        <button type="button" class="btn btn-primary">Pay Now</button>
+                        <button type="button" class="btn btn-primary" @onclick="async () => await OnPay.InvokeAsync(PaymentViewModel)">Pay Now</button>
                     </div>
                 </div>
             </form>
@@ -57,4 +57,7 @@
 @code {
     [Parameter]
     public PaymentViewModel PaymentViewModel { get; set; }
+
+    [Parameter]
+    public EventCallback<PaymentViewModel> OnPay { get; set; }
 }
