@@ -3,7 +3,7 @@
 @attribute [Authorize]
 
 <FormBaseComponent TViewModel="ApplicationViewModel" ViewModel="ApplicationViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} Application")"
-                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/faculties"))">
+                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/"))">
 
     <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
         <li class="nav-item">
