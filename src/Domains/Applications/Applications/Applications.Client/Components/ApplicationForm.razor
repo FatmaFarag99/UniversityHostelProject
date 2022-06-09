@@ -8,75 +8,74 @@
         <h3>Create Application</h3>
     </div>
 
-    <div class="card-body">
+    <EditForm Model="ApplicationViewModel" OnValidSubmit="HandleValidSubmit">
+        <FluentValidator />
 
-        <div class="row">
+        <div class="card-body">
 
-            <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link @(!ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active" : "")" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment"
-                       aria-selected="true">Payment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active" : "")" id="basic-info-tab" data-toggle="tab" href="#basic-information" role="tab" aria-controls="basic-info"
-                       aria-selected="false">Basic Information</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "")" id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
-                       aria-selected="false">Documents</a>
-                </li>
-            </ul>
+            <div class="row">
 
-            <div class="tab-content" id="myTabContent">
+                <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link @(!ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active" : "")" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment"
+                           aria-selected="true">Payment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active" : "")" id="basic-info-tab" data-toggle="tab" href="#basic-information" role="tab" aria-controls="basic-info"
+                           aria-selected="false">Basic Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "")" id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
+                           aria-selected="false">Documents</a>
+                    </li>
+                </ul>
 
-                <div class="tab-pane fade show active" id="payment" role="tabpanel" aria-labelledby="Payment-tab">
-                    @if (ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-                    {
+                <div class="tab-content" id="myTabContent">
+
+                    <div class="tab-pane fade show active" id="payment" role="tabpanel" aria-labelledby="Payment-tab">
+                        @if (ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                        {
+                            <div class="container bg-light">
+                                <div class="card-body p-0">
+                                    <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="() => GoToStep(ApplicationStep.BasicInformation)" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="tab-pane fade" id="basic-information" role="tabpanel" aria-labelledby="Basic_information-tap">
                         <div class="container bg-light">
                             <div class="card-body p-0">
-                                <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="() => GoToStep(ApplicationStep.BasicInformation)" />
+                                @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                                {
+                                    <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
+                                }
                             </div>
                         </div>
-                    }
+                    </div>
+
+                    <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="Documents-tab">
+                        <div class="container bg-light">
+                            <div class="card-body p-0">
+                                @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                                {
+                                    <DocumentsComponent />
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <EditForm Model="ApplicationViewModel" OnValidSubmit="HandleValidSubmit">
-                    <FluentValidator />
-                    <div class="row">
-                        <div class="tab-pane fade" id="basic-information" role="tabpanel" aria-labelledby="Basic_information-tap">
-                            <div class="container bg-light">
-                                <div class="card-body p-0">
-                                    @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-                                    {
-                                        <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
-                                    }
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="Documents-tab">
-                            <div class="container bg-light">
-                                <div class="card-body p-0">
-                                    @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-                                    {
-                                        <DocumentsComponent />
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                <div class="card-footer d-flex justify-content-end">
+                    <div>
+                        <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
+                        @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
+                        {
+                            <button type="submit" class="btn btn-success m-2">Save</button>
+                        }
                     </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <div>
-                            <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
-                            @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
-                            {
-                                <button type="submit" class="btn btn-success m-2">Save</button>
-                            }
-                        </div>
-                    </div>
-                </EditForm>
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </EditForm>
 </div>
