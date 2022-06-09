@@ -1,11 +1,10 @@
 ﻿namespace Applications.Client.Components
 {
+    using Applications.Shared.Enums;
     using Applications.Shared.ViewModels;
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Authorization;
-    using Newtonsoft.Json;
     using Payments.Shared.ViewModels;
-    using System.Net.Http.Json;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using UniversityHostel.SharedClient;
@@ -49,9 +48,16 @@
 
         private async Task HandlePayment(PaymentViewModel payment)
         {
+            if (!(await new Payments.Shared.Validations.PaymentValidator().ValidateAsync(payment)).IsValid)
+            {
+                return;
+            }
+
             await Pay(payment);
 
             await CreateApplication();
+
+            StateHasChanged();
         }
 
         private async Task Pay(PaymentViewModel payment)
@@ -72,7 +78,7 @@
                 Documents = null
             };
             ApplicationViewModel = await _applicationHttpService.PostAsync("/api/applications", application);
-            ApplicationViewModel.Step = Shared.Enums.ApplicationStep.BasicInformation;
+            //ApplicationViewModel.Step = Shared.Enums.ApplicationStep.BasicInformation;
             ApplicationViewModel.BasicInformation = new BasicInformationViewModel();
             ApplicationViewModel.Documents = new ApplicationDocumentsViewModel();
         }
@@ -88,6 +94,26 @@
             }
 
             return null;
+        }
+
+        private void GoToStep(ApplicationStep step)
+        {
+            ApplicationViewModel.Step = step;
+            StateHasChanged();
+        }
+
+        private void GoToNextStep()
+        {
+            switch (ApplicationViewModel.Step)
+            {
+                case ApplicationStep.BasicInformation:
+                    ApplicationViewModel.Step = ApplicationStep.Documents;
+                    break;
+                default:
+                    break;
+            }
+            
+            StateHasChanged();
         }
     }
 }
