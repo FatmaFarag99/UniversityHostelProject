@@ -2,6 +2,7 @@
 {
     using Applications.Shared.Enums;
     using Applications.Shared.ViewModels;
+    using Documents.Shared.ViewModels;
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Authorization;
     using Payments.Shared.ViewModels;
@@ -19,10 +20,34 @@
         {
             Payment = new PaymentViewModel(),
             BasicInformation = new BasicInformationViewModel(),
-            Documents = new ApplicationDocumentsViewModel()
+            Documents = new ApplicationDocumentsViewModel
+            {
+                Document1 = new ApplicationDocumentViewModel
+                {
+                    Document = new DocumentViewModel()
+                },
+                Document2 = new ApplicationDocumentViewModel
+                {
+                    Document = new DocumentViewModel()
+                },
+                Document3 = new ApplicationDocumentViewModel
+                {
+                    Document = new DocumentViewModel()
+                }
+            }
         };
         [Parameter]
         public SystemFeatureType SystemFeatureType { get; set; } = SystemFeatureType.Add;
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            PaymentViewModel payment = await _paymentHttpService.GetByIdAsync("/api/applications/GetUnlinkedPayment/");
+            ApplicationViewModel.PaymentId = payment.Id;
+            ApplicationViewModel.Step = ApplicationStep.BasicInformation;
+
+        }
 
         private async Task HandleValidSubmit()
         {
@@ -48,11 +73,6 @@
 
         private async Task HandlePayment(PaymentViewModel payment)
         {
-            if (!(await new Payments.Shared.Validations.PaymentValidator().ValidateAsync(payment)).IsValid)
-            {
-                return;
-            }
-
             await Pay(payment);
 
             await CreateApplication();

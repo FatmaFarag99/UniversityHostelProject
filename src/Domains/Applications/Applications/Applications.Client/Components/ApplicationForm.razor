@@ -25,8 +25,8 @@
                            aria-selected="false">Basic Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "")" id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
-                           aria-selected="false">Documents</a>
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "")"
+                           id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Documents</a>
                     </li>
                 </ul>
 
@@ -37,18 +37,18 @@
                         {
                             <div class="container bg-light">
                                 <div class="card-body p-0">
-                                    <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="() => GoToStep(ApplicationStep.BasicInformation)" />
+                                    <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; GoToStep(ApplicationStep.BasicInformation); }" />
                                 </div>
                             </div>
                         }
                     </div>
 
-                    <div class="tab-pane fade" id="basic-information" role="tabpanel" aria-labelledby="Basic_information-tap">
+                    <div class="tab-pane fade" id="basic-information" role="tabpanel" aria-labelledby="Basic_information-tab">
                         <div class="container bg-light">
                             <div class="card-body p-0">
                                 @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
                                 {
-                                    <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
+                                    <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation OnNext="() => GoToStep(ApplicationStep.Documents)" />
                                 }
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             <div class="card-body p-0">
                                 @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
                                 {
-                                    <DocumentsComponent />
+                                    <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
                                 }
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                         <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
                         @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
                         {
-                            <button type="submit" class="btn btn-success m-2">Save</button>
+                            <button type="submit" class="btn btn-success m-2" disabled=@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))>Save</button>
                         }
                     </div>
                 </div>

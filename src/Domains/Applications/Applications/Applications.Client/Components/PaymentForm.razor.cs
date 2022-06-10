@@ -26,12 +26,10 @@
 
         private async Task HandleValidSubmit()
         {
-            string successMessage = string.Empty;
-
             PaymentViewModel.UserId = await GetUserId();
             PaymentViewModel.TransactionId = Guid.NewGuid().ToString();
             PaymentViewModel = await _paymentHttpService.PostAsync("/api/payments", PaymentViewModel);
-            successMessage = "Payment Completed Successfuly";
+            string successMessage = "Payment Completed Successfuly";
 
             await OnPaymentCompleted.InvokeAsync(PaymentViewModel);
             isPaymentCompleted = true;
