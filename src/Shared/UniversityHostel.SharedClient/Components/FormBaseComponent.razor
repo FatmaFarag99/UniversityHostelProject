@@ -15,7 +15,7 @@
             <div>
                 @if(FooterContent is null)
                 {
-                    <button class="btn btn-danger mr-3" @onclick="@(async () => await OnCancel.InvokeAsync())">Cancel</button>
+                    <a class="btn btn-danger mr-3" @onclick="@(async () => await OnCancel.InvokeAsync())">Cancel</a>
                     if(!SystemFeature.Equals(SystemFeatureType.Details))
                     {
                         <button type="submit" class="btn btn-success m-2">Save</button>
