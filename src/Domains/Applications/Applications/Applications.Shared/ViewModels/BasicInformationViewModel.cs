@@ -1,14 +1,16 @@
 ﻿namespace Applications.Shared.ViewModels
 {
+    using Applications.Shared.Enums;
     using Faculties.Shared.ViewModels;
     using Residences.Shared.ViewModels;
 
     public class BasicInformationViewModel : BaseSettingViewModel
     {
         public Guid ApplicationId { get; set; }
+
         public string IdNumber { get; set; }
         public string StudentCode { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now;
         public string PlaceOfBirth { get; set; }
         public string FullAddress { get; set; }
         public string Email { get; set; }

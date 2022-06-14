@@ -33,13 +33,6 @@
                     <InputFile class="form-control" OnChange="async e => await LoadFile(e, ApplicationDocuments.Document3.Document)" />
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-12 mb-2 ">
-                    <button type="button" class="btn btn-primary" @onclick="() => Console.WriteLine(JsonConvert.SerializeObject(ApplicationDocuments))">Submit-x</button>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
@@ -48,10 +41,12 @@
     [Parameter]
     public ApplicationDocumentsViewModel ApplicationDocuments { get; set; }
 
+    private long maxFileSize = 1024 * 1024 * 15;
+
     private async Task LoadFile(InputFileChangeEventArgs e, DocumentViewModel document)
     {
         var ms = new MemoryStream();
-        await e.File.OpenReadStream().CopyToAsync(ms);
+        await e.File.OpenReadStream(maxAllowedSize: maxFileSize).CopyToAsync(ms);
 
         byte[] array = ms.ToArray();
 

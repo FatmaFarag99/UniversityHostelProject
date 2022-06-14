@@ -1,4 +1,5 @@
 ﻿@page "/Applications/Add"
+@using Newtonsoft.Json
 
 @attribute [Authorize]
 
@@ -17,39 +18,52 @@
 
                 <ul class="nav nav-tabs bg-light" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link @(!ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active" : "")" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment"
-                           aria-selected="true">Payment</a>
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active" : "")"
+                           id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment"
+                           aria-selected="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment).ToString().ToLower())">Payment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active" : "")" id="basic-info-tab" data-toggle="tab" href="#basic-information" role="tab" aria-controls="basic-info"
-                           aria-selected="false">Basic Information</a>
+                        <a class="nav-link @(!_isPaymentCompleted ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active" : "")"
+                           id="basic-info-tab" data-toggle="tab" href="#basic-information" role="tab" aria-controls="basic-info"
+                           aria-selected="@(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation).ToString().ToLower())">Basic Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "")"
-                           id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">Documents</a>
+                        <a class="nav-link @(!_isPaymentCompleted ? "disabled" : "") @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "")"
+                           id="contact-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
+                           aria-selected="@(ApplicationViewModel.Step.Equals(ApplicationStep.Documents).ToString().ToLower())">Documents</a>
                     </li>
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
 
                     <div class="tab-pane fade show active" id="payment" role="tabpanel" aria-labelledby="Payment-tab">
-                        @if (ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-                        {
-                            <div class="container bg-light">
-                                <div class="card-body p-0">
-                                    <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; GoToStep(ApplicationStep.BasicInformation); }" />
-                                </div>
+                        <div class="container bg-light">
+                            <div class="card-body p-0">
+                                @if (ApplicationViewModel.PaymentId != default)
+                                {
+                                    <h1>Payment Completed Successfully</h1>
+
+                                    <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
+                                    <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12 mb-2 ">
+                                            <button type="button" class="btn btn-primary" @onclick="() => GoToStep(ApplicationStep.BasicInformation)">Next</button>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; _isPaymentCompleted = true; }" />
+                                }
                             </div>
-                        }
+                        </div>
                     </div>
 
                     <div class="tab-pane fade" id="basic-information" role="tabpanel" aria-labelledby="Basic_information-tab">
                         <div class="container bg-light">
                             <div class="card-body p-0">
-                                @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-                                {
-                                    <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation OnNext="() => GoToStep(ApplicationStep.Documents)" />
-                                }
+                                <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation OnNext="async () => await GoToStep(ApplicationStep.Documents)" />
                             </div>
                         </div>
                     </div>
@@ -57,22 +71,28 @@
                     <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="Documents-tab">
                         <div class="container bg-light">
                             <div class="card-body p-0">
-                                @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-                                {
-                                    <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
-                                }
+                                <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-footer d-flex justify-content-end">
-                    <div>
-                        <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
-                        @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
-                        {
-                            <button type="submit" class="btn btn-success m-2" disabled=@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))>Save</button>
-                        }
-                    </div>
+                    @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                    {
+                        <div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 mb-2 ">
+                                    <button type="button" class="btn btn-primary" @onclick="() => Console.WriteLine(JsonConvert.SerializeObject(ApplicationViewModel))">Submit-x</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
+                            @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
+                            {
+                                <button type="submit" class="btn btn-success m-2" disabled=@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))>Save</button>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
 

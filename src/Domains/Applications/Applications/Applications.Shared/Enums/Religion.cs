@@ -1,8 +1,8 @@
-﻿namespace Applications.Shared
+﻿namespace Applications.Shared.Enums
 {
     public enum Religion
     {
-        Muslim = 0,
-        Christian = 1,
+        Muslim = 1,
+        Christian = 2,
     }
 }

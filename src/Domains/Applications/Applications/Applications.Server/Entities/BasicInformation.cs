@@ -1,6 +1,7 @@
 ﻿namespace Applications.Server.Entities;
 
 using Applications.Shared;
+using Applications.Shared.Enums;
 using Faculties.Server.Entities;
 using Residences.Server.Entities;
 

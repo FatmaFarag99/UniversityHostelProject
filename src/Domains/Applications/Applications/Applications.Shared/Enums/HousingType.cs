@@ -1,8 +1,8 @@
-﻿namespace Applications.Shared
+﻿namespace Applications.Shared.Enums
 {
     public enum HousingType
     {
-        Normal = 0,
-        Special = 1,
+        Normal = 1,
+        Special = 2,
     }
 }

@@ -1,13 +1,13 @@
-﻿namespace Applications.Shared
+﻿namespace Applications.Shared.Enums
 {
     public enum Level
     {
-        One = 0,    
-        Two = 1,
-        Three = 2,
-        Four = 3,
-        Five = 4,
-        Six = 5,
-        Seven = 6,
+        One = 1,    
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
     }
 }

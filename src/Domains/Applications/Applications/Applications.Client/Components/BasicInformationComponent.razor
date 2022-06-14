@@ -7,11 +7,13 @@
                     <label>Full Name</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.Name" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.Name)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Full Name in SecondLanguage</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.NameSecondLanguage" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.NameSecondLanguage)" />
                 </div>
             </div>
 
@@ -20,11 +22,13 @@
                     <label>Id Number</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.IdNumber" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.IdNumber)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Student Code</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.StudentCode" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.StudentCode)" />
                 </div>
             </div>
 
@@ -33,23 +37,39 @@
                     <label>Place Of Birth</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.PlaceOfBirth" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.PlaceOfBirth)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Birth Date</label>
                     <span class="text-danger">*</span>
                     <InputDate class="form-control" @bind-Value="BasicInformationViewModel.BirthDate" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.BirthDate)" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Gender</label>
                     <span class="text-danger">*</span>
-                    <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Gender" />
+                    <InputSelect class="form-control" @bind-Value=BasicInformationViewModel.Gender>
+                        <option selected disabled="disabled"> Select Gender</option>
+                        @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                        {
+                            <option value="@gender">@gender</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => BasicInformationViewModel.Gender)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Faculty</label>
                     <span class="text-danger">*</span>
-                    <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.FacultyId" />
+                    <select class="form-control" @bind=BasicInformationViewModel.FacultyId>
+                        <option value="@Guid.Empty" selected disabled="disabled"> Select Faculty</option>
+                        @foreach (FacultyViewModel faculty in faculties)
+                        {
+                            <option value="@faculty.Id">@faculty.Name</option>
+                        }
+                    </select>
+                    <ValidationMessage For="@(() => BasicInformationViewModel.FacultyId)" />
                 </div>
             </div>
 
@@ -57,12 +77,26 @@
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Religion</label>
                     <span class="text-danger">*</span>
-                    <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Religion" />
+                    <InputSelect class="form-control" @bind-Value=BasicInformationViewModel.Religion>
+                        <option selected disabled="disabled"> Select Gender</option>
+                        @foreach (var religion in Enum.GetValues(typeof(Religion)))
+                        {
+                            <option value="@religion">@religion</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => BasicInformationViewModel.Religion)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Residence</label>
                     <span class="text-danger">*</span>
-                    <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.ResidenceId" />
+                    <select class="form-control" @bind=BasicInformationViewModel.ResidenceId>
+                        <option value="@Guid.Empty" selected disabled="disabled"> Select Residence</option>
+                        @foreach (ResidenceViewModel residence in residences)
+                        {
+                            <option value="@residence.Id">@residence.Name</option>
+                        }
+                    </select>
+                    <ValidationMessage For="@(() => BasicInformationViewModel.ResidenceId)" />
                 </div>
             </div>
 
@@ -71,11 +105,13 @@
                     <label>Full address</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.FullAddress" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.FullAddress)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Email</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.Email" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.Email)" />
                 </div>
             </div>
 
@@ -84,11 +120,13 @@
                     <label>Phone number</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.PhoneNumber" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.PhoneNumber)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Father's Name</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherName" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.FatherName)" />
                 </div>
             </div>
             <div class="form-row">
@@ -96,11 +134,13 @@
                     <label>Father's ID</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherId" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.FatherId)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Father's Job</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherJob" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.FatherJob)" />
                 </div>
             </div>
 
@@ -109,11 +149,22 @@
                     <label>Father's Phone Number</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.FatherPhone" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.FatherPhone)" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-2 ">
+                    <label>Guardian's Id</label>
+                    <span class="text-danger">*</span>
+                    <InputText class="form-control" @bind-Value="BasicInformationViewModel.GuardianId" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.GuardianId)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Guardian's Name</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.GuardianName" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.GuardianName)" />
                 </div>
             </div>
 
@@ -122,11 +173,22 @@
                     <label>Guardian Relationship</label>
                     <span class="text-danger">*</span>
                     <InputText class="form-control" @bind-Value="BasicInformationViewModel.GuardianRelationship" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.GuardianRelationship)" />
                 </div>
+            </div>
+
+            <div class="form-row">
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Level</label>
                     <span class="text-danger">*</span>
-                    <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.Level" />
+                    <InputSelect class="form-control" @bind-Value=BasicInformationViewModel.Level>
+                        <option selected disabled="disabled"> Select Level</option>
+                        @foreach (var level in Enum.GetValues(typeof(Level)))
+                        {
+                            <option value="@level">@level</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => BasicInformationViewModel.Level)" />
                 </div>
             </div>
 
@@ -135,30 +197,48 @@
                     <label>Previous GPA</label>
                     <span class="text-danger">*</span>
                     <InputNumber class="form-control" @bind-Value="BasicInformationViewModel.PreviousGPA" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.PreviousGPA)" />
                 </div>
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Degree</label>
                     <span class="text-danger">*</span>
                     <InputNumber class="form-control" @bind-Value="BasicInformationViewModel.Degree" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.Degree)" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6 mb-2 ">
                     <label>Housing Type</label>
                     <span class="text-danger">*</span>
-                    <InputSelect class="form-control" @bind-Value="BasicInformationViewModel.HousingType" />
+                    <InputSelect class="form-control" @bind-Value=BasicInformationViewModel.HousingType>
+                        <option selected disabled="disabled"> Select HousingType</option>
+                        @foreach (var housingType in Enum.GetValues(typeof(HousingType)))
+                        {
+                            <option value="@housingType">@housingType</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => BasicInformationViewModel.HousingType)" />
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6 mb-2 ">
-                    <label>Is Family Outside</label>
+                <div class="form-check col-md-6 mb-2">
+                    <input class="form-check-input" type="checkbox" @bind-value="BasicInformationViewModel.IsFamilyOutside" id="isFamilyOutsideCheckBox">
+                    <label class="form-check-label" for="isFamilyOutsideCheckBox">
+                        Is Family Outside
+                    </label>
                     <span class="text-danger">*</span>
-                    <InputCheckbox class="form-control" @bind-Value="BasicInformationViewModel.IsFamilyOutside" />
+                    <ValidationMessage For="@(() => BasicInformationViewModel.IsFamilyOutside)" />
                 </div>
-                <div class="form-group col-md-6 mb-2 ">
-                    <label>Is Special Needs</label>
+            </div>
+
+            <div class="form-row">
+                <div class="form-check col-md-6 mb-2">
+                    <input class="form-check-input" type="checkbox" @bind-value="BasicInformationViewModel.IsSpecialNeeds" id="isSpecialNeedsCheckBox">
+                    <label class="form-check-label" for="isSpecialNeedsCheckBox">
+                        Is Special Needs
+                    </label>
                     <span class="text-danger">*</span>
-                    <input type="checkbox" class="form-control" @bind="BasicInformationViewModel.IsSpecialNeeds">
+                    <ValidationMessage For="@(() => BasicInformationViewModel.IsSpecialNeeds)" />
                 </div>
             </div>
 
@@ -178,4 +258,15 @@
 
     [Parameter]
     public System.Action OnNext { get; set; }
+
+    private IEnumerable<FacultyViewModel> faculties = new List<FacultyViewModel>();
+    private IEnumerable<ResidenceViewModel> residences = new List<ResidenceViewModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        faculties = await _facultyHttpService.GetAsync("api/faculties");
+        residences = await _residenceHttpService.GetAsync("api/residences");
+
+        await base.OnInitializedAsync();
+    }
 }

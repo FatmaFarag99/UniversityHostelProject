@@ -22,17 +22,15 @@
         [Parameter]
         public EventCallback<PaymentViewModel> OnPaymentCompleted { get; set; }
 
-        private bool isPaymentCompleted;
-
         private async Task HandleValidSubmit()
         {
             PaymentViewModel.UserId = await GetUserId();
             PaymentViewModel.TransactionId = Guid.NewGuid().ToString();
+            PaymentViewModel.PaidAmount = 90;
             PaymentViewModel = await _paymentHttpService.PostAsync("/api/payments", PaymentViewModel);
             string successMessage = "Payment Completed Successfuly";
 
             await OnPaymentCompleted.InvokeAsync(PaymentViewModel);
-            isPaymentCompleted = true;
 
             _toastService.ShowSuccess(successMessage);
 
