@@ -1,6 +1,8 @@
 ﻿namespace UniversityHostel.Client;
 
 using Account.Shared.Validations;
+using Applications.Shared.Validations;
+using Applications.Shared.ViewModels;
 using Blazored.LocalStorage;
 using CommonLibrary.ViewModels;
 using Faculties.Shared.Validations;
@@ -8,6 +10,8 @@ using Faculties.Shared.ViewModels;
 using FluentValidation;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Payments.Shared.Validations;
+using Payments.Shared.ViewModels;
 using Residences.Shared.Validations;
 using Residences.Shared.ViewModels;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
@@ -23,6 +27,8 @@ public static class ServiceExtention
         services.AddScoped<IValidator<UserForRegisterViewModel>, UserForRegisterValidator>();
         services.AddScoped<IValidator<FacultyViewModel>, FacultyValidator>();
         services.AddScoped<IValidator<ResidenceViewModel>, ResidenceValidator>();
+        services.AddScoped<IValidator<ApplicationViewModel>, ApplicationValidator>();
+        services.AddScoped<IValidator<PaymentViewModel>, PaymentValidator>();
     }
     public static void ConfigureAuthentication(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment)
     {

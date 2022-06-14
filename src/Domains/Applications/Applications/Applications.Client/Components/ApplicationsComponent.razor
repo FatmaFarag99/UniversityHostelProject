@@ -1,0 +1,28 @@
+﻿@page "/Applications"
+
+@if (applicationViewModel != null)
+{
+    <h2>You have pending application</h2>
+
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Application</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            @*<a href="#" class="card-link">Card link</a>*@
+            @*<a href="#" class="card-link">Another link</a>*@
+        </div>
+    </div>
+}
+
+@code {
+
+    ApplicationViewModel applicationViewModel;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        applicationViewModel = await _applicationHttpService.GetByIdAsync($"/api/applications/GetPendingApplication");
+    }
+}

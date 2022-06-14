@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Shared\UniversityHostel.Shared\UniversityHostel.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Documents\Documents.Shared\Documents.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Faculties\Faculties.Shared\Faculties.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Payments\Payments.Shared\Payments.Shared.csproj" />
+    <ProjectReference Include="..\..\..\Residences\Residences.Shared\Residences.Shared.csproj" />
   </ItemGroup>
 
 </Project>
