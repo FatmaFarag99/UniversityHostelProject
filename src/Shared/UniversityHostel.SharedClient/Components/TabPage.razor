@@ -1,0 +1,7 @@
+﻿@using SmartUI.Forms
+@inherits BaseComponent
+
+<div class="tab-pane p-3 fade @(ParentTapControl.ActiveTab == this ? "active show" : "")" id="custom-tabs-four-@Title" role="tabpanel"
+     aria-labelledby="custom-tabs-four-@Title-tab">
+     @ChildContent
+</div>

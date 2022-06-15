@@ -1,0 +1,25 @@
+﻿@using SmartUI.Forms
+@inherits BaseComponent
+
+<CascadingValue Name="ParentTapControl" Value="this">
+    <div class="card card-custom card-primary card-outline card-outline-tabs @CssClass" id="@Id">
+        <div class="card-header p-0 border-bottom-0">
+            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                @foreach (TabPage tabPage in tapPages)
+                {
+                    <li class="nav-item" @onclick="() => ActivePage(tabPage)">
+                        <a class="nav-link  @GetNavLinkCssClass(tabPage)"
+                       id="custom-tabs-four-payment-tab" data-toggle="pill" role="tab" href="#custom-tabs-four-@tabPage.Title">
+                            @tabPage.Title
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="card-body p-0">
+            <div class="tab-content" id="custom-tabs-four-tabContent">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</CascadingValue>
