@@ -17,77 +17,77 @@
 else
 {
     <EditForm Model="ApplicationViewModel" OnValidSubmit="HandleValidSubmit">
-    <FluentValidator />
-    <div class="card card-custom card-primary card-outline card-outline-tabs">
-        <div class="card-header p-0 border-bottom-0">
-            <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active" : "")" id="custom-tabs-four-payment-tab" data-toggle="pill"
+        <FluentValidator />
+        <div class="card card-custom card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active" : "")" id="custom-tabs-four-payment-tab" data-toggle="pill"
                        href="#custom-tabs-four-home" role="tab"
                        aria-controls="custom-tabs-four-payment" aria-selected="@ApplicationViewModel.Step.Equals(ApplicationStep.Payment)">Payment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active" : "") @(!_isPaymentCompleted ? "disabled" : "")" id="custom-tabs-four-binformation-tab" data-toggle="pill"
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active" : "") @(!_isPaymentCompleted ? "disabled" : "")" id="custom-tabs-four-binformation-tab" data-toggle="pill"
                        href="#custom-tabs-four-profile" role="tab"
                        aria-controls="custom-tabs-four-profile" aria-selected="@ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation)">Basic Information</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "") @(!_isPaymentCompleted ? "disabled" : "")" id="custom-tabs-four-documents-tab" data-toggle="pill"
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active" : "") @(!_isPaymentCompleted ? "disabled" : "")" id="custom-tabs-four-documents-tab" data-toggle="pill"
                        href="#custom-tabs-four-messages" role="tab"
                        aria-controls="custom-tabs-four-messages" aria-selected="@ApplicationViewModel.Step.Equals(ApplicationStep.Documents)">Documents</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-body p-0">
-            <div class="tab-content" id="custom-tabs-four-tabContent">
-                <div class="tab-pane fade @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active show" : "")" id="custom-tabs-four-home" role="tabpanel"
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body p-0">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                    <div class="tab-pane fade @(ApplicationViewModel.Step.Equals(ApplicationStep.Payment) ? "active show" : "")" id="custom-tabs-four-home" role="tabpanel"
                      aria-labelledby="custom-tabs-four-home-tab">
-                    @if (ApplicationViewModel.PaymentId != default)
-                    {
-                        <h1>Payment Completed Successfully</h1>
+                        @if (ApplicationViewModel.PaymentId != default)
+                        {
+                            <h1>Payment Completed Successfully</h1>
 
-                        <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
-                        <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
+                            <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
+                            <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
 
-                        <div class="form-row">
-                            <div class="form-group col-md-12 mb-2 ">
-                                <button type="button" class="btn btn-primary" @onclick="() => GoToStep(ApplicationStep.BasicInformation)">Next</button>
+                            <div class="form-row">
+                                <div class="form-group col-md-12 mb-2 ">
+                                    <button type="button" class="btn btn-primary" @onclick="() => GoToStep(ApplicationStep.BasicInformation)">Next</button>
+                                </div>
                             </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; _isPaymentCompleted = true; ApplicationViewModel.Step = ApplicationStep.BasicInformation; }" />
-                    }
-                </div>
-                <div class="tab-pane fade @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active show" : "")" id="custom-tabs-four-basicInformation"
+                        }
+                        else
+                        {
+                            <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; _isPaymentCompleted = true; ApplicationViewModel.Step = ApplicationStep.BasicInformation; }" />
+                        }
+                    </div>
+                    <div class="tab-pane fade @(ApplicationViewModel.Step.Equals(ApplicationStep.BasicInformation) ? "active show" : "")" id="custom-tabs-four-basicInformation"
                      role="tabpanel" aria-labelledby="custom-tabs-four-basicInformation-tab">
-                    <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation OnNext="async () => await GoToStep(ApplicationStep.Documents)" />
+                        <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation OnNext="async () => await GoToStep(ApplicationStep.Documents)" />
 
-                </div>
-                <div class="tab-pane fade @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active show" : "")" id="custom-tabs-four-documents" role="tabpanel"
+                    </div>
+                    <div class="tab-pane fade @(ApplicationViewModel.Step.Equals(ApplicationStep.Documents) ? "active show" : "")" id="custom-tabs-four-documents" role="tabpanel"
                      aria-labelledby="custom-tabs-four-documents-tab">
-                    <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
+                        <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card-footer d-flex justify-content-end">
             @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
             {
-                <div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12 mb-2 ">
-                            <button type="button" class="btn btn-primary" @onclick="() => Console.WriteLine(JsonConvert.SerializeObject(ApplicationViewModel))">Submit-x</button>
+                <div class="card-footer d-flex justify-content-end">
+                    <div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12 mb-2 ">
+                                <button type="button" class="btn btn-primary" @onclick="() => Console.WriteLine(JsonConvert.SerializeObject(ApplicationViewModel))">Submit-x</button>
+                            </div>
                         </div>
+                        <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
+                        @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
+                        {
+                            <button type="submit" class="btn btn-success m-2" disabled="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))">Save</button>
+                        }
                     </div>
-                    <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
-                    @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
-                    {
-                        <button type="submit" class="btn btn-success m-2" disabled="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))">Save</button>
-                    }
                 </div>
             }
         </div>
-    </div>
-</EditForm>
+    </EditForm>
 }
