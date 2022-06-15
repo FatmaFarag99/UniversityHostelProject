@@ -23,61 +23,68 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <AuthorizeView Roles="User">
+        <Authorized>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Application
+            </div>
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Application
-    </div>
-
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="/Applications/Add">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Apply Now</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/results">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Application Result</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/instructions">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Instructions</span>
-        </a>
-    </li>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/Applications/Add">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Apply Now</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/results">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Application Result</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/instructions">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Instructions</span>
+                </a>
+            </li>
+        </Authorized>
+    </AuthorizeView>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Settings
-    </div>
-
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Profile</span>
-        </a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Settings</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/residences">Residences</a>
-                <a class="collapse-item" href="/faculties">Faculties</a>
+    <AuthorizeView Roles="Admin">
+        <Authorized>
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Settings
             </div>
-        </div>
-    </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Settings</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar" style="">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/residences">Residences</a>
+                        <a class="collapse-item" href="/faculties">Faculties</a>
+                        <a class="collapse-item" href="/cities">Cities</a>
+                    </div>
+                </div>
+            </li>
+        </Authorized>
+    </AuthorizeView>
 
 
     <!-- Divider -->
