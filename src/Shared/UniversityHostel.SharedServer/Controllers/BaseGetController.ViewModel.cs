@@ -2,8 +2,8 @@
 
 [ApiController]
 public class BaseGetController<TEntity, TViewModel> : ControllerBase, IBaseGetController
-where TEntity : BaseEntity
-where TViewModel : BaseViewModel
+    where TEntity : BaseEntity
+    where TViewModel : BaseViewModel
 {
     private readonly IBaseGetUnitOfWork<TEntity, TViewModel> _unitOfWork;
 
