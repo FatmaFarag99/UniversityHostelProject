@@ -6,7 +6,6 @@
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using UniversityHostel.SharedClient;
 
     public partial class PaymentForm
     {
@@ -15,9 +14,6 @@
 
         [Parameter]
         public PaymentViewModel PaymentViewModel { get; set; }
-
-        [Parameter]
-        public SystemFeatureType SystemFeatureType { get; set; } = SystemFeatureType.Add;
 
         [Parameter]
         public EventCallback<PaymentViewModel> OnPaymentCompleted { get; set; }

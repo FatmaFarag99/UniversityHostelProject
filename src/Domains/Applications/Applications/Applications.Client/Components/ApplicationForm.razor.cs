@@ -44,10 +44,18 @@
         public SystemFeatureType SystemFeatureType { get; set; } = SystemFeatureType.Add;
 
         private bool _isPaymentCompleted;
+        private bool _isAllowForCreateApplication;
 
+        private async Task<bool> CheckIfAllowCreateApplication()
+        {
+            // check if admin is allow to create application or not
+            return await Task.FromResult(true);
+        }
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
+            _isAllowForCreateApplication = await CheckIfAllowCreateApplication();
+            if (!_isAllowForCreateApplication)
+                return;
 
             ApplicationViewModel application = await _applicationHttpService.GetByIdAsync($"/api/applications/GetPendingApplication");
             if (application != null)

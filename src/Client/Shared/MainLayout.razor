@@ -32,3 +32,13 @@
     <!-- End of Content Wrapper -->
 
 </div>
+
+@code{
+    [Inject] public NavigationManager NavigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine(NavigationManager.ToBaseRelativePath(NavigationManager.Uri));
+        base.OnInitialized();
+    }
+}

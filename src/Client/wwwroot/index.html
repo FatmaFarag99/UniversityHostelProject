@@ -22,11 +22,20 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet" />
     <style>
+        .card-primary.card-outline-tabs > .card-header a.active {
+            border-top: 3px solid #007bff;
+        }
+
         .card-custom .card-footer {
             padding: .5rem 1.25rem 0.25rem;
         }
+
         .card-custom .card-header {
             background-color: #FFF;
+            padding: .5rem 1.25rem 0.25rem;
+        }
+
+        .card-custom:not(.card-outline-tabs) .card-header {
             border-left-color: #1c3a70;
             border-top-color: #1151F3;
             border-top-width: 3px;
@@ -35,7 +44,6 @@
             border-style: solid;
             border-left-width: 3px;
             border-right: none;
-            padding: .5rem 1.25rem 0.25rem;
         }
         #content-wrapper {
             background: #F4F5F9 no-repeat 180% 0/60% fixed url(./background.svg);
