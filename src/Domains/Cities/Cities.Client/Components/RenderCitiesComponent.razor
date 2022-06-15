@@ -1,52 +1,33 @@
 @page "/cities"
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin")]
 <PageTitle>All Cities</PageTitle>
 
-<a href="/cities/add" class="btn btn-primary">
-    Add
-    <span class="oi oi-plus"></span>
-</a>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Name Second Language</th>
-            <th scope="col">Operations</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if(dataLoaded)
+<div class="card card-custom">
+    <div class="card-body">
+        <a href="/cities/add" class="btn btn-primary mb-2">
+            Add
+            <span class="oi oi-plus"></span>
+        </a>
+        @if (dataLoaded)
         {
-            @if (cities is not null && cities.Any())
-            {
-                foreach (var city in cities)
-                {
-                    <tr>
-                        <td>@city.DisplayOrder</td>
-                        <td>@city.Name</td>
-                        <td>@city.NameSecondLanguage</td>
-                        <td class="d-flex justify-content-around">
-                            <a href="/cities/edit/@city.Id" title="Edit"><span class="oi oi-pencil"></span></a>
-                            <a href="/cities/details/@city.Id" title="Details"><span class="oi oi-info" aria-hidden="true"></span></a>
-                            <a href="/cities/delete/@city.Id" title="Delete"><span class="oi oi-trash" aria-hidden="true"></span></a>
-                        </td>
-                </tr>
-                }
-            }
-            else
-            {
-                <tr><td colspan="4"><h4>No Data Founded</h4></td></tr>
-            }
+            <SmartGrid TSource="CityViewModel" CssClass="table-hover table-striped" DataSource="cities" AllowPagination="true" AllowSorting="true">
+                <PaginationSettings PageSize="20" PageSizes="new List<int>{ 10, 20, 30, 40, 50, 100, 500, 1000}" />
+                <GridColumns>
+                    <GridColumn PropertyName="@nameof(CityViewModel.DisplayOrder)" Title="#" />
+                    <GridColumn PropertyName="@nameof(CityViewModel.Name)" />
+                    <GridColumn PropertyName="@nameof(CityViewModel.NameSecondLanguage)" Title="Name Second Language" />
+                    <GridColumn Title="Operations" AllowSorting="false">
+                        <RowTemplate>
+                            <div class="d-flex justify-content-around">
+                                <a href="/residences/edit/@(((CityViewModel)context).Id)" title="Edit"><span class="oi oi-pencil"></span></a>
+                                <a href="/residences/details/@(((CityViewModel)context).Id)" title="Details"><span class="oi oi-info" aria-hidden="true"></span></a>
+                                <a href="/residences/delete/@(((CityViewModel)context).Id)" title="Delete"><span class="oi oi-trash" aria-hidden="true"></span></a>
+                            </div>
+                        </RowTemplate>
+                    </GridColumn>
+                </GridColumns>
+            </SmartGrid>
         }
-        else
-        {
-            <tr><td colspan="4"><h4>Loading..</h4></td></tr>
-        }
-    </tbody>
-</table>
-
-@code {
-
-}
+    </div>
+</div>
