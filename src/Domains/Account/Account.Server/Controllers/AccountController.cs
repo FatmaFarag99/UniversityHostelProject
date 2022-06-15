@@ -30,13 +30,13 @@ public class AccountController : ControllerBase
             return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
         }
 
-        IdentityResult result = await _applicationUserRepository.RegisterUser(userForRegister);
+        IdentityResult result = await _applicationUserRepository.RegisterUserWithRoles(userForRegister, new[] {"User"});
         if (!result.Succeeded)
         {
             IEnumerable<string> errors = result.Errors.Select(e => e.Description);
             return BadRequest(new { errors });
         }
-        await _applicationUserRepository.AddUserToRole(userForRegister, "User");
+
         return StatusCode(201);
     }
 

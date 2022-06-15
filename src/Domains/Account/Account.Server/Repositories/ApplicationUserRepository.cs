@@ -35,16 +35,23 @@ public class ApplicationUserRepository : IApplicationUserRepository
         };
         return await _userManager.CreateAsync(user, userForRegister.Password);
     }
-
-    public async Task<IEnumerable<string>> GetUserRoles(AppUser user) => await _userManager.GetRolesAsync(user);
-
-    public async Task AddUserToRole(UserForRegisterViewModel userForRegister, string role)
+    public async Task<IdentityResult> RegisterUserWithRoles(UserForRegisterViewModel userForRegister, IEnumerable<string> roles)
     {
+        string userFullName = $"{userForRegister.FirstName} {userForRegister.LastName}";
+
         AppUser user = new AppUser
         {
+            FullName = userFullName,
             UserName = userForRegister.UserName,
+            PhoneNumber = userForRegister.PhoneNumber,
             Email = userForRegister.Email,
         };
-        await _userManager.AddToRoleAsync(user, role);
+        IdentityResult result = await _userManager.CreateAsync(user, userForRegister.Password);
+        if (!result.Succeeded)
+            return result;
+
+        return await _userManager.AddToRolesAsync(user, roles);
     }
+
+    public async Task<IEnumerable<string>> GetUserRoles(AppUser user) => await _userManager.GetRolesAsync(user);
 }
