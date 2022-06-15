@@ -1,7 +1,7 @@
 ﻿@page "/faculties/{SystemFeatureTypeParameter}"
 @page "/faculties/{SystemFeatureTypeParameter}/{FacultyId:guid}"
 
-@attribute [Authorize]
+@attribute [Authorize(Roles = "Admin")]
 
 <PageTitle>@systemFeatureType.ToString() Faculty</PageTitle>
 
