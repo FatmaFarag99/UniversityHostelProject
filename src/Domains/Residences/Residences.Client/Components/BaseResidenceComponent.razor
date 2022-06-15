@@ -5,8 +5,8 @@
             Name
             <span class="text-danger">*</span>
         </label>
-        <InputText class="form-control" @bind-Value="ResidenceViewModel.Name"
-                   disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+        <SmartInputText @bind-Value="ResidenceViewModel.Name" IsChangeOnKeyPress="true"
+                   Disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
         <ValidationMessage For="@(() => ResidenceViewModel.Name)" />
     </div>
     <div class="form-group col-md-6">
@@ -14,8 +14,8 @@
             NameSecondLanguage
             <span class="text-danger">*</span>
         </label>
-        <InputText class="form-control" @bind-Value="ResidenceViewModel.NameSecondLanguage"
-                   disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+        <SmartInputText @bind-Value="ResidenceViewModel.NameSecondLanguage" IsChangeOnKeyPress="true"
+                   Disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
         <ValidationMessage For="@(() => ResidenceViewModel.NameSecondLanguage)" />
     </div>
 </FormBaseComponent>
