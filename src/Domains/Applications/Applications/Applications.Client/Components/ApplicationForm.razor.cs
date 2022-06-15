@@ -67,10 +67,13 @@
             ApplicationViewModel.UserId = await GetUserId();
 
             PaymentViewModel payment = await _paymentHttpService.GetByIdAsync($"/api/applications/GetUnlinkedPayment");
-            ApplicationViewModel.PaymentId = payment.Id;
-            ApplicationViewModel.Payment = payment;
+            if(payment != null)
+            {
+                ApplicationViewModel.PaymentId = payment.Id;
+                ApplicationViewModel.Payment = payment;
 
-            _isPaymentCompleted = true;
+                _isPaymentCompleted = true;
+            }
         }
 
         private async Task HandleValidSubmit()
