@@ -16,7 +16,6 @@
             ApplicationSettingViewModel = await _applicationSettingHttpService.PutAsync("/api/applicationSettings", ApplicationSettingViewModel);
             _toastService.ShowSuccess("ApplicationSetting Edited Successfuly");
             StateHasChanged();
-            //_navigationManager.NavigateTo("/applicationSettings");
         }
     }
 }
