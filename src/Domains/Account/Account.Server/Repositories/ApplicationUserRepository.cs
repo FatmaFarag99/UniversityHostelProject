@@ -38,4 +38,13 @@ public class ApplicationUserRepository : IApplicationUserRepository
 
     public async Task<IEnumerable<string>> GetUserRoles(AppUser user) => await _userManager.GetRolesAsync(user);
 
+    public async Task AddUserToRole(UserForRegisterViewModel userForRegister, string role)
+    {
+        AppUser user = new AppUser
+        {
+            UserName = userForRegister.UserName,
+            Email = userForRegister.Email,
+        };
+        await _userManager.AddToRoleAsync(user, role);
+    }
 }

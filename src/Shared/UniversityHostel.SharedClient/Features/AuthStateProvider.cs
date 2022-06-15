@@ -23,9 +23,10 @@ public class AuthStateProvider : AuthenticationStateProvider
         IEnumerable<Claim> claims = JwtParser.ExtractClaimsFromJwt(token);
         return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(claims, "JwtAuthType"))));
     }
-    public void NotifyUserAuthentication(string userName)
+    public void NotifyUserAuthentication(string token)
     {
-        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, userName) }, "JwtAuthType"));
+        var claims = JwtParser.ExtractClaimsFromJwt(token);
+        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(claims, "JwtAuthType"));
         var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
         NotifyAuthenticationStateChanged(authState);
     }

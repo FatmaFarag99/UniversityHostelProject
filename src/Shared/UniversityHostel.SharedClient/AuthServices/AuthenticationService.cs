@@ -13,7 +13,7 @@ public class AuthenticationService : IAuthenticationService
         _authStateProvider = authStateProvider;
     }
 
-    public async Task<RegisterUserResponse> CreateUser(string url, UserForRegisterViewModel userForRegister)
+    public async Task<RegisterUserResponse> RegisterUser(string url, UserForRegisterViewModel userForRegister)
     {
         string content = JsonConvert.SerializeObject(userForRegister);
         StringContent bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
@@ -23,7 +23,7 @@ public class AuthenticationService : IAuthenticationService
         
         if (!result.IsSuccessStatusCode)
         {
-            RegisterUserResponse? registerationResponse = JsonConvert.DeserializeObject<RegisterUserResponse>(response);
+            RegisterUserResponse registerationResponse = JsonConvert.DeserializeObject<RegisterUserResponse>(response);
             return registerationResponse;
         }
 
@@ -42,18 +42,18 @@ public class AuthenticationService : IAuthenticationService
         if (!authResult.IsSuccessStatusCode)
             return result;
 
-        await AuthenticateUserInClientApp(result, userForLogin.UserName);
+        await AuthenticateUserInClientApp(result);
 
         return new AuthResponseViewModel { IsAuthSuccessful = true };
     }
-    private async Task AuthenticateUserInClientApp(AuthResponseViewModel authResponse, string userToNotify)
+    private async Task AuthenticateUserInClientApp(AuthResponseViewModel authResponse)
     {
         if(authResponse is null)
             Console.WriteLine("Authentication not happen for client application becuase authResponse is null");
 
         await _localStorage.SetItemAsync<string>("AuthToken", authResponse.Token);
         await _localStorage.SetItemAsync<string>("RefreshToken", authResponse.RefreshToken);
-        ((AuthStateProvider)_authStateProvider).NotifyUserAuthentication(userToNotify);
+        ((AuthStateProvider)_authStateProvider).NotifyUserAuthentication(authResponse.Token);
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResponse.Token);
 
     }

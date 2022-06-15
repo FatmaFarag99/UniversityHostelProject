@@ -8,4 +8,5 @@ public interface IApplicationUserRepository
     Task<AppUser> GetUserByEmail(string email);
     Task<IEnumerable<string>> GetUserRoles(AppUser user);
     Task UpdateUser(AppUser user);
+    Task AddUserToRole(UserForRegisterViewModel userForRegister, string role);
 }

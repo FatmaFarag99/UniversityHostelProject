@@ -36,6 +36,7 @@ public class AccountController : ControllerBase
             IEnumerable<string> errors = result.Errors.Select(e => e.Description);
             return BadRequest(new { errors });
         }
+        await _applicationUserRepository.AddUserToRole(userForRegister, "User");
         return StatusCode(201);
     }
 
@@ -70,11 +71,12 @@ public class AccountController : ControllerBase
     [HttpPost("refresh")]
     public async Task<IActionResult> RefreshToken(RefreshTokenViewModel refreshTokenViewModel)
     {
-        if (refreshTokenViewModel == null)
+        if (refreshTokenViewModel == null || string.IsNullOrEmpty(refreshTokenViewModel.Token) || string.IsNullOrEmpty(refreshTokenViewModel.RefreshToken))
             return BadRequest(new AuthResponseViewModel { ErrorMessage = "Invalid Client Request" });
 
         ClaimsPrincipal principal = _tokenService.GetPrincipalFromExpiredToken(refreshTokenViewModel.Token);
-
+        Console.WriteLine(principal.Identity.Name);
+        Console.WriteLine(principal.FindFirst(ClaimTypes.Name).Value);
         AppUser user = await _applicationUserRepository.GetUserByUserName(principal.FindFirst(ClaimTypes.Name).Value);
 
         if(user is null || user.RefreshToken != refreshTokenViewModel.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)

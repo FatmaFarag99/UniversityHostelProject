@@ -32,7 +32,6 @@ public class HttpService<TViewModel> : IHttpService<TViewModel>
                 throw new Exception(content);
             }
 
-            Console.WriteLine("Get successfully");
             viewModels = JsonConvert.DeserializeObject<IEnumerable<TViewModel>>(content);
             return viewModels;
         }
