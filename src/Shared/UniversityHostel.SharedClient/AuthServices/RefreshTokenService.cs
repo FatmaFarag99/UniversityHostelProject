@@ -15,11 +15,11 @@ public class RefreshTokenService : IRefreshTokenService
         var authState = await _authProvider.GetAuthenticationStateAsync();
         var user = authState.User;
         var exp = user.FindFirst(c => c.Type.Equals("exp"))?.Value;
-        Console.WriteLine(exp);
         var expTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(exp));
         var timeUTC = DateTime.UtcNow;
         var diff = expTime - timeUTC;
 
+        Console.WriteLine("remaind Mintutes to refresh token send : " + diff.TotalMinutes);
         if (diff.TotalMinutes <= 2)
             return await _authService.RefreshToken(refreshTokenUrl);
 

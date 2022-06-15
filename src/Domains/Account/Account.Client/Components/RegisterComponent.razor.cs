@@ -14,7 +14,7 @@ public partial class RegisterComponent
 
         try
         {
-            var response = await _authenticationService.CreateUser("api/Account/RegisterUser", userForRegister);
+            var response = await _authenticationService.RegisterUser("api/Account/RegisterUser", userForRegister);
             if (!response.IsSucceeded)
             {
                 errors = response.Errors;

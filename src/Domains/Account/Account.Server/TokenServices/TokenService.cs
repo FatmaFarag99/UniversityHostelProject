@@ -73,7 +73,7 @@ public class TokenService : ITokenService
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateIssuerSigningKey = true,
-            ValidateLifetime = true,
+            ValidateLifetime = false,
 
             ValidIssuer = _jwtConfiguration.Issuer,
             ValidAudience = _jwtConfiguration.Audience,
