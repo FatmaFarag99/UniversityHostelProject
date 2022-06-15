@@ -11,5 +11,14 @@ public class ApplicationSettingConfiguration : BaseConfiguration<ApplicationSett
         builder.ToTable("ApplicationSettings");
 
         builder.Property(x => x.PhaseEndTime).IsRequired();
+
+        ApplicationSetting applicationSetting = new()
+        {
+            Id = Guid.Parse("e9bb6388-d68d-4346-9981-3a0e8150498f"),
+            IsRegistrationEnabled = true,
+            PhaseEndTime = DateTime.Now.AddDays(7),
+        };
+
+        builder.HasData(applicationSetting);
     }
 }
