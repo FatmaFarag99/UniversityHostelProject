@@ -3,6 +3,8 @@
 using Account.Shared.Validations;
 using Applications.Shared.Validations;
 using Applications.Shared.ViewModels;
+using ApplicationSettings.Shared.Validations;
+using ApplicationSettings.Shared.ViewModels;
 using Blazored.LocalStorage;
 using Cities.Shared.Validations;
 using Cities.Shared.ViewModels;
@@ -32,6 +34,7 @@ public static class ServiceExtention
         services.AddScoped<IValidator<ApplicationViewModel>, ApplicationValidator>();
         services.AddScoped<IValidator<PaymentViewModel>, PaymentValidator>();
         services.AddScoped<IValidator<CityViewModel>, CityValidator>();
+        services.AddScoped<IValidator<ApplicationSettingViewModel>, ApplicationSettingValidator>();
     }
     public static void ConfigureAuthentication(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment)
     {

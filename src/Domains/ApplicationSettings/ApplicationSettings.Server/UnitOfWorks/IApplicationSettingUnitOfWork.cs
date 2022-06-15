@@ -1,5 +1,5 @@
 namespace ApplicationSettings.Server.UnitOfWorks;
 
-public interface IApplicationSettingUnitOfWork : IBaseUnitOfWork<ApplicationSetting, ApplicationSettingViewModel>
+public interface IApplicationSettingUnitOfWork : IBaseSettingUnitOfWork<ApplicationSetting, ApplicationSettingViewModel>
 {
 }

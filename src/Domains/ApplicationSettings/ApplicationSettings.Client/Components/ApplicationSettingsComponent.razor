@@ -1,4 +1,9 @@
-<FormBaseComponent TViewModel="ApplicationSettingViewModel" ViewModel="ApplicationSettingViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} ApplicationSetting")"
+﻿@page "/applicationSettings"
+
+@attribute [Authorize(Roles = "Admin")]
+<PageTitle>ApplicationSettings</PageTitle>
+
+<FormBaseComponent TViewModel="ApplicationSettingViewModel" ViewModel="ApplicationSettingViewModel" SystemFeature="SystemFeatureType.Edit" FormTitle="@($"{SystemFeatureType.Edit.ToString()} ApplicationSetting")"
                    HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/applicationSettings"))">
     <div class="form-group col-md-6">
         <label for="name">
