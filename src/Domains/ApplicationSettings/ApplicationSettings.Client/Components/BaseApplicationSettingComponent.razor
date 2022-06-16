@@ -1,0 +1,21 @@
+<FormBaseComponent TViewModel="ApplicationSettingViewModel" ViewModel="ApplicationSettingViewModel" SystemFeature="SystemFeatureType" FormTitle="@($"{SystemFeatureType.ToString()} ApplicationSetting")"
+                   HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/applicationSettings"))">
+    <div class="form-group col-md-6">
+        <label for="name">
+            Name
+            <span class="text-danger">*</span>
+        </label>
+      @*  <SmartInputText CssClass="from-control" @bind-Value="ApplicationSettingViewModel.Name" IsChangeOnKeyPress="true"
+                        Disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+        <ValidationMessage For="@(() => ApplicationSettingViewModel.Name)" />*@
+    </div>
+    <div class="form-group col-md-6">
+        <label for="name">
+            NameSecondLanguage
+            <span class="text-danger">*</span>
+        </label>
+       @* <SmartInputText CssClass="from-control" @bind-Value="ApplicationSettingViewModel.NameSecondLanguage" IsChangeOnKeyPress="true"
+                        Disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+        <ValidationMessage For="@(() => ApplicationSettingViewModel.NameSecondLanguage)" />*@
+    </div>
+</FormBaseComponent>

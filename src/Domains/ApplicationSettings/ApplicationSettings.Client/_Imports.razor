@@ -1,0 +1,16 @@
+@using UniversityHostel.SharedClient.HttpServices
+@using Blazored.Toast.Services
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Forms
+@using UniversityHostel.SharedClient.Components
+@using ApplicationSettings.Shared.ViewModels
+@using UniversityHostel.SharedClient;
+@using Microsoft.AspNetCore.Authorization
+@using SmartUI.Grid
+@using SmartUI.Forms
+
+@inject IToastService _toastService
+@inject IHttpService<ApplicationSettingViewModel> _applicationSettingHttpService
+@inject NavigationManager _navigationManager
+
+@namespace ApplicationSettings.Client
