@@ -40,23 +40,21 @@ else
             <TabPage Title="Documents" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Documents)>
                 <DocumentsComponent ApplicationViewModel="ApplicationViewModel" />
             </TabPage>
-            @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
-            {
-                <div class="card-footer d-flex justify-content-end">
-                    <div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12 mb-2 ">
-                                <button type="button" class="btn btn-primary" @onclick="() => Console.WriteLine(JsonConvert.SerializeObject(ApplicationViewModel))">Submit-x</button>
-                            </div>
+            @* Footer *@
+            <TabFooter>
+                <FooterTemplate Context="footerContext">
+                    @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                    {
+                        <div class="d-flex justify-content-end align-items-center">
+                            <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
+                            @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
+                            {
+                                <button type="submit" class="btn btn-success m-2" disabled="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))">Save</button>
+                            }
                         </div>
-                        <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
-                        @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
-                        {
-                            <button type="submit" class="btn btn-success m-2" disabled="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))">Save</button>
-                        }
-                    </div>
-                </div>
-            }
+                    }
+                </FooterTemplate>
+            </TabFooter>
         </TabControl>
     </EditForm>
 }
