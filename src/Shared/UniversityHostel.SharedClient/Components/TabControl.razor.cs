@@ -6,14 +6,31 @@
     public partial class TabControl : BaseComponent
     {
 
-        private List<TabPage> tapPages = new List<TabPage>();
-        public TabPage ActiveTab { get; set; }
+        private LinkedList<TabPage> tapPages = new LinkedList<TabPage>();
+        public TabPage ActiveTab => activeTabNode?.Value;
 
-        public void AddTapPage(TabPage tabPage)
+        private LinkedListNode<TabPage> activeTabNode;
+        private TabFooter tabFooter;
+        private TabRequestArgs tabRequestArgs = new TabRequestArgs();
+
+        protected override void OnInitialized()
         {
-            tapPages.Add(tabPage);
+            tabRequestArgs.ActivateNext += ActiveNext;
+            tabRequestArgs.ActivatePrevious += ActivePrevious;
+
+            base.OnInitialized();
+        }
+        internal void AddTapPage(TabPage tabPage)
+        {
+            tapPages.AddLast(tabPage);
             if (tapPages.Count == 1)
-                ActiveTab = tabPage;
+                activeTabNode = tapPages.First;
+
+            StateHasChanged();
+        }
+        internal void AddTapFooter(TabFooter tabFooterTemplate)
+        {
+            tabFooter = tabFooterTemplate;
 
             StateHasChanged();
         }
@@ -26,8 +43,24 @@
             return cssClass;
         }
 
-        private void ActivePage(TabPage tabPage) => ActiveTab = tabPage;
+        private void ActivePage(TabPage tabPage)
+        {
+            activeTabNode = tapPages.Find(tabPage);
+        }
+        private void ActiveNext()
+        {
+            if (activeTabNode.Next == null)
+                return;
 
+            activeTabNode = activeTabNode.Next;
+        }
+        private void ActivePrevious()
+        {
+            if (activeTabNode.Previous == null)
+                return;
+
+            activeTabNode = activeTabNode.Previous;
+        }
 
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public string CssClass { get; set; }
