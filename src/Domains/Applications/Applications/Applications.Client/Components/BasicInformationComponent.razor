@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <div class="col-12">
-        <div class="p-5">
+        <div class="p-3">
 
             <div class="form-row">
                 <div class="form-group col-md-6 mb-2 ">
@@ -241,12 +241,6 @@
                     <ValidationMessage For="@(() => BasicInformationViewModel.IsSpecialNeeds)" />
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-12 mb-2 ">
-                    <button type="button" class="btn btn-primary" @onclick="OnNext">Next</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -255,9 +249,6 @@
 @code {
     [Parameter]
     public BasicInformationViewModel BasicInformationViewModel { get; set; }
-
-    [Parameter]
-    public System.Action OnNext { get; set; }
 
     private IEnumerable<FacultyViewModel> faculties = new List<FacultyViewModel>();
     private IEnumerable<ResidenceViewModel> residences = new List<ResidenceViewModel>();

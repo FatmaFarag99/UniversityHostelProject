@@ -19,18 +19,14 @@ else
     <EditForm Model="ApplicationViewModel" OnValidSubmit="HandleValidSubmit">
         <FluentValidator />
         <TabControl>
-            <TabPage Title="Payment">
+            <TabPage Title="Payment" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Payment)>
                 @if (ApplicationViewModel.PaymentId != default)
                 {
-                    <h1>Payment Completed Successfully</h1>
+                    <div class="row p-3">
+                        <h1>Payment Completed Successfully</h1>
 
-                    <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
-                    <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-12 mb-2 ">
-                            <button type="button" class="btn btn-primary" @onclick="() => GoToStep(ApplicationStep.BasicInformation)">Next</button>
-                        </div>
+                        <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
+                        <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
                     </div>
                 }
                 else
@@ -38,10 +34,10 @@ else
                     <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; _isPaymentCompleted = true; ApplicationViewModel.Step = ApplicationStep.BasicInformation; }" />
                 }
             </TabPage>
-            <TabPage Title="BasicInformation" Disabled="!_isPaymentCompleted">
-                <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation OnNext="async () => await GoToStep(ApplicationStep.Documents)" />
+            <TabPage Title="BasicInformation" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.BasicInformation)>
+                <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
             </TabPage>
-            <TabPage Title="Documents" Disabled="!_isPaymentCompleted">
+            <TabPage Title="Documents" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Documents)>
                 <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
             </TabPage>
             @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))

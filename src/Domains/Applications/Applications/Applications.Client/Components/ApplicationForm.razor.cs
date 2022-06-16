@@ -1,6 +1,5 @@
 ﻿namespace Applications.Client.Components
 {
-    using Applications.Shared.Enums;
     using Applications.Shared.ViewModels;
     using Documents.Shared.ViewModels;
     using Microsoft.AspNetCore.Components;
@@ -74,6 +73,8 @@
 
                 _isPaymentCompleted = true;
             }
+
+            StateHasChanged();
         }
 
         private async Task HandleValidSubmit()
@@ -119,20 +120,6 @@
             }
 
             return null;
-        }
-
-        private readonly Dictionary<ApplicationStep, string> applicationStepsTabs = new()
-        {
-            { ApplicationStep.Payment, "payment" },
-            { ApplicationStep.BasicInformation, "basic-information" },
-            { ApplicationStep.Documents, "documents" }
-        };
-
-        private async Task GoToStep(ApplicationStep step)
-        {
-            ApplicationViewModel.Step = step;
-            await JsRuntime.InvokeVoidAsync("activeTab", applicationStepsTabs[step]);
-            StateHasChanged();
         }
     }
 }
