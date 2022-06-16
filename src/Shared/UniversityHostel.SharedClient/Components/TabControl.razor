@@ -5,7 +5,7 @@
     <div class="card card-custom card-primary card-outline card-outline-tabs @CssClass" id="@Id">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                @foreach (TabPage tabPage in tapPages)
+                @foreach (TabPage tabPage in tabPages)
                 {
                     <li class="nav-item" @onclick="() => ActivePage(tabPage)">
                         <a class="nav-link  @GetNavLinkCssClass(tabPage)"

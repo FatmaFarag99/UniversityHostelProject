@@ -5,14 +5,17 @@
 
     public partial class TabControl : BaseComponent
     {
+        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public string CssClass { get; set; }
+        [Parameter] public string Id { get; set; }
 
-        private List<TabPage> tapPages = new List<TabPage>();
+        private List<TabPage> tabPages = new List<TabPage>();
         public TabPage ActiveTab { get; set; }
 
-        public void AddTapPage(TabPage tabPage)
+        public void AddTabPage(TabPage tabPage)
         {
-            tapPages.Add(tabPage);
-            if (tapPages.Count == 1)
+            tabPages.Add(tabPage);
+            if (tabPages.Count == 1)
                 ActiveTab = tabPage;
 
             StateHasChanged();
@@ -26,11 +29,10 @@
             return cssClass;
         }
 
-        private void ActivePage(TabPage tabPage) => ActiveTab = tabPage;
-
-
-        [Parameter] public RenderFragment ChildContent { get; set; }
-        [Parameter] public string CssClass { get; set; }
-        [Parameter] public string Id { get; set; }
+        private void ActivePage(TabPage tabPage)
+        {
+            ActiveTab = tabPage;
+            tabPage.OnActive?.Invoke();
+        }
     }
 }
