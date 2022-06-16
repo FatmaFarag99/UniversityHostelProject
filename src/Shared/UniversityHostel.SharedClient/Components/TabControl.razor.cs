@@ -6,7 +6,7 @@
     public partial class TabControl : BaseComponent
     {
 
-        private LinkedList<TabPage> tapPages = new LinkedList<TabPage>();
+        private LinkedList<TabPage> tabPages = new LinkedList<TabPage>();
         public TabPage ActiveTab => activeTabNode?.Value;
 
         private LinkedListNode<TabPage> activeTabNode;
@@ -20,15 +20,15 @@
 
             base.OnInitialized();
         }
-        internal void AddTapPage(TabPage tabPage)
+        internal void AddTabPage(TabPage tabPage)
         {
-            tapPages.AddLast(tabPage);
-            if (tapPages.Count == 1)
-                activeTabNode = tapPages.First;
+            tabPages.AddLast(tabPage);
+            if (tabPages.Count == 1)
+                activeTabNode = tabPages.First;
 
             StateHasChanged();
         }
-        internal void AddTapFooter(TabFooter tabFooterTemplate)
+        internal void AddTabFooter(TabFooter tabFooterTemplate)
         {
             tabFooter = tabFooterTemplate;
 
@@ -45,7 +45,7 @@
 
         private void ActivePage(TabPage tabPage)
         {
-            activeTabNode = tapPages.Find(tabPage);
+            activeTabNode = tabPages.Find(tabPage);
         }
         private void ActiveNext()
         {
