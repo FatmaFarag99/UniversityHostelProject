@@ -9,5 +9,7 @@ public class ApplicationSettingConfiguration : BaseConfiguration<ApplicationSett
         base.Configure(builder);
 
         builder.ToTable("ApplicationSettings");
+
+        builder.Property(x => x.PhaseEndTime).IsRequired();
     }
 }
