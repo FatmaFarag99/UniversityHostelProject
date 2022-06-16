@@ -6,9 +6,8 @@ public class ApplicationMapper : Profile
     {
         CreateMap<Application, ApplicationViewModel>().ReverseMap();
 
-        CreateMap<BasicInformation, BasicInformationViewModel>().ReverseMap();
+        CreateMap<ApplicationBasicInformation, ApplicationBasicInformationViewModel>().ReverseMap();
 
         CreateMap<ApplicationDocument, ApplicationDocumentViewModel>().ReverseMap();
-        CreateMap<ApplicationDocuments, ApplicationDocumentsViewModel>().ReverseMap();
     }
 }

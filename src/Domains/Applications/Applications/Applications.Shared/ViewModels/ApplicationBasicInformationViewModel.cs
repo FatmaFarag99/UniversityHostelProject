@@ -4,7 +4,7 @@
     using Faculties.Shared.ViewModels;
     using Residences.Shared.ViewModels;
 
-    public class BasicInformationViewModel : BaseSettingViewModel
+    public class ApplicationBasicInformationViewModel : BaseSettingViewModel
     {
         public Guid ApplicationId { get; set; }
 

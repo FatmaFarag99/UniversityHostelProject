@@ -1,11 +1,9 @@
 ﻿namespace Applications.Server.Entities;
-
-using Applications.Shared;
 using Applications.Shared.Enums;
 using Faculties.Server.Entities;
 using Residences.Server.Entities;
 
-public class BasicInformation : BaseSettingEntity
+public class ApplicationBasicInformation : BaseSettingEntity
 {
     public Guid ApplicationId { get; set; }
 

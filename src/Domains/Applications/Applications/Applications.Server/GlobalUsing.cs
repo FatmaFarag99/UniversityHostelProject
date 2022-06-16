@@ -10,6 +10,7 @@ global using Applications.Server.Entities;
 global using Applications.Server.Repositories;
 global using Applications.Server.UnitOfWorks;
 global using Applications.Shared.ViewModels;
+global using Applications.Shared.Enums;
 global using FluentValidation;
 global using Applications.Shared.Validations;
 global using Documents.Server.Entities;

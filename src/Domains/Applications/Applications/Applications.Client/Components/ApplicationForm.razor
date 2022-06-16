@@ -38,7 +38,7 @@ else
                 <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
             </TabPage>
             <TabPage Title="Documents" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Documents)>
-                <DocumentsComponent ApplicationDocuments="ApplicationViewModel.Documents" />
+                <DocumentsComponent ApplicationViewModel="ApplicationViewModel" />
             </TabPage>
             @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
             {

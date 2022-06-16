@@ -22,22 +22,7 @@
         public ApplicationViewModel ApplicationViewModel { get; set; } = new ApplicationViewModel
         {
             Payment = new PaymentViewModel(),
-            BasicInformation = new BasicInformationViewModel(),
-            Documents = new ApplicationDocumentsViewModel
-            {
-                Document1 = new ApplicationDocumentViewModel
-                {
-                    Document = new DocumentViewModel()
-                },
-                Document2 = new ApplicationDocumentViewModel
-                {
-                    Document = new DocumentViewModel()
-                },
-                Document3 = new ApplicationDocumentViewModel
-                {
-                    Document = new DocumentViewModel()
-                }
-            }
+            BasicInformation = new ApplicationBasicInformationViewModel(),
         };
         [Parameter]
         public SystemFeatureType SystemFeatureType { get; set; } = SystemFeatureType.Add;

@@ -10,7 +10,7 @@ public class Application : BaseEntity
     public AppUser User { get; set; }
     public ApplicationStatus Status { get; set; }
 
-    public bool IsComplete => DocumentsId != default;
+    //public bool IsComplete => DocumentsId != default;
     
     //public bool IsComplate => Step.Equals(ApplicationStep.Documents);
 
@@ -20,8 +20,7 @@ public class Application : BaseEntity
     public Payment Payment { get; set; }
 
     public Guid? BasicInformationId { get; set; }
-    public BasicInformation BasicInformation { get; set; }
+    public ApplicationBasicInformation BasicInformation { get; set; }
 
-    public Guid? DocumentsId { get; set; }
-    public ApplicationDocuments Documents { get; set; }
+    public List<ApplicationDocument> Documents { get; set; }
 }

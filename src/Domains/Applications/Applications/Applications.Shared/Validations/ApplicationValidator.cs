@@ -6,7 +6,8 @@ public class ApplicationValidator : BaseValidator<ApplicationViewModel>
 {
     public ApplicationValidator() : base()
     {
-        RuleFor(e => e.UserId).NotEmpty();
-        RuleFor(a => a.BasicInformation).SetValidator(a => new BasicInformationValidator());
+        RuleFor(a => a.UserId).NotEmpty();
+        RuleFor(a => a.BasicInformation).SetValidator(a => new ApplicationBasicInformationValidator());
+        RuleFor(a => a.Documents).NotEmpty();
     }
 }

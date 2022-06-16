@@ -1,9 +1,9 @@
 ﻿namespace Applications.Shared.Validations
 {
 
-    public class BasicInformationValidator : BaseSettingValidator<BasicInformationViewModel>
+    public class ApplicationBasicInformationValidator : BaseSettingValidator<ApplicationBasicInformationViewModel>
     {
-        public BasicInformationValidator() : base()
+        public ApplicationBasicInformationValidator() : base()
         {
             //RuleFor(e => e.ApplicationId).NotEmpty();
             RuleFor(e => e.IdNumber).NotEmpty().MaximumLength(14).MinimumLength(14);

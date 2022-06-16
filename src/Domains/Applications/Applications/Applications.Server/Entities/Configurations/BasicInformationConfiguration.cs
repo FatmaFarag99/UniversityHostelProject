@@ -2,9 +2,9 @@
 
 using Microsoft.EntityFrameworkCore;
 
-public class BasicInformationConfiguration : BaseSettingConfiguration<BasicInformation>
+public class BasicInformationConfiguration : BaseSettingConfiguration<ApplicationBasicInformation>
 {
-    public override void Configure(EntityTypeBuilder<BasicInformation> builder)
+    public override void Configure(EntityTypeBuilder<ApplicationBasicInformation> builder)
     {
         base.Configure(builder);
 

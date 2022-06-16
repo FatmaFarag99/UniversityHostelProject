@@ -15,8 +15,7 @@ public class ApplicationViewModel : BaseViewModel
     public PaymentViewModel Payment { get; set; }
 
     public Guid? BasicInformationId { get; set; }
-    public BasicInformationViewModel BasicInformation { get; set; }
+    public ApplicationBasicInformationViewModel BasicInformation { get; set; }
 
-    public Guid? DocumentsId { get; set; }
-    public ApplicationDocumentsViewModel Documents { get; set; }
+    public List<ApplicationDocumentViewModel> Documents { get; set; } = ((ApplicationDocumentType[])Enum.GetValues(typeof(ApplicationDocumentType))).Select(type => new ApplicationDocumentViewModel { Type = type }).ToList();
 }
