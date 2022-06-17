@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\UniversityHostel.Client.csproj" />
     <ProjectReference Include="..\Domains\Account\Account.Server\Account.Server.csproj" />
+    <ProjectReference Include="..\Domains\ApplicationSettings\ApplicationSettings.Server\ApplicationSettings.Server.csproj" />
     <ProjectReference Include="..\Domains\Applications\Applications\Applications.Server\Applications.Server.csproj" />
     <ProjectReference Include="..\Domains\Cities\Cities.Server\Cities.Server.csproj" />
     <ProjectReference Include="..\Domains\Documents\Documents.Server\Documents.Server.csproj" />

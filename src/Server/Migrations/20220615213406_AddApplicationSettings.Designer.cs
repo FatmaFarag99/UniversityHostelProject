@@ -4,6 +4,7 @@ using CommonLibrary.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UniversityHostel.Server.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220615213406_AddApplicationSettings")]
+    partial class AddApplicationSettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,6 +46,9 @@ namespace UniversityHostel.Server.Migrations
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("DocumentsId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("PaymentId")
                         .HasColumnType("uniqueidentifier");
 
@@ -63,7 +68,86 @@ namespace UniversityHostel.Server.Migrations
                     b.ToTable("Applications", (string)null);
                 });
 
-            modelBuilder.Entity("Applications.Server.Entities.ApplicationBasicInformation", b =>
+            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ApplicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getDate()");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("DocumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId")
+                        .IsUnique();
+
+                    b.HasIndex("DocumentId")
+                        .IsUnique();
+
+                    b.ToTable("ApplicationDocument", (string)null);
+                });
+
+            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocuments", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ApplicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getDate()");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("Document1Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Document2Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("Document3Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId")
+                        .IsUnique();
+
+                    b.HasIndex("Document1Id");
+
+                    b.HasIndex("Document2Id");
+
+                    b.ToTable("ApplicationDocuments", (string)null);
+                });
+
+            modelBuilder.Entity("Applications.Server.Entities.BasicInformation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -184,44 +268,6 @@ namespace UniversityHostel.Server.Migrations
                     b.HasIndex("ResidenceId");
 
                     b.ToTable("BasicInformations", (string)null);
-                });
-
-            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocument", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ApplicationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<byte[]>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
-                    b.Property<DateTime>("CreationDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getDate()");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("DocumentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
-
-                    b.HasIndex("DocumentId")
-                        .IsUnique();
-
-                    b.ToTable("ApplicationDocument", (string)null);
                 });
 
             modelBuilder.Entity("ApplicationSettings.Server.Entities.ApplicationSetting", b =>
@@ -397,14 +443,14 @@ namespace UniversityHostel.Server.Migrations
                         new
                         {
                             Id = "da80425e-f97f-469b-98ef-bd481b034777",
-                            ConcurrencyStamp = "c264cefc-346d-46c2-9e7d-31f3d17d61f2",
+                            ConcurrencyStamp = "77e77a97-bc4f-4939-a514-2343e2a74f7d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "e9bb6388-d68d-4346-9981-3a0e8150498f",
-                            ConcurrencyStamp = "92dd7c8f-a2c6-4eb1-8383-f2042e66bd30",
+                            ConcurrencyStamp = "747ed223-8b87-4e50-bd6e-07376372feef",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -691,14 +737,14 @@ namespace UniversityHostel.Server.Migrations
                         {
                             Id = "5bf8f6b4-3e44-43f8-bf14-b5b1298f0bd7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "761293b7-287c-4f75-9b01-6e0a09dd8a1a",
+                            ConcurrencyStamp = "b133f53d-6271-40aa-9da6-5277acf84c91",
                             Email = "Admin@hostel.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAPMV0sNqibpstC8kRUkakm61wAv7ncNJLCfqtLBcd8HFAGt5RFFIWEjrJSEuA2p+w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOwGtdLEQY96A7cFWG3RnOx2RR7FtV1T44bii1pxvxscUAADyOsBLXHP4DTBliXrVQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eebc9f2c-0303-405e-ba94-fa49eb5cc22c",
+                            SecurityStamp = "69c9e6f1-846f-4d25-9a55-8700ffd6a625",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FullName = "Adminstrator",
@@ -708,14 +754,14 @@ namespace UniversityHostel.Server.Migrations
                         {
                             Id = "cca1c549-094b-4c45-a9c1-9960068e7f51",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "845acc3b-3bd2-4b8d-aa40-4a8963e51ca3",
+                            ConcurrencyStamp = "83a3314a-51ca-4b86-b2e6-19989ba2f4e0",
                             Email = "user@hostel.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDCoXp67BAVu+r7Gi7TbRBgD6ucxYRGTLD6rZ6VQBBdqNxdM/Ndmw6KT1bWO3j/s4w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG5hOvqRsCuNj7F1XOb7LuEm9b2eMPdv4KFUxzLeIo+RC/iNOGwFksk4qh8pg5AdIw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a47afbb0-405d-43c4-aa3d-f2c09cc64f68",
+                            SecurityStamp = "7810534c-a01c-4154-9d17-997c379b6535",
                             TwoFactorEnabled = false,
                             UserName = "user",
                             FullName = "Default User",
@@ -741,11 +787,49 @@ namespace UniversityHostel.Server.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Applications.Server.Entities.ApplicationBasicInformation", b =>
+            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocument", b =>
+                {
+                    b.HasOne("Applications.Server.Entities.ApplicationDocuments", null)
+                        .WithOne("Document3")
+                        .HasForeignKey("Applications.Server.Entities.ApplicationDocument", "ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Documents.Server.Entities.Document", "Document")
+                        .WithOne()
+                        .HasForeignKey("Applications.Server.Entities.ApplicationDocument", "DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Document");
+                });
+
+            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocuments", b =>
+                {
+                    b.HasOne("Applications.Server.Entities.Application", null)
+                        .WithOne("Documents")
+                        .HasForeignKey("Applications.Server.Entities.ApplicationDocuments", "ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Applications.Server.Entities.ApplicationDocument", "Document1")
+                        .WithMany()
+                        .HasForeignKey("Document1Id");
+
+                    b.HasOne("Applications.Server.Entities.ApplicationDocument", "Document2")
+                        .WithMany()
+                        .HasForeignKey("Document2Id");
+
+                    b.Navigation("Document1");
+
+                    b.Navigation("Document2");
+                });
+
+            modelBuilder.Entity("Applications.Server.Entities.BasicInformation", b =>
                 {
                     b.HasOne("Applications.Server.Entities.Application", null)
                         .WithOne("BasicInformation")
-                        .HasForeignKey("Applications.Server.Entities.ApplicationBasicInformation", "ApplicationId")
+                        .HasForeignKey("Applications.Server.Entities.BasicInformation", "ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -764,23 +848,6 @@ namespace UniversityHostel.Server.Migrations
                     b.Navigation("Faculty");
 
                     b.Navigation("Residence");
-                });
-
-            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocument", b =>
-                {
-                    b.HasOne("Applications.Server.Entities.Application", null)
-                        .WithMany("Documents")
-                        .HasForeignKey("ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Documents.Server.Entities.Document", "Document")
-                        .WithOne()
-                        .HasForeignKey("Applications.Server.Entities.ApplicationDocument", "DocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Document");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -849,6 +916,11 @@ namespace UniversityHostel.Server.Migrations
                     b.Navigation("BasicInformation");
 
                     b.Navigation("Documents");
+                });
+
+            modelBuilder.Entity("Applications.Server.Entities.ApplicationDocuments", b =>
+                {
+                    b.Navigation("Document3");
                 });
 #pragma warning restore 612, 618
         }
