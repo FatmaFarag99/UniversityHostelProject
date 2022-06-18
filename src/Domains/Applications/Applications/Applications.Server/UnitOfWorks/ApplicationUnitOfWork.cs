@@ -46,6 +46,9 @@ public class ApplicationUnitOfWork : BaseUnitOfWork<Application, ApplicationView
         if (applicationFromDb is null)
             throw new Exception("Application doesn't exist");
 
+        if (!applicationFromDb.Status.Equals(ApplicationStatus.Pending))
+            throw new Exception("Can not perform operation twice");
+        
         applicationFromDb.Status = ApplicationStatus.Rejected;
         await _repository.EditAsync(applicationFromDb);
         await _context.SaveChangesAsync();
@@ -57,6 +60,9 @@ public class ApplicationUnitOfWork : BaseUnitOfWork<Application, ApplicationView
         Application applicationFromDb = await _repository.GetByIdAsync(application.Id);
         if (applicationFromDb is null)
             throw new Exception("Application doesn't exist");
+
+        if (!applicationFromDb.Status.Equals(ApplicationStatus.Pending))
+            throw new Exception("Can not perform operation twice");
 
         applicationFromDb.Status = ApplicationStatus.Accepted;
         await _repository.EditAsync(applicationFromDb);

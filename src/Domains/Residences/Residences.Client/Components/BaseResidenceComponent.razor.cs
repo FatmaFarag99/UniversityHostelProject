@@ -9,23 +9,30 @@ public partial class BaseResidenceComponent
 
     private async Task HandleValidSubmit()
     {
-        string successMessage = string.Empty;
-        if (SystemFeatureType.Equals(SystemFeatureType.Add))
+        try
         {
-            ResidenceViewModel = await _residenceHttpService.PostAsync("/api/residences", ResidenceViewModel);
-            successMessage = "Residence Added Successfuly";
+            string successMessage = string.Empty;
+            if (SystemFeatureType.Equals(SystemFeatureType.Add))
+            {
+                ResidenceViewModel = await _residenceHttpService.PostAsync("/api/residences", ResidenceViewModel);
+                successMessage = "Residence Added Successfuly";
+            }
+            else if (SystemFeatureType.Equals(SystemFeatureType.Edit))
+            {
+                ResidenceViewModel = await _residenceHttpService.PutAsync("/api/residences", ResidenceViewModel);
+                successMessage = "Residence Edited Successfuly";
+            }
+            else if (SystemFeatureType.Equals(SystemFeatureType.Delete))
+            {
+                ResidenceViewModel = await _residenceHttpService.DeleteAsync($"/api/residences/{ResidenceViewModel.Id}");
+                successMessage = "Residence Deleted Successfuly";
+            }
+            _toastService.ShowSuccess(successMessage);
+            _navigationManager.NavigateTo("/residences");
         }
-        else if (SystemFeatureType.Equals(SystemFeatureType.Edit))
+        catch(Exception ex)
         {
-            ResidenceViewModel = await _residenceHttpService.PutAsync("/api/residences", ResidenceViewModel);
-            successMessage = "Residence Edited Successfuly";
+            Console.WriteLine(ex.Message);
         }
-        else if (SystemFeatureType.Equals(SystemFeatureType.Delete))
-        {
-            ResidenceViewModel = await _residenceHttpService.DeleteAsync($"/api/residences/{ResidenceViewModel.Id}");
-            successMessage = "Residence Deleted Successfuly";
-        }
-        _toastService.ShowSuccess(successMessage);
-        _navigationManager.NavigateTo("/residences");
     }
 }

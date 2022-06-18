@@ -4,6 +4,7 @@ using CommonLibrary.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UniversityHostel.Server.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220618191817_AddApplicationStages")]
+    partial class AddApplicationStages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace UniversityHostel.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ApplicationStageId")
+                    b.Property<Guid>("ApplicationStageId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("BasicInformationId")
@@ -265,7 +267,7 @@ namespace UniversityHostel.Server.Migrations
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayOrder = 0,
                             IsRegistrationEnabled = true,
-                            PhaseEndTime = new DateTime(2022, 6, 25, 21, 24, 40, 597, DateTimeKind.Local).AddTicks(2312)
+                            PhaseEndTime = new DateTime(2022, 6, 25, 21, 18, 16, 302, DateTimeKind.Local).AddTicks(229)
                         });
                 });
 
@@ -288,11 +290,11 @@ namespace UniversityHostel.Server.Migrations
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("StageStatus")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -304,8 +306,8 @@ namespace UniversityHostel.Server.Migrations
                             Id = new Guid("e9bb6388-d68d-4346-9981-3a0e8150498f"),
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayOrder = 0,
-                            EndTime = new DateTime(2022, 6, 25, 21, 24, 40, 597, DateTimeKind.Local).AddTicks(5649),
-                            StageStatus = 0
+                            Enabled = true,
+                            EndTime = new DateTime(2022, 6, 25, 21, 18, 16, 302, DateTimeKind.Local).AddTicks(2599)
                         });
                 });
 
@@ -442,14 +444,14 @@ namespace UniversityHostel.Server.Migrations
                         new
                         {
                             Id = "da80425e-f97f-469b-98ef-bd481b034777",
-                            ConcurrencyStamp = "7856e4c4-1214-42cd-afcf-9bf7dd49f952",
+                            ConcurrencyStamp = "b7d1c672-093e-4fd6-b4e8-a00c9016d8b2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "e9bb6388-d68d-4346-9981-3a0e8150498f",
-                            ConcurrencyStamp = "08def4a8-1efc-4351-94b4-06272ac5d562",
+                            ConcurrencyStamp = "18a0fd54-2ecc-4b6c-8c59-53f7f2b1feaa",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -736,14 +738,14 @@ namespace UniversityHostel.Server.Migrations
                         {
                             Id = "5bf8f6b4-3e44-43f8-bf14-b5b1298f0bd7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ad4d666-dfe7-4b55-836d-1560583ee485",
+                            ConcurrencyStamp = "187a0298-d9bf-44d5-ac41-4b387b92d244",
                             Email = "Admin@hostel.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA07+/x+iFszZ8/Heuue8lw067fjQNnVUJX3xapTJVWaITmG9V9icRbBk+P13VLs3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENDPTy9fdOjrZHb5IjBDlxIhfAGK1Q1mguBFVXw8nJsrP5cixt/2To1enIWyUzh1ZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "abd27573-62d3-4bf6-9a10-ffe70fe83af2",
+                            SecurityStamp = "cae17a17-8abd-4089-8dbd-915949e35d82",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             FullName = "Adminstrator",
@@ -753,14 +755,14 @@ namespace UniversityHostel.Server.Migrations
                         {
                             Id = "cca1c549-094b-4c45-a9c1-9960068e7f51",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1cfe1553-dc3b-446d-8d90-8bcb6a169e8f",
+                            ConcurrencyStamp = "8ad5628a-425c-4d97-acac-b75db9d2b07a",
                             Email = "user@hostel.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAENoNXozDBZGaVAj9pScnPUZB/PjzzgoAYC+lVdzkUgxiaR+Tw2/eL2+dPsxI1RP43g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJkxZY4cuuC7JumXiVexcgw+PG9c8+Y82cuGsA+UDXZYkibMS3NJXjlnc5uo1/iXCg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c790f059-4979-4b54-826b-850f926a812f",
+                            SecurityStamp = "c138b0c7-634b-4fe8-a23a-8fdd52b1c95c",
                             TwoFactorEnabled = false,
                             UserName = "user",
                             FullName = "Default User",
@@ -773,7 +775,8 @@ namespace UniversityHostel.Server.Migrations
                     b.HasOne("ApplicationSettings.Server.Entities.ApplicationStage", "ApplicationStage")
                         .WithMany()
                         .HasForeignKey("ApplicationStageId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Payments.Server.Entities.Payment", "Payment")
                         .WithOne()

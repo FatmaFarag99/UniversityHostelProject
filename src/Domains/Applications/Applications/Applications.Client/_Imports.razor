@@ -12,10 +12,14 @@
 @using SmartUI.Forms
 @*@using Payments.Client.Components*@
 @using Payments.Shared.ViewModels
+@using ApplicationSettings.Shared.ViewModels;
 
 @inject IToastService _toastService
 @inject IHttpService<ApplicationViewModel> _applicationHttpService
 @inject IHttpService<ApplicationGridViewModel> _applicationGridHttpService
+@inject IHttpService<ApplicationResultViewModel> _applicationResultHttpService
+@inject IHttpService<ApplicationStageViewModel> _applicationStagesHttpService
+@inject IHttpService<ApplicationSettingViewModel> _applicationSettingsHttpService
 @inject IHttpService<PaymentViewModel> _paymentHttpService
 @inject IHttpService<FacultyViewModel> _facultyHttpService
 @inject IHttpService<ResidenceViewModel> _residenceHttpService

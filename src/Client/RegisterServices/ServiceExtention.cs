@@ -35,6 +35,7 @@ public static class ServiceExtention
         services.AddScoped<IValidator<PaymentViewModel>, PaymentValidator>();
         services.AddScoped<IValidator<CityViewModel>, CityValidator>();
         services.AddScoped<IValidator<ApplicationSettingViewModel>, ApplicationSettingValidator>();
+        services.AddScoped<IValidator<ApplicationStageViewModel>, ApplicationStageValidator>();
     }
     public static void ConfigureAuthentication(this IServiceCollection services, IWebAssemblyHostEnvironment hostEnvironment)
     {

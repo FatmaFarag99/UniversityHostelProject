@@ -3,29 +3,36 @@
 @attribute [Authorize(Roles = "Admin")]
 <PageTitle>ApplicationSettings</PageTitle>
 
-<FormBaseComponent TViewModel="ApplicationSettingViewModel" ViewModel="ApplicationSettingViewModel" SystemFeature="SystemFeatureType.Edit" FormTitle="@($"{SystemFeatureType.Edit.ToString()} ApplicationSettings")"
+@if (!dataLoaded)
+{
+    <Spinner Show="true" />
+}
+else
+{
+    <FormBaseComponent TViewModel="ApplicationSettingViewModel" ViewModel="ApplicationSettingViewModel" SystemFeature="SystemFeatureType.Edit" FormTitle="@($"{SystemFeatureType.Edit.ToString()} ApplicationSettings")"
                    HandleValidSubmit="HandleValidSubmit" OnCancel="@(() => _navigationManager.NavigateTo("/applicationSettings"))">
 
-    <div class="form-row">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" @bind="ApplicationSettingViewModel.IsRegistrationEnabled" id="isRegistrationEnabledCheckBox">
-            <label class="form-check-label" for="isRegistrationEnabledCheckBox">
-                Is Registration Enabled
-            </label>
-            <span class="text-danger">*</span>
-            <ValidationMessage For="@(() => ApplicationSettingViewModel.IsRegistrationEnabled)" />
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label>
-                PhaseEndTime
+        <div class="form-row">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" @bind="ApplicationSettingViewModel.IsRegistrationEnabled" id="isRegistrationEnabledCheckBox">
+                <label class="form-check-label" for="isRegistrationEnabledCheckBox">
+                    Is Registration Enabled
+                </label>
                 <span class="text-danger">*</span>
-            </label>
-            <InputDate class="form-control" @bind-Value="ApplicationSettingViewModel.PhaseEndTime" />
-            <ValidationMessage For="@(() => ApplicationSettingViewModel.PhaseEndTime)" />
+                <ValidationMessage For="@(() => ApplicationSettingViewModel.IsRegistrationEnabled)" />
+            </div>
         </div>
-    </div>
 
-</FormBaseComponent>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>
+                    PhaseEndTime
+                    <span class="text-danger">*</span>
+                </label>
+                <InputDate class="form-control" @bind-Value="ApplicationSettingViewModel.PhaseEndTime" />
+                <ValidationMessage For="@(() => ApplicationSettingViewModel.PhaseEndTime)" />
+            </div>
+        </div>
+
+    </FormBaseComponent>
+}

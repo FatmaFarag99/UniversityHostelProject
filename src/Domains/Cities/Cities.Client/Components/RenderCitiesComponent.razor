@@ -9,7 +9,11 @@
             Add
             <span class="oi oi-plus"></span>
         </a>
-        @if (dataLoaded)
+        @if (!dataLoaded)
+        {
+            <Spinner Show="true" />
+        }
+        else
         {
             <SmartGrid TSource="CityViewModel" CssClass="table-hover table-striped" DataSource="cities" AllowPagination="true" AllowSorting="true">
                 <PaginationSettings PageSize="20" PageSizes="new List<int>{ 10, 20, 30, 40, 50, 100, 500, 1000}" />

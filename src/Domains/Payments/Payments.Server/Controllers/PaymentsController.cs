@@ -1,9 +1,12 @@
 ﻿namespace Payments.Server.Controllers;
 
+using Microsoft.AspNetCore.Authorization;
 using Payments.Shared.ViewModels;
+using System.Security.Claims;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PaymentsController : BaseController<Payment, PaymentViewModel>
 {
     private readonly IPaymentUnitOfWork _unitOfWork;
@@ -16,6 +19,7 @@ public class PaymentsController : BaseController<Payment, PaymentViewModel>
     }
 
     [HttpPost("Paid")]
+    [Authorize(Roles = "User")]
     public async Task<IActionResult> ElectronicPayment(PaymentViewModel paymentViewModel)
     {
         if (paymentViewModel == null)
@@ -27,8 +31,9 @@ public class PaymentsController : BaseController<Payment, PaymentViewModel>
             string text = string.Join("-", result.Errors.Select(e => e.ErrorMessage));
             throw new Exception("NonValid ViewModel Reason:" + text);
         }
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        string transactionId = await _unitOfWork.ElectronicPayment(paymentViewModel);
+        string transactionId = await _unitOfWork.ElectronicPayment(paymentViewModel, userId);
 
         return Ok(transactionId);
     }

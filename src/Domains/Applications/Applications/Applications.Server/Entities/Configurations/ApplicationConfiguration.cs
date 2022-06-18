@@ -17,6 +17,7 @@ public class ApplicationConfiguration : BaseConfiguration<Application>
         
         builder.HasOne(a => a.Payment).WithOne().HasForeignKey<Application>(b => b.PaymentId).OnDelete(DeleteBehavior.NoAction);
         builder.HasOne(a => a.BasicInformation).WithOne().HasForeignKey<ApplicationBasicInformation>(b => b.ApplicationId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(a => a.ApplicationStage).WithMany().HasForeignKey(b => b.ApplicationStageId).OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(a => a.Documents).WithOne().HasForeignKey(d => d.ApplicationId).OnDelete(DeleteBehavior.Cascade);
     }

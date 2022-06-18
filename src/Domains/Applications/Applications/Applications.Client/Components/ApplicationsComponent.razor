@@ -1,16 +1,14 @@
 ﻿@page "/Applications"
 
-@if (applicationViewModel != null)
+@if (!dataLoaded)
 {
-    <h2>You have pending application</h2>
-
-    <div class="card" style="width: 40rem;">
+    <Spinner Show="true" />
+}
+else
+{
+    <div class="card card-custom">
         <div class="card-body">
-            <h5 class="card-title">Application</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            @*<a href="#" class="card-link">Card link</a>*@
-            @*<a href="#" class="card-link">Another link</a>*@
+            <h3>You have pending application submetted at @applicationViewModel?.CreationDate.ToLongDateString(), Please wait for result</h3>
         </div>
     </div>
 }
@@ -18,11 +16,11 @@
 @code {
 
     ApplicationViewModel applicationViewModel;
+    private bool dataLoaded;
 
     protected override async Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
-
         applicationViewModel = await _applicationHttpService.GetByIdAsync($"/api/applications/GetPendingApplication");
+        dataLoaded = true;
     }
 }

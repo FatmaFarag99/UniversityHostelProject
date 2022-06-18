@@ -45,6 +45,9 @@
 
         private async void ActivePage(TabPage tabPage)
         {
+            if (tabPage.Disabled)
+                return;
+
             activeTabNode = tabPages.Find(tabPage);
             await tabPage.OnActive.InvokeAsync();
         }

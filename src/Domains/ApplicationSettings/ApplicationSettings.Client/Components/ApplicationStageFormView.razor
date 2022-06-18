@@ -1,0 +1,14 @@
+﻿@page "/ApplicationStages/{SystemFeatureTypeParameter}"
+@page "/ApplicationStages/{SystemFeatureTypeParameter}/{Id:guid}"
+
+@attribute [Authorize(Roles = "Admin")]
+
+<PageTitle>@systemFeatureType.ToString() Residence</PageTitle>
+
+@if (systemFeatureType.Equals(SystemFeatureType.Delete))
+{
+    <div class="alert alert-danger">
+        <p>Does you want  delete this stage</p>
+    </div>
+}
+<BaseApplicationStageComponent ApplicationStageViewModel="applicationStage" SystemFeatureType="systemFeatureType" />

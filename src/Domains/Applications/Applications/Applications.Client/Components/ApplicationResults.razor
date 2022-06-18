@@ -1,0 +1,48 @@
+﻿@page "/ApplicationResult"
+<div class="card card-custom">
+    <div class="card-body">
+        @if (!isDataLoaded)
+        {
+            <Spinner Show="true" />
+        }
+        else
+        {
+            @if (!ApplicationResult.HasApplication)
+            {
+                <h4>@ApplicationResult.Message, <a href='/Applications/Add' title='Apply Now'>Apply Now</a>.</h4>
+            }
+            else
+            {
+                if (ApplicationResult.Status.Equals(ApplicationStatus.Pending))
+                {
+                    <div class="alert alert-info">
+                        @ApplicationResult.Message
+                    </div>
+                }
+                else if (ApplicationResult.Status.Equals(ApplicationStatus.Accepted))
+                {
+                    <div class="alert alert-success">
+                        @ApplicationResult.Message
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        @ApplicationResult.Message
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>
+
+
+@code {
+    private ApplicationResultViewModel ApplicationResult { get; set; }
+    private bool isDataLoaded;
+    protected override async Task OnInitializedAsync()
+    {
+        ApplicationResult = await _applicationResultHttpService.GetByIdAsync($"api/Applications/result");
+        isDataLoaded = true;
+    }
+}

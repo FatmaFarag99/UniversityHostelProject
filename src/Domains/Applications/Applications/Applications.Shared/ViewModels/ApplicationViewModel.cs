@@ -10,6 +10,7 @@ public class ApplicationViewModel : BaseViewModel
     public bool IsComplete { get; set; }
 
     public ApplicationStep Step { get; set; }
+    public Guid ApplicationStageId { get; set; }
 
     public Guid PaymentId { get; set; }
     public PaymentViewModel Payment { get; set; }

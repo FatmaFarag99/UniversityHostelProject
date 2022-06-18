@@ -7,5 +7,9 @@ public class ApplicationSettingInstaller : IInstaller
         services.AddScoped<IValidator<ApplicationSettingViewModel>, ApplicationSettingValidator>();
         services.AddScoped<IApplicationSettingRepository, ApplicationSettingRepository>();
         services.AddScoped<IApplicationSettingUnitOfWork, ApplicationSettingUnitOfWork>();
+
+        services.AddScoped<IValidator<ApplicationStageViewModel>, ApplicationStageValidator>();
+        services.AddScoped<IApplicationStageRepository, ApplicationStageRepository>();
+        services.AddScoped<IApplicationStageUnitOfWork, ApplicationStageUnitOfWork>();
     }
 }

@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domains\Account\Account.Client\Account.Client.csproj" />
-    <ProjectReference Include="..\Domains\ApplicationResults\ApplicationResults.Client\ApplicationResults.Client.csproj" />
     <ProjectReference Include="..\Domains\ApplicationSettings\ApplicationSettings.Client\ApplicationSettings.Client.csproj" />
     <ProjectReference Include="..\Domains\Applications\Applications\Applications.Client\Applications.Client.csproj" />
     <ProjectReference Include="..\Domains\Cities\Cities.Client\Cities.Client.csproj" />

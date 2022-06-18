@@ -2,5 +2,5 @@
 
 public interface IPaymentUnitOfWork : IBaseUnitOfWork<Payment, PaymentViewModel>
 {
-    Task<string> ElectronicPayment(PaymentViewModel viewModel);
+    Task<string> ElectronicPayment(PaymentViewModel viewModel, string userId);
 }

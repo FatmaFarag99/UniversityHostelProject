@@ -19,42 +19,50 @@ else
     <EditForm Model="ApplicationViewModel" OnValidSubmit="HandleValidSubmit">
         <FluentValidator />
         <TabControl>
-            <TabPage Title="Payment" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Payment)>
-                @if (ApplicationViewModel.PaymentId != default)
-                {
-                    <div class="row p-3">
-                        <h1>Payment Completed Successfully</h1>
+            @if (!dataLoaded)
+            {
+                <Spinner Show="true" />
+            }
+            else
+            {
 
-                        <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
-                        <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
-                    </div>
-                }
-                else
-                {
-                    <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; _isPaymentCompleted = true; ApplicationViewModel.Step = ApplicationStep.BasicInformation; }" />
-                }
-            </TabPage>
-            <TabPage Title="BasicInformation" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.BasicInformation)>
-                <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
-            </TabPage>
-            <TabPage Title="Documents" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Documents)>
-                <DocumentsComponent ApplicationViewModel="ApplicationViewModel" />
-            </TabPage>
-            @* Footer *@
-            <TabFooter>
-                <FooterTemplate Context="footerContext">
-                    @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                <TabPage Title="Payment" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Payment)>
+                    @if (ApplicationViewModel.PaymentId != default)
                     {
-                        <div class="d-flex justify-content-end align-items-center">
-                            <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
-                            @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
-                            {
-                                <button type="submit" class="btn btn-success m-2" disabled="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))">Save</button>
-                            }
+                        <div class="row p-3">
+                            <h1>Payment Completed Successfully</h1>
+
+                            <h2>TransactionId: @ApplicationViewModel.Payment?.TransactionId</h2>
+                            <h2>Amount: @ApplicationViewModel.Payment?.PaidAmount</h2>
                         </div>
                     }
-                </FooterTemplate>
-            </TabFooter>
+                    else
+                    {
+                        <PaymentForm PaymentViewModel=@ApplicationViewModel.Payment OnPaymentCompleted="(payment) => { ApplicationViewModel.PaymentId = payment.Id; _isPaymentCompleted = true; ApplicationViewModel.Step = ApplicationStep.BasicInformation; }" />
+                    }
+                </TabPage>
+                <TabPage Title="BasicInformation" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.BasicInformation)>
+                    <BasicInformationComponent BasicInformationViewModel=@ApplicationViewModel.BasicInformation />
+                </TabPage>
+                <TabPage Title="Documents" Disabled="!_isPaymentCompleted" OnActive=@(() => ApplicationViewModel.Step = ApplicationStep.Documents)>
+                    <DocumentsComponent ApplicationViewModel="ApplicationViewModel" />
+                </TabPage>
+                @* Footer *@
+                @if (!ApplicationViewModel.Step.Equals(ApplicationStep.Payment))
+                {
+                    <TabFooter>
+                        <FooterTemplate Context="footerContext">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <button class="btn btn-danger mr-3" @onclick="@(() => _navigationManager.NavigateTo("/"))">Cancel</button>
+                                @if (!SystemFeatureType.Equals(SystemFeatureType.Details))
+                                {
+                                    <button type="submit" class="btn btn-success m-2" disabled="@(ApplicationViewModel.Step.Equals(ApplicationStep.Payment))">Save</button>
+                                }
+                            </div>
+                        </FooterTemplate>
+                    </TabFooter>
+                }
+            }
         </TabControl>
     </EditForm>
 }

@@ -1,6 +1,7 @@
 ﻿namespace Applications.Client.Components
 {
     using Applications.Shared.ViewModels;
+    using ApplicationSettings.Shared.ViewModels;
     using Documents.Shared.ViewModels;
     using Microsoft.AspNetCore.Components;
     using Microsoft.AspNetCore.Components.Authorization;
@@ -28,12 +29,17 @@
         public SystemFeatureType SystemFeatureType { get; set; } = SystemFeatureType.Add;
 
         private bool _isPaymentCompleted;
-        private bool _isAllowForCreateApplication;
+        private bool _isAllowForCreateApplication = true;
+        private bool dataLoaded;
+        private ApplicationStageViewModel applicationStage;
 
         private async Task<bool> CheckIfAllowCreateApplication()
         {
-            // check if admin is allow to create application or not
-            return await Task.FromResult(true);
+            applicationStage = await _applicationStagesHttpService.GetByIdAsync("api/ApplicationStages/lastStage");
+            if (applicationStage is null)
+                return await Task.FromResult(false);
+
+            return await Task.FromResult(applicationStage.StageStatus.Equals(StageStatus.Opened) && applicationStage.EndTime > DateTime.Now);
         }
         protected override async Task OnInitializedAsync()
         {
@@ -49,6 +55,7 @@
 
 
             ApplicationViewModel.UserId = await GetUserId();
+            ApplicationViewModel.ApplicationStageId = applicationStage.Id;
 
             PaymentViewModel payment = await _paymentHttpService.GetByIdAsync($"/api/applications/GetUnlinkedPayment");
             if(payment != null)
@@ -59,6 +66,7 @@
                 _isPaymentCompleted = true;
             }
 
+            dataLoaded = true;
             StateHasChanged();
         }
 

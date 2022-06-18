@@ -16,16 +16,17 @@ public class PaymentUnitOfWork : BaseUnitOfWork<Payment, PaymentViewModel>, IPay
         _paymentService = paymentService;
     }
 
-    public async Task<string> ElectronicPayment(PaymentViewModel viewModel)
+    public async Task<string> ElectronicPayment(PaymentViewModel viewModel, string userId)
     {
         ThirdPartyResponse response = await _paymentService.SendPaidRequest("http://localhost:9999/ElectronicPayment", viewModel);
         if (!response.IsSuccess)
             throw new Exception("Payment fail, please try again later.");
 
-        Payment payment = new Payment() 
+        Payment payment = new Payment()
         {
             TransactionId = response.TransactionId,
-            PaidAmount = response.Amount 
+            PaidAmount = response.Amount,
+            UserId = userId
         };
         await _repository.AddAsync(payment);
         await _context.SaveChangesAsync();
