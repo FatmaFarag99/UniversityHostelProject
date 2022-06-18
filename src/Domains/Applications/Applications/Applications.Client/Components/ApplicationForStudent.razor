@@ -1,0 +1,164 @@
+﻿@page "/StudentsApplications/{Id:guid}"
+
+<TabControl>
+    <TabPage Title="Student Information">
+        @if (application.BasicInformation is not null)
+        {
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Student Name : </label>
+                    @application.BasicInformation.Name
+                </div>
+                <div class="col-md-6">
+                    <label>Gender : </label>
+                    @application.BasicInformation.Gender
+                </div>
+                <div class="col-md-6">
+                    <label>Religion : </label>
+                    @application.BasicInformation.Religion
+                </div>
+                <div class="col-md-6">
+                    <label>Id Number : </label>
+                    @application.BasicInformation.IdNumber
+                </div>
+                <div class="col-md-6">
+                    <label>Birth Date : </label>
+                    @application.BasicInformation.BirthDate
+                </div>
+                <div class="col-md-6">
+                    <label>Place Of Birth : </label>
+                    @application.BasicInformation.PlaceOfBirth
+                </div>
+                <div class="col-md-6">
+                    <label>Residence : </label>
+                    @application.BasicInformation.Residence?.Name
+                </div>
+                <div class="col-md-6">
+                    <label>Full Address : </label>
+                    @application.BasicInformation.FullAddress
+                </div>
+                <div class="col-md-6">
+                    <label>Student Code : </label>
+                    @application.BasicInformation.StudentCode
+                </div>
+                <div class="col-md-6">
+                    <label>Email : </label>
+                    @application.BasicInformation.Email
+                </div>
+                <div class="col-md-6">
+                    <label>PhoneNumber : </label>
+                    @application.BasicInformation.PhoneNumber
+                </div>
+                <div class="col-md-6">
+                    <label>Is Special Needs : </label>
+                    @application.BasicInformation.IsSpecialNeeds
+                </div>
+                <div class="col-md-6">
+                    <label>Is Family Outside : </label>
+                    @application.BasicInformation.IsFamilyOutside
+                </div>
+            </div>
+        }
+    </TabPage>
+    <TabPage Title="Father / Gardian Information">
+        @if (application.BasicInformation is not null)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Father Name: </label>
+                    @application.BasicInformation.FatherName
+                </div>
+                <div class="col-md-6">
+                    <label>Father Id: </label>
+                    @application.BasicInformation.FatherId
+                </div>
+                <div class="col-md-6">
+                    <label>Father Job: </label>
+                    @application.BasicInformation.FatherJob
+                </div>
+                <div class="col-md-6">
+                    <label>Father Phone: </label>
+                    @application.BasicInformation.FatherPhone
+                </div>
+                <div class="col-md-6">
+                    <label>Guardian Name: </label>
+                    @application.BasicInformation.GuardianName
+                </div>
+                <div class="col-md-6">
+                    <label>Guardian Id: </label>
+                    @application.BasicInformation.GuardianId
+                </div>
+                <div class="col-md-6">
+                    <label>Guardian Relationship: </label>
+                    @application.BasicInformation.GuardianRelationship
+                </div>
+            </div>
+        }
+    </TabPage>
+    <TabPage Title="Faculty Information">
+        @if (application.BasicInformation is not null)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Faculty: </label>
+                    @application.BasicInformation.Faculty?.Name
+                </div>
+                <div class="col-md-6">
+                    <label>Level: </label>
+                    @application.BasicInformation.Level
+                </div>
+                <div class="col-md-6">
+                    <label>Degree: </label>
+                    @application.BasicInformation.Degree
+                </div>
+                <div class="col-md-6">
+                    <label>Previous GPA: </label>
+                    @application.BasicInformation.PreviousGPA
+                </div>
+                <div class="col-md-6">
+                    <label>Housing Type: </label>
+                    @application.BasicInformation.HousingType
+                </div>
+            </div>
+        }
+    </TabPage>
+    @if (application.Status.Equals(ApplicationStatus.Accepted) || application.Status.Equals(ApplicationStatus.Rejected))
+    {
+    }
+    else
+    {
+         <TabFooter>
+            <FooterTemplate>
+                <button class="btn btn-danger" @onclick="RejectApplication">Reject</button>
+                <button class="btn btn-success" @onclick="AcceptApplication">Accept</button>
+            </FooterTemplate>
+        </TabFooter>
+    }
+</TabControl>
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+    private ApplicationViewModel application = new ApplicationViewModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        application = await _applicationHttpService.GetByIdAsync($"api/Applications/{Id}");
+    }
+
+    private async Task RejectApplication()
+    {
+        application = await _applicationHttpService.PostAsync($"api/Applications/Reject", application);
+        _toastService.ShowSuccess($"Application for {application.BasicInformation?.Name} rejected successfully");
+
+        _navigationManager.NavigateTo("StudentsApplications");
+    }
+    private async Task AcceptApplication()
+    {
+        application = await _applicationHttpService.PostAsync($"api/Applications/Accept", application);
+        _toastService.ShowSuccess($"Application for {application.BasicInformation?.Name} accepted successfully");
+
+        _navigationManager.NavigateTo("StudentsApplications");
+    }
+
+}

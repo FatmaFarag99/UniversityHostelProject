@@ -2,4 +2,5 @@
 
 public interface IApplicationRepository : IBaseRepository<Application>
 {
+    Task<IEnumerable<Application>> GetForGrid();
 }

@@ -42,4 +42,12 @@ public class ApplicationsController : BaseController<Application, ApplicationVie
 
         return payment;
     }
+    [HttpGet("Grid")]
+    public async Task<IEnumerable<ApplicationGridViewModel>> GetForGrid() => await _unitOfWork.ReadForGrid();
+    
+    [HttpPost("Reject")]
+    public async Task<ApplicationViewModel> Reject(ApplicationViewModel application) => await _unitOfWork.Reject(application);
+    
+    [HttpPost("Accept")]
+    public async Task<ApplicationViewModel> Accept(ApplicationViewModel application) => await _unitOfWork.Accept(application);
 }

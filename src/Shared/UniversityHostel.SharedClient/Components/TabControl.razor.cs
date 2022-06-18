@@ -43,9 +43,10 @@
             return cssClass;
         }
 
-        private void ActivePage(TabPage tabPage)
+        private async void ActivePage(TabPage tabPage)
         {
             activeTabNode = tabPages.Find(tabPage);
+            await tabPage.OnActive.InvokeAsync();
         }
         private void ActiveNext()
         {

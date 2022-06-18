@@ -1,0 +1,58 @@
+﻿@page "/StudentsApplications"
+@using SmartUI.Grid
+
+@attribute [Authorize(Roles = "Admin")]
+
+<div class="card card-custom card-primary card-outline">
+    <div class="card-body">
+        @if (isDataLoaded)
+        {
+            <SmartGrid TSource="ApplicationGridViewModel" DataSource="applications" AllowPagination="true" SelectedItemCssClass="bg-white" QueryCellInfo="QueryCellInfoHandler">
+                <PaginationSettings PageSize="20" PageSizes="new List<int>{ 10, 20, 40, 50, 100, 500, 1000}" />
+                <GridColumns>
+                    <GridColumn PropertyName="StudentName" Title="Student Name" AllowSorting="true"  />
+                    <GridColumn PropertyName="PlaceOfBirth" Title="Place Of Birth" />
+                    <GridColumn PropertyName="FullAddress" Title="Full Address" />
+                    <GridColumn PropertyName="FatherJob" Title="Father Job" />
+                    <GridColumn PropertyName="GuardianName" Title="Guardian Name" />
+                    <GridColumn PropertyName="GuardianRelationship" Title="Guardian Relationship" />
+                    <GridColumn PropertyName="IsSpecialNeeds" Title="Is Special Needs" />
+                    <GridColumn PropertyName="IsFamilyOutside" Title="Is Family Outside" />
+                    <GridColumn PropertyName="Degree" Title="Degree" AllowSorting="true" />
+                    <GridColumn PropertyName="PreviousGPA" Title="Previous GPA" AllowSorting="true" />
+                    <GridColumn PropertyName="Level" Title="Level" AllowSorting="true" />
+                    <GridColumn PropertyName="Gender" Title="Gender" />
+                    <GridColumn PropertyName="ResidenceName" Title="Residence Name" />
+                    <GridColumn PropertyName="FacultyName" Title="Faculty Name" />
+                    <GridColumn Title="Operations" CssClass="text-center">
+                        <RowTemplate>
+                            <a href="/StudentsApplications/@(((ApplicationGridViewModel)context).Id)" class="text-primary" title="view all information">
+                                <i class="fa fa-eye fa-2x"></i>
+                            </a>
+                        </RowTemplate>
+                    </GridColumn>
+                </GridColumns>
+            </SmartGrid>
+        }
+    </div>
+</div>
+@code {
+    private IEnumerable<ApplicationGridViewModel> applications;
+    private bool isDataLoaded;
+    protected override async Task OnInitializedAsync()
+    {
+        applications = await _applicationGridHttpService.GetAsync("api/Applications/Grid");
+        isDataLoaded = true;
+    }
+    private void QueryCellInfoHandler(QueryCellInfoEventArgs<ApplicationGridViewModel> args)
+    {
+        if (args.Data.Status.Equals(ApplicationStatus.Accepted))
+        {
+            args.Row.AddClass(new string[] { "bg-success", "text-white" });
+        }
+        else if (args.Data.Status.Equals(ApplicationStatus.Rejected))
+        {
+            args.Row.AddClass(new string[] { "bg-danger", "text-white" });
+        }
+    }
+}

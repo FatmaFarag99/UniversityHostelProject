@@ -23,13 +23,13 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Application
+    </div>
+
     <AuthorizeView Roles="User">
         <Authorized>
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Application
-            </div>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/Applications/Add">
@@ -51,8 +51,18 @@
             </li>
         </Authorized>
     </AuthorizeView>
-
-    <!-- Divider -->
+    <AuthorizeView Roles="Admin">
+        <Authorized>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/StudentsApplications">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Students Applications</span>
+                </a>
+            </li>
+        </Authorized>
+    </AuthorizeView>
+    <!-- Divider Admin Settings -->
     <AuthorizeView Roles="Admin">
         <Authorized>
             <hr class="sidebar-divider">

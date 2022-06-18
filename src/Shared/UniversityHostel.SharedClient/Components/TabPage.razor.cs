@@ -12,6 +12,7 @@
         [Parameter] public RenderFragment TitleTemplate { get; set; }
         [Parameter] public RenderFragment BodyTemplate { get; set; }
         [Parameter] public bool Disabled { get; set; }
+        [Parameter] public EventCallback OnActive { get; set; }
 
         public override Task SetParametersAsync(ParameterView parameters)
         {
