@@ -14,6 +14,10 @@ variables:
   myproject: 'src/Server/UniversityHostel.Server.csproj'
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
 - task: DotNetCoreCLI@2
   displayName: 'Restore nuget packages'
   inputs:
