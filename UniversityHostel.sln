@@ -87,8 +87,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSettings.Server"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSettings.Shared", "src\Domains\ApplicationSettings\ApplicationSettings.Shared\ApplicationSettings.Shared.csproj", "{E2404AB9-47F4-47E5-AB0D-BE772DCE68EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartUI.Grid", "..\..\..\Libraries\MyLibraries\SmartUI.Grid\src\SmartUI.Grid\SmartUI.Grid.csproj", "{B1326D3B-5709-4C8D-91FE-854DA35459E6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -215,10 +213,6 @@ Global
 		{E2404AB9-47F4-47E5-AB0D-BE772DCE68EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2404AB9-47F4-47E5-AB0D-BE772DCE68EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2404AB9-47F4-47E5-AB0D-BE772DCE68EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1326D3B-5709-4C8D-91FE-854DA35459E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1326D3B-5709-4C8D-91FE-854DA35459E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1326D3B-5709-4C8D-91FE-854DA35459E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1326D3B-5709-4C8D-91FE-854DA35459E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,7 +256,6 @@ Global
 		{F6DF00DE-0B00-4B4C-A430-0091D609CA1B} = {4D845D1C-CBA3-4716-AE4C-FB0E1578D4CD}
 		{8230F175-0A67-4F08-B012-B31E78FFABCF} = {4D845D1C-CBA3-4716-AE4C-FB0E1578D4CD}
 		{E2404AB9-47F4-47E5-AB0D-BE772DCE68EE} = {4D845D1C-CBA3-4716-AE4C-FB0E1578D4CD}
-		{B1326D3B-5709-4C8D-91FE-854DA35459E6} = {7E6BE069-35D3-4D88-BA6A-A30528F33054}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0BD205F-748F-4049-82DA-74698AC8645D}
