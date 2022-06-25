@@ -1,6 +1,7 @@
 ﻿namespace Applications.Shared.ViewModels;
 
 using Applications.Shared.Enums;
+using Newtonsoft.Json;
 using Payments.Shared.ViewModels;
 
 public class ApplicationViewModel : BaseViewModel
@@ -18,5 +19,6 @@ public class ApplicationViewModel : BaseViewModel
     public Guid? BasicInformationId { get; set; }
     public ApplicationBasicInformationViewModel BasicInformation { get; set; }
 
+    [JsonProperty(nameof(Documents), ObjectCreationHandling = ObjectCreationHandling.Replace)]
     public List<ApplicationDocumentViewModel> Documents { get; set; } = ((ApplicationDocumentType[])Enum.GetValues(typeof(ApplicationDocumentType))).Select(type => new ApplicationDocumentViewModel { Type = type }).ToList();
 }

@@ -131,6 +131,38 @@
                 </div>
             }
         </TabPage>
+        <TabPage Title="Documents">
+            @if (application.Documents is not null)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <div class="p-3">
+
+                            @for (int i = 0; i <= documentTypes.Count - 1; i++)
+                            {
+                                int index = i;
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-2 ">
+                                        <label>@documentTypes[index]</label>
+                                        <button class="btn" @onclick="() => base64Image = Convert.ToBase64String(application.Documents[index].Document.Content)"><i class="fa fa-eye"></i></button>
+                                    </div>
+                                </div>
+
+                                <br>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(base64Image))
+                {
+                    <div class="row">
+                        <img src="data:image/png;base64, @base64Image" />
+                    </div>
+                }
+            }
+        </TabPage>
         <TabFooter>
             <FooterTemplate>
                 @if (application.Status.Equals(ApplicationStatus.Pending))
@@ -148,9 +180,15 @@
     private ApplicationViewModel application;
     private bool isDataLoaded;
 
+    private string base64Image;
+
+    private List<ApplicationDocumentType> documentTypes = ((ApplicationDocumentType[])Enum.GetValues(typeof(ApplicationDocumentType))).ToList();
+
     protected override async Task OnInitializedAsync()
     {
         application = await _applicationHttpService.GetByIdAsync($"api/Applications/{Id}");
+        application.Documents = application.Documents.OrderBy(d => d.Type).ToList();
+
         isDataLoaded = true;
     }
 
