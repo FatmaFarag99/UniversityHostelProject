@@ -6,11 +6,14 @@
 }
 else
 {
-    <div class="card card-custom">
-        <div class="card-body">
-            <h3>You have pending application submetted at @applicationViewModel?.CreationDate.ToLongDateString(), Please wait for result</h3>
+    if (applicationViewModel != default)
+    {
+        <div class="card card-custom">
+            <div class="card-body">
+                <h3>You have pending application submitted at @applicationViewModel?.CreationDate.ToLongDateString(), Please wait for result</h3>
+            </div>
         </div>
-    </div>
+    }
 }
 
 @code {
@@ -21,6 +24,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         applicationViewModel = await _applicationHttpService.GetByIdAsync($"/api/applications/GetPendingApplication");
+
         dataLoaded = true;
     }
 }

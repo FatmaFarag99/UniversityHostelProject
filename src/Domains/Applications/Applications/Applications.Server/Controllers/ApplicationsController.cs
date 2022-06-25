@@ -66,7 +66,9 @@ public class ApplicationsController : BaseController<Application, ApplicationVie
     {
         string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        ApplicationViewModel application = (await _unitOfWork.ReadByExpressionAsync(application => application.UserId == userId && application.Status.Equals(ApplicationStatus.Pending))).FirstOrDefault();
+        ApplicationStageViewModel applicationStage = await _applicationStageUnitOfWork.ReadLastStage();
+
+        ApplicationViewModel application = (await _unitOfWork.ReadByExpressionAsync(application => application.UserId == userId && (application.Status.Equals(ApplicationStatus.Pending) || (application.CreationDate >= applicationStage.CreationDate && application.CreationDate < applicationStage.EndTime)))).FirstOrDefault();
 
         return application;
     }
