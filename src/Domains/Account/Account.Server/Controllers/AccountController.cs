@@ -30,7 +30,7 @@ public class AccountController : ControllerBase
             return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
         }
 
-        IdentityResult result = await _applicationUserRepository.RegisterUserWithRoles(userForRegister, new[] {"User"});
+        IdentityResult result = await _applicationUserRepository.RegisterUserWithRoles(userForRegister, new[] { "User" });
         if (!result.Succeeded)
         {
             IEnumerable<string> errors = result.Errors.Select(e => e.Description);
@@ -51,13 +51,13 @@ public class AccountController : ControllerBase
         }
 
         if (!await _applicationUserRepository.ValidateUser(userLogin))
-            return Unauthorized(new AuthResponseViewModel { ErrorMessage = "Invalid UserName Or Password"});
+            return Unauthorized(new AuthResponseViewModel { ErrorMessage = "Invalid UserName Or Password" });
 
         AppUser user = await _applicationUserRepository.GetUserByUserName(userLogin.UserName);
 
         user.RefreshToken = _tokenService.GenerateRefreshToken();
         user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
-        
+
         await _applicationUserRepository.UpdateUser(user);
 
         AuthResponseViewModel authResponse = new AuthResponseViewModel
@@ -79,7 +79,7 @@ public class AccountController : ControllerBase
         Console.WriteLine(principal.FindFirst(ClaimTypes.Name).Value);
         AppUser user = await _applicationUserRepository.GetUserByUserName(principal.FindFirst(ClaimTypes.Name).Value);
 
-        if(user is null || user.RefreshToken != refreshTokenViewModel.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+        if (user is null || user.RefreshToken != refreshTokenViewModel.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
         {
             return BadRequest(new AuthResponseViewModel { ErrorMessage = "Invalid Client Request" });
         }
@@ -94,5 +94,22 @@ public class AccountController : ControllerBase
             RefreshToken = user.RefreshToken
         };
         return Ok(authResponse);
+    }
+
+    [HttpPost("forgotPassword")]
+    public async Task<IActionResult> FogotPassword(ForgotPasswordViewModel forgotPasswordViewModel)
+    {
+        string resetPasswordUrl = $"https://{Request.Host.Value.Trim('/')}/reset-password";
+        await _applicationUserRepository.ForgotPassword(forgotPasswordViewModel.Email, resetPasswordUrl);
+
+        return Ok();
+    }
+
+    [HttpPost("resetPassword")]
+    public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordViewModel)
+    {
+        await _applicationUserRepository.ResetPassword(resetPasswordViewModel);
+
+        return Ok();
     }
 }

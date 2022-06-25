@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using AutoMapper;
 using StateLog.AspNetCore;
+using UniversityHostel.Shared.Services;
 
 public class ApplicationInstaller : IInstaller
 {
@@ -13,6 +14,8 @@ public class ApplicationInstaller : IInstaller
 
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddSingleton<IEmailService, EmailService>();
+
         services.AddControllers(config =>
         {
             config.Filters.Add(new TrackPerformanceFilter("UniversityHostel", "API"));

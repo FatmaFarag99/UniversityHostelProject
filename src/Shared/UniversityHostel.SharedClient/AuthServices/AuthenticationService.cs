@@ -1,5 +1,7 @@
 ﻿namespace UniversityHostel.SharedClient.AuthServices;
 
+using System.Net.Http.Json;
+
 public class AuthenticationService : IAuthenticationService
 {
     private readonly HttpClient _httpClient;
@@ -90,5 +92,20 @@ public class AuthenticationService : IAuthenticationService
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.Token);
          
         return result.Token;
+    }
+
+    public async Task ForgotPassword(string url, string email)
+    {
+        var forgotPasswordViewModel = new ForgotPasswordViewModel
+        {
+            Email = email
+        };
+        await _httpClient.PostAsJsonAsync(url, forgotPasswordViewModel);
+    }
+
+    public async Task<bool> ResetPassword(string url, ResetPasswordViewModel resetPasswordViewModel)
+    {
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(url, resetPasswordViewModel);
+        return response.IsSuccessStatusCode;
     }
 }

@@ -29,6 +29,8 @@ public static class ServiceExtention
     {
         services.AddScoped<IValidator<UserForLoginViewModel>, UserForLoginValidator>();
         services.AddScoped<IValidator<UserForRegisterViewModel>, UserForRegisterValidator>();
+        services.AddScoped<IValidator<ForgotPasswordViewModel>, ForgotPasswordValidator>();
+        services.AddScoped<IValidator<ResetPasswordViewModel>, ResetPasswordValidator>();
         services.AddScoped<IValidator<FacultyViewModel>, FacultyValidator>();
         services.AddScoped<IValidator<ResidenceViewModel>, ResidenceValidator>();
         services.AddScoped<IValidator<ApplicationViewModel>, ApplicationValidator>();

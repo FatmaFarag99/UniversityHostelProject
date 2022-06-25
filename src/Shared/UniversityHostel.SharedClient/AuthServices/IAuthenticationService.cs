@@ -6,4 +6,6 @@ public interface IAuthenticationService
     Task<AuthResponseViewModel> Login(string url, UserForLoginViewModel userForLogin);
     Task Logout();
     Task<string> RefreshToken(string url);
+    Task ForgotPassword(string url, string email);
+    Task<bool> ResetPassword(string url, ResetPasswordViewModel resetPasswordViewModel);
 }
