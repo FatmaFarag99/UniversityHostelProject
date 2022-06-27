@@ -13,4 +13,7 @@ public class ApplicationStagesController : BaseController<ApplicationStage, Appl
 
     [HttpGet("lastStage")]
     public async Task<IActionResult> GetLastStage() => Ok( await _unitOfWork.ReadLastStage());
+
+    [HttpGet("SubmitStageResults/{stageId}")]
+    public async Task<IActionResult> SubmitStageResults(Guid stageId) => Ok(await _unitOfWork.SubmitStageResults(stageId));
 }

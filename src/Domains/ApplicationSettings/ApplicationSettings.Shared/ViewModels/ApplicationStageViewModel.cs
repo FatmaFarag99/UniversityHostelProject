@@ -7,5 +7,6 @@
         public DateTime EndTime { get; set; } = DateTime.Now;
 
         public StageStatus StageStatus { get; set; }
+        public bool IsResultSubmitted { get; set; }
     }
 }

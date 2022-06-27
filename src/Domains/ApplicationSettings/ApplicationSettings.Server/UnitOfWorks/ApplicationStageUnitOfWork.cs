@@ -15,4 +15,12 @@ public class ApplicationStageUnitOfWork : BaseUnitOfWork<ApplicationStage, Appli
 
         return _mapper.Map<ApplicationStageViewModel>(applicationStage);
     }
+
+    public async Task<ApplicationStageViewModel> SubmitStageResults(Guid stageId)
+    {
+        ApplicationStage stage = await _repository.GetByIdAsync(stageId);
+        stage.IsResultSubmitted = true;
+        ApplicationStageViewModel applicationStage = _mapper.Map<ApplicationStageViewModel>(stage);
+        return await UpdateAsync(applicationStage);
+    }
 }

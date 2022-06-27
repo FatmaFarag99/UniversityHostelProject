@@ -41,17 +41,19 @@ public class ApplicationsController : BaseController<Application, ApplicationVie
         else
         {
             applicationResult.HasApplication = true;
-            TimeSpan remainingTime = (applicationStage.EndTime < DateTime.Now) ? TimeSpan.Zero : (applicationStage.EndTime - DateTime.Now);
-            if (applicationStage.StageStatus.Equals(StageStatus.Opened) && remainingTime != TimeSpan.Zero)
+            //TimeSpan remainingTime = (applicationStage.EndTime < DateTime.Now) ? TimeSpan.Zero : (applicationStage.EndTime - DateTime.Now);
+            //if (applicationStage.StageStatus.Equals(StageStatus.Opened) && remainingTime != TimeSpan.Zero)
+            if (!applicationStage.IsResultSubmitted)
             {
-                applicationResult.Message = "Remaining time for stage is " + Math.Floor(remainingTime.TotalHours) + " hours";
+                //applicationResult.Message = "Remaining time for stage is " + Math.Floor(remainingTime.TotalHours) + " hours";
+                applicationResult.Message = "Results aren't submitted yet, check back later.";
                 applicationResult.Status = ApplicationStatus.Pending;
             }
             else
             {
                 applicationResult.Status = application.Status;
                 if (application.Status == ApplicationStatus.Accepted)
-                    applicationResult.Message = "Congratulations, your application has been accepted into the university hosel";
+                    applicationResult.Message = "Congratulations, your application has been accepted into the university hostel";
                 else if (application.Status == ApplicationStatus.Rejected)
                     applicationResult.Message = "Unfortunately, your request has been rejected";
             }

@@ -4,4 +4,5 @@ public class ApplicationStage : BaseEntity
 {
     public DateTime EndTime { get; set; }
     public StageStatus StageStatus { get; set; }
+    public bool IsResultSubmitted { get; set; }
 }

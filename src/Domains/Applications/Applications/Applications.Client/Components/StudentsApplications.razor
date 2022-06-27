@@ -34,6 +34,11 @@
                         </GridColumn>
                     </GridColumns>
                 </SmartGrid>
+
+                @if (!applicationStage.StageStatus.Equals(StageStatus.Opened))
+                {
+                    <button class="btn btn-success" @onclick="SubmitStageResults">Submit Results</button>
+                }
             }
         }
     </div>
@@ -65,6 +70,13 @@
     private async Task<bool> GetLastApplication()
     {
         applicationStage = await _applicationStagesHttpService.GetByIdAsync("api/ApplicationStages/lastStage");
-        return await Task.FromResult(applicationStage.StageStatus.Equals(StageStatus.Opened) && applicationStage.EndTime > DateTime.Now);
+        return await Task.FromResult(!applicationStage.IsResultSubmitted);
+        //return await Task.FromResult(applicationStage.StageStatus.Equals(StageStatus.Opened) && applicationStage.EndTime > DateTime.Now);
+    }
+
+    private async Task SubmitStageResults()
+    {
+        applicationStage = await _applicationStagesHttpService.GetByIdAsync($"api/ApplicationStages/SubmitStageResults/{applicationStage.Id}");
+        _navigationManager.NavigateTo("/");
     }
 }
