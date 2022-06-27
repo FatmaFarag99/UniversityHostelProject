@@ -15,6 +15,7 @@
                         <label>@documentTypes[index]</label>
                         <span class="text-danger">*</span>
                         <InputFile class="form-control" OnChange="async e => await LoadFile(e, ApplicationViewModel.Documents[index].Document)" />
+                        <ValidationMessage For="() => ApplicationViewModel.Documents[index].Document.Content" />
                     </div>
                 </div>
 
