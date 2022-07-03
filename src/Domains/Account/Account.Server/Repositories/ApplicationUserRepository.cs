@@ -171,4 +171,17 @@ public class ApplicationUserRepository : IApplicationUserRepository
             throw new Exception(error);
         }
     }
+
+    public async Task ChangePassword(ChangePasswordViewModel changePasswordViewModel, AppUser user)
+    {
+        
+        //AppUser user = await _userManager.FindByIdAsync(userId);
+        
+        var result = await _userManager.ChangePasswordAsync(user, changePasswordViewModel.OldPassword, changePasswordViewModel.NewPassword);
+        if (!result.Succeeded)
+        {
+            string error = string.Join("-", result.Errors.Select(e => e.Description));
+            throw new Exception(error);
+        }
+    }
 }

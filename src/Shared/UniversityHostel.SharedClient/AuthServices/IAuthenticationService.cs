@@ -8,4 +8,5 @@ public interface IAuthenticationService
     Task<string> RefreshToken(string url);
     Task ForgotPassword(string url, string email);
     Task<bool> ResetPassword(string url, ResetPasswordViewModel resetPasswordViewModel);
+    Task<bool> ChangePassword(string url, ChangePasswordViewModel changePasswordViewModel);
 }

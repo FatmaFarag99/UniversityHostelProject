@@ -11,4 +11,5 @@ public interface IApplicationUserRepository
     Task UpdateUser(AppUser user);
     Task ForgotPassword(string email, string resetPasswordUrl);
     Task ResetPassword(ResetPasswordViewModel resetPasswordViewModel);
+    Task ChangePassword(ChangePasswordViewModel changePasswordViewModel, AppUser user);
 }

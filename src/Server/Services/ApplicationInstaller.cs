@@ -14,6 +14,8 @@ public class ApplicationInstaller : IInstaller
 
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
+        services.AddHttpContextAccessor();
+
         services.AddSingleton<IEmailService, EmailService>();
 
         services.AddControllers(config =>

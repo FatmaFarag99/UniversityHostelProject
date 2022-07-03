@@ -6,14 +6,16 @@ public class AccountController : ControllerBase
 {
     private readonly ITokenService _tokenService;
     private readonly IApplicationUserRepository _applicationUserRepository;
+    private readonly UserManager<AppUser> _userManager;
     private readonly IValidator<UserForRegisterViewModel> _userForRegisterValidator;
     private readonly IValidator<UserForLoginViewModel> _userForLoginValidator;
 
-    public AccountController(ITokenService tokenService, IApplicationUserRepository applicationUserRepository,
+    public AccountController(ITokenService tokenService, IApplicationUserRepository applicationUserRepository, UserManager<AppUser> userManager,
         IValidator<UserForRegisterViewModel> userForRegisterValidator, IValidator<UserForLoginViewModel> userForLoginValidator)
     {
         _tokenService = tokenService;
         _applicationUserRepository = applicationUserRepository;
+        _userManager = userManager;
         _userForRegisterValidator = userForRegisterValidator;
         _userForLoginValidator = userForLoginValidator;
     }
@@ -109,6 +111,17 @@ public class AccountController : ControllerBase
     public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPasswordViewModel)
     {
         await _applicationUserRepository.ResetPassword(resetPasswordViewModel);
+
+        return Ok();
+    }
+
+    [HttpPost("change-password")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordViewModel changePasswordViewModel)
+    {
+        AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+        //var userId = (HttpContext.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        await _applicationUserRepository.ChangePassword(changePasswordViewModel, user);
 
         return Ok();
     }

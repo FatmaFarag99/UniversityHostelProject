@@ -6,8 +6,6 @@ using Applications.Shared.ViewModels;
 using ApplicationSettings.Shared.Validations;
 using ApplicationSettings.Shared.ViewModels;
 using Blazored.LocalStorage;
-using Cities.Shared.Validations;
-using Cities.Shared.ViewModels;
 using CommonLibrary.ViewModels;
 using Faculties.Shared.Validations;
 using Faculties.Shared.ViewModels;
@@ -31,11 +29,11 @@ public static class ServiceExtention
         services.AddScoped<IValidator<UserForRegisterViewModel>, UserForRegisterValidator>();
         services.AddScoped<IValidator<ForgotPasswordViewModel>, ForgotPasswordValidator>();
         services.AddScoped<IValidator<ResetPasswordViewModel>, ResetPasswordValidator>();
+        services.AddScoped<IValidator<ChangePasswordViewModel>, ChangePasswordValidator>();
         services.AddScoped<IValidator<FacultyViewModel>, FacultyValidator>();
         services.AddScoped<IValidator<ResidenceViewModel>, ResidenceValidator>();
         services.AddScoped<IValidator<ApplicationViewModel>, ApplicationValidator>();
         services.AddScoped<IValidator<PaymentViewModel>, PaymentValidator>();
-        services.AddScoped<IValidator<CityViewModel>, CityValidator>();
         services.AddScoped<IValidator<ApplicationSettingViewModel>, ApplicationSettingValidator>();
         services.AddScoped<IValidator<ApplicationStageViewModel>, ApplicationStageValidator>();
     }

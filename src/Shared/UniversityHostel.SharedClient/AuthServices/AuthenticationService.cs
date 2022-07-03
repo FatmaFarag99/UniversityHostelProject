@@ -108,4 +108,10 @@ public class AuthenticationService : IAuthenticationService
         HttpResponseMessage response = await _httpClient.PostAsJsonAsync(url, resetPasswordViewModel);
         return response.IsSuccessStatusCode;
     }
+
+    public async Task<bool> ChangePassword(string url, ChangePasswordViewModel changePasswordViewModel)
+    {
+        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(url, changePasswordViewModel);
+        return response.IsSuccessStatusCode;
+    }
 }

@@ -82,13 +82,33 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/residences">Residences</a>
                         <a class="collapse-item" href="/faculties">Faculties</a>
-                        <a class="collapse-item" href="/cities">Cities</a>
+                        @*<a class="collapse-item" href="/cities">Cities</a>*@
                         <a class="collapse-item" href="/applicationStages">Application Stages</a>
                     </div>
                 </div>
             </li>
         </Authorized>
     </AuthorizeView>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Account Settings
+    </div>
+    <AuthorizeView>
+        <Authorized>
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/change-password">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Change Password</span>
+                </a>
+            </li>
+        </Authorized>
+    </AuthorizeView>
+
 
 
     <!-- Divider -->
