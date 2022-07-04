@@ -22,7 +22,7 @@ public class AuthenticationService : IAuthenticationService
 
         HttpResponseMessage result = await _httpClient.PostAsync(url, bodyContent);
         string response = await result.Content.ReadAsStringAsync();
-        
+
         if (!result.IsSuccessStatusCode)
         {
             RegisterUserResponse registerationResponse = JsonConvert.DeserializeObject<RegisterUserResponse>(response);
@@ -50,7 +50,7 @@ public class AuthenticationService : IAuthenticationService
     }
     private async Task AuthenticateUserInClientApp(AuthResponseViewModel authResponse)
     {
-        if(authResponse is null)
+        if (authResponse is null)
             Console.WriteLine("Authentication not happen for client application becuase authResponse is null");
 
         await _localStorage.SetItemAsync<string>("AuthToken", authResponse.Token);
@@ -90,7 +90,7 @@ public class AuthenticationService : IAuthenticationService
         await _localStorage.SetItemAsync("RefreshToken", result.RefreshToken);
 
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.Token);
-         
+
         return result.Token;
     }
 
@@ -106,12 +106,26 @@ public class AuthenticationService : IAuthenticationService
     public async Task<bool> ResetPassword(string url, ResetPasswordViewModel resetPasswordViewModel)
     {
         HttpResponseMessage response = await _httpClient.PostAsJsonAsync(url, resetPasswordViewModel);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = JsonConvert.DeserializeObject<ApiErrorDetails>(await response.Content.ReadAsStringAsync());
+            throw new Exception(error?.Message);
+        }
+
         return response.IsSuccessStatusCode;
     }
 
     public async Task<bool> ChangePassword(string url, ChangePasswordViewModel changePasswordViewModel)
     {
         HttpResponseMessage response = await _httpClient.PostAsJsonAsync(url, changePasswordViewModel);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = JsonConvert.DeserializeObject<ApiErrorDetails>(await response.Content.ReadAsStringAsync());
+            throw new Exception(error?.Message);
+        }
+        
         return response.IsSuccessStatusCode;
     }
 }
