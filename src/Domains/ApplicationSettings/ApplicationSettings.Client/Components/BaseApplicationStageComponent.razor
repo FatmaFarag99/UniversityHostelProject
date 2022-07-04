@@ -8,14 +8,14 @@
         <InputRadioGroup @bind-Value="ApplicationStageViewModel.StageStatus" TValue="StageStatus" Name="Status">
             <div class="form-check col-md-4">
                 <InputRadio Value="StageStatus.Opened" class="form-check-input"
-                       disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+                            disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
                 <label for="Status" class="form-check-label">
                     opened
                 </label>
             </div>
-             <div class="form-check col-md-4">
-                 <InputRadio Value="StageStatus.Closed" class="form-check-input"
-                       disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
+            <div class="form-check col-md-4">
+                <InputRadio Value="StageStatus.Closed" class="form-check-input"
+                            disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
                 <label for="Status" class="form-check-label">
                     closed
                 </label>
@@ -31,5 +31,15 @@
         <InputDate class="form-control" @bind-Value="ApplicationStageViewModel.EndTime"
                    disabled="@(SystemFeatureType.Equals(SystemFeatureType.Details) || SystemFeatureType.Equals(SystemFeatureType.Delete))" />
         <ValidationMessage For="@(() => ApplicationStageViewModel.EndTime)" />
+    </div>
+
+    <div class="form-group form-row p-5">
+        <div class="form-check col-md-6 mb-2">
+            <input class="form-check-input" disabled type="checkbox" @bind="ApplicationStageViewModel.IsResultSubmitted" id="isResultsSubmitted">
+            <label class="form-check-label" for="isResultsSubmitted">
+                Results Submitted
+            </label>
+            <ValidationMessage For="@(() => ApplicationStageViewModel.IsResultSubmitted)" />
+        </div>
     </div>
 </FormBaseComponent>

@@ -6,6 +6,6 @@ public class ApplicationStageValidator : BaseValidator<ApplicationStageViewModel
 {
     public ApplicationStageValidator() : base()
     {
-        RuleFor(x => x.EndTime).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
+        RuleFor(x => x.EndTime).NotEmpty().GreaterThanOrEqualTo(DateTime.Today);
     }
 }

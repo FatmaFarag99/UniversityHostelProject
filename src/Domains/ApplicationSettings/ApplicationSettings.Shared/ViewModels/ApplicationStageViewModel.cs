@@ -4,7 +4,8 @@
 
     public class ApplicationStageViewModel : BaseViewModel
     {
-        public DateTime EndTime { get; set; } = DateTime.Now;
+        public DateTime EndTime { get; set; } = DateTime.Today;
+        public string EndTimeDate => EndTime.ToString("dd-MM-yyyy");
 
         public StageStatus StageStatus { get; set; }
         public bool IsResultSubmitted { get; set; }

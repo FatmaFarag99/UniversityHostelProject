@@ -1,20 +1,26 @@
 ﻿namespace Applications.Server.UnitOfWorks;
 
+using ApplicationSettings.Server.UnitOfWorks;
+using ApplicationSettings.Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public class ApplicationUnitOfWork : BaseUnitOfWork<Application, ApplicationViewModel>, IApplicationUnitOfWork
 {
     private readonly IApplicationRepository _repository;
+    private readonly IApplicationStageUnitOfWork _applicationStageUnitOfWork;
 
-    public ApplicationUnitOfWork(IApplicationRepository repository, IMapper mapper) : base(repository, mapper)
+    public ApplicationUnitOfWork(IApplicationRepository repository, IApplicationStageUnitOfWork applicationStageUnitOfWork, IMapper mapper) : base(repository, mapper)
     {
         _repository = repository;
+        _applicationStageUnitOfWork = applicationStageUnitOfWork;
     }
 
     public async Task<IEnumerable<ApplicationGridViewModel>> ReadForGrid()
     {
-        IEnumerable<Application> applications = await _repository.GetForGrid();
+        ApplicationStageViewModel lastStage = await _applicationStageUnitOfWork.ReadLastStage();
+
+        IEnumerable<Application> applications = await _repository.GetForGrid(lastStage.Id);
 
         return applications.Select(e => new ApplicationGridViewModel
         {
