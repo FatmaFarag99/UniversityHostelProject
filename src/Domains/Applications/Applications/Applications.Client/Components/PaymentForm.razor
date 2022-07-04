@@ -1,14 +1,26 @@
 ﻿<EditForm Model="PaymentViewModel" OnValidSubmit="HandleValidSubmit">
     <FluentValidator />
     <div class="row p-3">
-        <div class="form-group col-md-6">
+        
+        <div class="col-md-7 row">
             <label>
                 Card Number
                 <span class="text-danger">*</span>
             </label>
-            <SmartInputText @bind-Value="PaymentViewModel.CardNumber" Placeholder="Enter the 16-digit card number on the card" />
-            <ValidationMessage For="@(() => PaymentViewModel.CardNumber)" />
+            <div class="input-group md-6 pb-2">
+                <div class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-credit-card-fill"></i>
+                </div>
+                <SmartInputText @bind-Value="PaymentViewModel.CardNumber" Placeholder="Enter the 16-digit card number on the card" aria-describedby="basic-addon1" />
+                <ValidationMessage For="@(() => PaymentViewModel.CardNumber)" />
+            </div>
         </div>
+
+        <div class="form-group col-md-4 mt-4">
+        <img src="image/visa.png" alt="you can pay by this visas">
+    </div>
+
+
         <div class="col-md-6 row">
             <div class="form-group col-md-6">
                 <label>
@@ -37,9 +49,7 @@
             <ValidationMessage For="@(() => PaymentViewModel.CVV)" />
         </div>
     </div>
-    <div class="form-group col-md-6">
-        <img src="visa.png" alt="you can pay by this visas" width="100" height="100">
-    </div>
+    
     <div class="card-footer d-flex justify-content-end">
         <div>
             <button type="submit" class="btn btn-success m-2">Pay</button>
