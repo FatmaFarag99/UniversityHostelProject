@@ -4,7 +4,7 @@ public enum ApplicationDocumentType
 {
     NationalId = 1,
     FatherNationalId,
-    GuardianNationalId,
+    GuarantorAcknowledgment,
     BirthCertificate,
     HealthCertificate,
     GuardianEndorsement
