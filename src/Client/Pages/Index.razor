@@ -2,6 +2,8 @@
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 
+@inject Microsoft.JSInterop.IJSRuntime _jsRuntime
+
 <PageTitle>Dashboard</PageTitle>
 @*<div class="row">
     <div class="col-4"></div>
@@ -9,19 +11,23 @@
 </div>
 *@
 
-
-
     <div class="jell">
-        <div class="title">Tanta University Hostel</div>
         <div id="next">&gt;&gt;</div>
         <div id="prev">&lt;&lt; </div>
-        <img src="../wwwroot/image/23c9a9ca-d97a-407a-917f-6a29c7353280.jpg">
-        <img src="../wwwroot/image/2ff26fa8-bf41-48df-985b-51ca5c6bfa09.jpg">
-        <img src="../wwwroot/image/366ec1c7-e05d-419d-8027-5fa43b3f0d8f.jpg">
-        <img src="../wwwroot/image/3f94db44-062a-448e-b05f-7ce2ada859ba.jpg">
-        <img src="../wwwroot/image/5657df04-248f-4c0b-b5db-2ac1c371b91c.jpg">
-        <img src="../wwwroot/image/61466634-2d7e-44a4-96c2-b902f08417cc.jpg">
-        <img src="../wwwroot/image/7fdd033c-9d58-4480-b1e2-d454580b519c.jpg">
-        <img src="../wwwroot/image/9ca1ef3c-aea7-497b-ad7e-ae8684a990cd.jpg">
-        
+        <img src="../image/23c9a9ca-d97a-407a-917f-6a29c7353280.jpg">
+        <img src="../image/2ff26fa8-bf41-48df-985b-51ca5c6bfa09.jpg">
+        <img src="../image/366ec1c7-e05d-419d-8027-5fa43b3f0d8f.jpg">
+        <img src="../image/3f94db44-062a-448e-b05f-7ce2ada859ba.jpg">
+        <img src="../image/5657df04-248f-4c0b-b5db-2ac1c371b91c.jpg">
+        <img src="../image/61466634-2d7e-44a4-96c2-b902f08417cc.jpg">
+        <img src="../image/7fdd033c-9d58-4480-b1e2-d454580b519c.jpg">
+        <img src="../image/9ca1ef3c-aea7-497b-ad7e-ae8684a990cd.jpg">
+
     </div>
+
+@code {
+    protected async override Task OnInitializedAsync()
+    {
+        await _jsRuntime.InvokeVoidAsync("startXX", null);
+    }
+}
