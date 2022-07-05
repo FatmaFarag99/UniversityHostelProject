@@ -1,0 +1,131 @@
+body{
+    font-family: system-ui,"Segoe UI","Helvetica Neue",
+                "Noto Sans","Liberation Sans",Arial,sans-serif,
+                "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    background: #80808047;
+}
+:root{
+    --timer:50s
+}
+nav{
+    width: calc(30% - 55px);
+    background: #3f51b5;
+    padding: 10px;
+    height: 94vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 7px;
+}
+nav .back{
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+nav li{
+    position: relative;
+    list-style: none;
+    margin-left: -50%;
+    padding: 20px 0;
+}
+nav img{
+    width: 55px;
+    position: absolute;
+    top: 0;
+    transform: translateY(50%);
+}
+nav a{
+    padding: 10px;
+    text-decoration: none;
+    color: #f8f9fa;
+    font-size: 18px;
+}
+nav a:hover{
+    background: #5366d3;
+    border-radius: 7px;
+}
+nav .home{
+    background: #5366d3;
+    border-radius: 7px;
+}
+nav .send a{
+    box-sizing: border-box;
+    padding: 3px 12px 6px;
+    border-radius: 10px;
+    border: 1px solid #f8f9fa;
+    transition: .1s;
+    transition-timing-function: linear;
+}
+nav .send .a{
+    margin-right: 5px;
+}
+nav .send .a:hover{
+    background-color: #f8f9fa;
+    color: #212529;
+}
+nav .send .aa{
+    border-color: white;
+    background: white;
+    color: #212529;
+}
+nav .send .aa:hover{
+    box-shadow: 0px 0px 2px 3px #ffffff8c;
+}
+.title{
+    position: absolute;
+    top: -60px;
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 500;
+    color: #3f51b5;
+}
+.jell{
+    width: 70%;
+    height: calc(100vh - 90px);
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 80px 15px 15px 10px;
+}
+.jell #next ,.jell #prev{
+    position: absolute;
+    transform: translatey(-50%);
+    font-size: 38px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    letter-spacing: -10px;
+    width: 45px;
+    z-index: 9;
+}
+.jell #next.disabled ,
+.jell #prev.disabled{
+    color: #ffffff78;
+    cursor: no-drop;
+}
+.jell #next{
+    top: 50%;
+    right: 0px;
+}
+.jell #prev{
+    top: 50%;
+    left: 0px;
+}
+.jell img{
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+.jell img.active{
+    opacity: 1;
+}
