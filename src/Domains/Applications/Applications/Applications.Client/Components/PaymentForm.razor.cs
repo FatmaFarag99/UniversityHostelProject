@@ -22,7 +22,7 @@
         {
             PaymentViewModel.UserId = await GetUserId();
             PaymentViewModel.TransactionId = Guid.NewGuid().ToString();
-            PaymentViewModel.PaidAmount = 90;
+            PaymentViewModel.PaidAmount = 200;
             PaymentViewModel = await _paymentHttpService.PostAsync("/api/payments", PaymentViewModel);
             string successMessage = "Payment Completed Successfuly";
 
